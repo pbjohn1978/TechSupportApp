@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace TechSupport
 {
     public class Customer
-    {
+    {   
+        public int CustomerID { get; set; }
+
         public string Name { get; set; }
 
         public string Address { get; set; }
@@ -17,8 +19,5 @@ namespace TechSupport
         public string State { get; set; }
 
         public string ZipCode { get; set; }
-
-        
-
     }
 }
