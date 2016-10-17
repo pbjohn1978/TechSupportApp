@@ -16,5 +16,13 @@ namespace TechSupportApp
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Code section by BeekerMeMeMe :) (john)
+        /// this section handles a button click on the Customer button (btnCustomer)
+        /// </summary>
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.btnCustomer.TabIndex = 0;
             this.btnCustomer.Text = "Customer";
             this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnIncidents
             // 
