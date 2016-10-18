@@ -16,5 +16,29 @@ namespace TechSupportApp
         {
             InitializeComponent();
         }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            FormAddCustomer addcust = new FormAddCustomer();
+            addcust.Show();
+        }
+
+        private void btnUpdateCustomer_Click(object sender, EventArgs e)
+        {
+            FormUpdateCustomer updateMe = new FormUpdateCustomer();
+            updateMe.Show();
+        }
+
+        private void btnRetreiveCustomer_Click(object sender, EventArgs e)
+        {
+            FormCustomerLookUp retreiveMe = new FormCustomerLookUp();
+            retreiveMe.Show();
+        }
+
+        private void btnDeleteCustomer_Click(object sender, EventArgs e)
+        {
+            FormDeleteCustomer deleteMe = new FormDeleteCustomer();
+            deleteMe.Show();
+        }
     }
 }

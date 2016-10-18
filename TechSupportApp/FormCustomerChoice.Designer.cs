@@ -43,6 +43,7 @@
             this.btnAddCustomer.TabIndex = 0;
             this.btnAddCustomer.Text = "Add Customer";
             this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // btnUpdateCustomer
             // 
@@ -52,6 +53,7 @@
             this.btnUpdateCustomer.TabIndex = 1;
             this.btnUpdateCustomer.Text = "Update Customer";
             this.btnUpdateCustomer.UseVisualStyleBackColor = true;
+            this.btnUpdateCustomer.Click += new System.EventHandler(this.btnUpdateCustomer_Click);
             // 
             // btnRetreiveCustomer
             // 
@@ -61,6 +63,7 @@
             this.btnRetreiveCustomer.TabIndex = 2;
             this.btnRetreiveCustomer.Text = "Retreive Customer";
             this.btnRetreiveCustomer.UseVisualStyleBackColor = true;
+            this.btnRetreiveCustomer.Click += new System.EventHandler(this.btnRetreiveCustomer_Click);
             // 
             // btnDeleteCustomer
             // 
@@ -70,12 +73,13 @@
             this.btnDeleteCustomer.TabIndex = 3;
             this.btnDeleteCustomer.Text = "Delete Customer";
             this.btnDeleteCustomer.UseVisualStyleBackColor = true;
+            this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
             // 
             // FormCustomerChoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 300);
+            this.ClientSize = new System.Drawing.Size(406, 284);
             this.Controls.Add(this.btnDeleteCustomer);
             this.Controls.Add(this.btnRetreiveCustomer);
             this.Controls.Add(this.btnUpdateCustomer);
