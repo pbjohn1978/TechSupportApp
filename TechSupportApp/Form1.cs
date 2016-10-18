@@ -22,7 +22,8 @@ namespace TechSupportApp
         /// </summary>
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormCustomerChoice cust = new FormCustomerChoice();
+            cust.Show();
         }
     }
 }
