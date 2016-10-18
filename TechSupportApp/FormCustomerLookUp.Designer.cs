@@ -55,6 +55,7 @@
             this.CustomerDropDownList.Size = new System.Drawing.Size(326, 21);
             this.CustomerDropDownList.TabIndex = 0;
             this.CustomerDropDownList.Text = "Select Customer From List:";
+            this.CustomerDropDownList.SelectedIndexChanged += new System.EventHandler(this.CustomerDropDownList_SelectedIndexChanged);
             // 
             // label1
             // 

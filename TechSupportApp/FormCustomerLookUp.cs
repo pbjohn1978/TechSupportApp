@@ -27,5 +27,24 @@ namespace TechSupportApp
                 CustomerDropDownList.Items.Add(customer.Name);
             }
         }
+
+        private void CustomerDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Customer> customers = HelperDB.GetAllCustomers();
+            foreach (Customer customer in customers)
+            {
+                if (customer.Name == CustomerDropDownList.Text)
+                {
+                    txtLabCustAddress.Text = customer.Address;
+                    txtLabCustCity.Text = customer.City;
+                    txtLabCustEmail.Text = customer.Email;
+                    txtLabCustID.Text = customer.CustomerID.ToString();
+                    txtLabCustName.Text = customer.Name;
+                    txtLabCustPhone.Text = customer.Phone;
+                    txtLabCustState.Text = customer.State;
+                    txtLabCustZip.Text = customer.ZipCode;
+                }
+            }
+        }
     }
 }
