@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport;
+using TechSupportApp.Classes;
 
 namespace TechSupportApp
 {
@@ -19,7 +21,11 @@ namespace TechSupportApp
 
         private void FormCustomerLookUp_Load(object sender, EventArgs e)
         {
-
+            List<Customer> customers = HelperDB.GetAllCustomers();
+            foreach (Customer customer in customers)
+            {
+                CustomerDropDownList.Items.Add(customer.Name);
+            }
         }
     }
 }
