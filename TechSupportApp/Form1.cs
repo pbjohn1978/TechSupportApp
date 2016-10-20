@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace TechSupportApp
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
+        }
+        /// <summary>
+        /// Code section by BeekerMeMeMe :) (john)
+        /// this section handles a button click on the Customer button (btnCustomer)
+        /// </summary>
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            FormCustomer cust = new FormCustomer();
+            cust.Show();
         }
     }
 }
