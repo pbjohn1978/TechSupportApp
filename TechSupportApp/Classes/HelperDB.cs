@@ -88,8 +88,8 @@ FROM[TechSupport].[dbo].[Customers]";
         /// </summary>
         /// <returns>String representing the Connection String to the Database Sever :) </returns>
         public static string GetConnectionString()
-        {
-            return @"Data Source=DESKTOP-GNOQRKG\SQLEXPRESS;Initial Catalog=TechSupport;Integrated Security=True";
+        {   
+            return @"Data Source=localhost;Initial Catalog=TechSupport;Integrated Security=True";
         }
 
         /// <summary>

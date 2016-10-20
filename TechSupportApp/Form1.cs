@@ -22,7 +22,7 @@ namespace TechSupportApp
         /// </summary>
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            FormCustomerChoice cust = new FormCustomerChoice();
+            FormCustomer cust = new FormCustomer();
             cust.Show();
         }
     }
