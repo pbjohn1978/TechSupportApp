@@ -25,5 +25,17 @@ namespace TechSupportApp
             FormCustomer cust = new FormCustomer();
             cust.Show();
         }
+
+        private void btnRegistrations_Click(object sender, EventArgs e)
+        {
+            FormRegistration reg = new FormRegistration();
+            reg.Show();
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            FormProduct prod = new FormProduct();
+            prod.Show();
+        }
     }
 }

@@ -63,6 +63,7 @@
             this.btnProducts.TabIndex = 2;
             this.btnProducts.Text = "Products";
             this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // btnRegistrations
             // 
@@ -72,6 +73,7 @@
             this.btnRegistrations.TabIndex = 3;
             this.btnRegistrations.Text = "Registrations";
             this.btnRegistrations.UseVisualStyleBackColor = true;
+            this.btnRegistrations.Click += new System.EventHandler(this.btnRegistrations_Click);
             // 
             // btnTechnicians
             // 
