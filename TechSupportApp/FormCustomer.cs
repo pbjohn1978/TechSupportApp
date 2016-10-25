@@ -46,5 +46,33 @@ namespace TechSupportApp
                 }
             }
         }
+
+        private void btnCustomerAddNew_Click(object sender, EventArgs e)
+        {
+            bool isValid = false;
+            Customer cust = new Customer();
+            try
+            {
+                cust.Name = txtCustomerName.Text;
+                cust.Address = txtCustomerAddress.Text;
+                cust.City = txtCustomerCity.Text;
+                cust.State = txtCustomerState.Text;
+                cust.ZipCode = txtCustomerZip.Text;
+                cust.Phone = txtCustomerPhone.Text;
+                cust.Email = txtCustomerEmail.Text;
+                isValid = CustomerValidator.IsValidCustomer(cust);
+            }
+            finally
+            {
+                if (isValid)
+                {
+                    bool isAdded = HelperDB.AddCustomerToDB(cust);
+                }
+                else
+                {
+                    MessageBox.Show("Please Check the inputted data and submit it again... I think there is a problem");
+                }
+            }
+        }
     }
 }

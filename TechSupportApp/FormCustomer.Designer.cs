@@ -219,6 +219,7 @@
             this.btnCustomerAddNew.TabIndex = 22;
             this.btnCustomerAddNew.Text = "Add New Customer";
             this.btnCustomerAddNew.UseVisualStyleBackColor = true;
+            this.btnCustomerAddNew.Click += new System.EventHandler(this.btnCustomerAddNew_Click);
             // 
             // btnCustomerDelete
             // 

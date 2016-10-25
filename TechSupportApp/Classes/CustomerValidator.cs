@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechSupport;
 
 namespace TechSupportApp.Classes
 {
     public class CustomerValidator
     {
-        public static bool IsValidCustomer(object sender, EventArgs e)
+        public static bool IsValidCustomer(Customer customer)
         {
             bool isValidInfo = true;
 
