@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport;
+using TechSupportApp.Classes;
 
 namespace TechSupportApp
 {
@@ -36,6 +38,15 @@ namespace TechSupportApp
             txtVersion.ReadOnly = false;
             dateTimeProd.Enabled = true;
             btnDeleteProd.Enabled = false;
+        }
+
+        private void cboName_DropDown(object sender, EventArgs e)
+        {
+            List<Product> prod = HelperDB.GetProdNames();
+            foreach (Product product in prod)
+            {
+                cboName.Items.Add(product.Name);
+            }
         }
     }
 }

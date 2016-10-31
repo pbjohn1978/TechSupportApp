@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechSupport
 {
-    class Product
+    public class Product
     {
         public string ProductCode { get; set; }
 
