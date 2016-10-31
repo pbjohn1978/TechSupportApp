@@ -12,7 +12,15 @@ namespace TechSupportApp.Classes
 
         public int CustomerID { get; set; }
 
+        public string CustomerName { get; set; }
+
         public string ProductCode { get; set; }
+
+        public string ProductName { get; set; }
+
+        public int TechID { get; set; }
+
+        public string TechName { get; set; }
 
         public DateTime DateOpened { get; set; }
 

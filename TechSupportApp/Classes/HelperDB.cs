@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace TechSupportApp.Classes
         {
             List<Customer> customers = new List<Customer>();
             //Van Halen: Dreams :)
-            SqlConnection con = new SqlConnection( GetConnectionString() );
+            SqlConnection con = new SqlConnection(GetConnectionString());
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = @"SELECT[CustomerID],[Name],[Address],[City],[State],[ZipCode],[Phone],[Email]
@@ -66,7 +67,7 @@ FROM[TechSupport].[dbo].[Customers]";
                     Console.WriteLine("umm, so ya... something messed up... i wasn't able to get anything from the db... sorry! :(");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex; //this is a catch all exception... i shouldn't be using this... hehe... but i like being bad... :)
             }
@@ -77,7 +78,7 @@ FROM[TechSupport].[dbo].[Customers]";
 
             return customers;
         }
-        
+
         /// <summary>
         /// Code By: BeekerMeMe
         /// this code takes in no arguments and returns the connection string to Database server...
@@ -88,8 +89,15 @@ FROM[TechSupport].[dbo].[Customers]";
         /// </summary>
         /// <returns>String representing the Connection String to the Database Sever :) </returns>
         public static string GetConnectionString()
-        {   
+        {
             return @"Data Source=localhost;Initial Catalog=TechSupport;Integrated Security=True";
+        }
+
+        public static SqlConnection GetConnectionStringAppConfig()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            return con;
         }
 
         /// <summary>
@@ -110,8 +118,8 @@ FROM[TechSupport].[dbo].[Customers]";
             //the following if statement will update the customers info if true
             //if false it will add the New Customer to the database... :)
             if (HelperDB.IsCustInDB(cust))
-            {   
-                
+            {
+
                 SqlConnection con = new SqlConnection(GetConnectionString());
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
@@ -226,7 +234,123 @@ where CustomerID=@custid";
             return isCustInTheDB;
         }
 
+        ///<summary>
+        ///Code by: R. Richards
+        ///Technician CRUD functionality
+        /// </summary>
 
 
+
+        ///<summary>
+        ///Incidents CRUD Functionality
+        /// </summary>
+        ///TODO:  Connect Customer Name, Product Name and Technician Name to display for easy reference
+        public static List<Incidents> GetIncidents()
+        {
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+               
+                SqlCommand selQuery = new SqlCommand();
+                selQuery.Connection = con;
+                selQuery.CommandText =
+                    @"
+                    SELECT Incidents.IncidentID, Incidents.CustomerID, Customers.Name, Incidents.ProductCode, Products.Name,
+	                    Incidents.TechID, Technicians.Name, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
+                    FROM Incidents JOIN Customers
+                    ON Customers.CustomerID = Incidents.CustomerID
+                    JOIN Products
+                    ON Incidents.ProductCode = Products.ProductCode
+                    JOIN Technicians
+                    ON Incidents.TechID = Technicians.TechID
+                    ";
+                con.Open();
+                SqlDataReader rdr = selQuery.ExecuteReader();
+                List<Incidents> incidents = new List<Incidents>();
+                while (rdr.Read())
+                {
+                    Incidents tempIncident = new Incidents();
+                    tempIncident.IncidentID = (int)rdr["@Incidents.IncidentID"];
+                    tempIncident.CustomerID = (int)rdr["@Incidents.CustomerID"];
+                    tempIncident.CustomerName = rdr["@Customers.Name"].ToString();
+                    tempIncident.ProductCode = rdr["@Incidents.ProductCode"].ToString();
+                    tempIncident.ProductName = rdr["@Products.Name"].ToString();
+                    tempIncident.TechID = (int)rdr["@Incidents.TechID"];
+                    tempIncident.TechName = rdr["@Technicians.Name"].ToString();
+                    tempIncident.DateOpened = (DateTime)rdr["@Incidents.DateOpened"];
+                    tempIncident.DateClosed = (DateTime)rdr["@Incidents.DateClosed"];
+                    tempIncident.Title = rdr["@Incidents.Title"].ToString();
+                    tempIncident.Description = rdr["@Incidents.Description"].ToString();
+                    incidents.Add(tempIncident);
+                }
+                return incidents;
+            }
+        }
+
+        public static bool DeleteIncident(int id)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand delete = new SqlCommand();
+            delete.CommandText = @"
+                DELETE Incidents
+                WHERE IncidentID = @incidentID
+                ";
+            delete.Parameters.AddWithValue("@incidentID", id);
+
+            try
+            {
+                con.Open();
+                int rows = delete.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("delete");
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+
+        }
+
+        public static string ErrorMessage(string dbQueryType)
+        {
+            return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";
+        }
+
+        ///<summary>
+        ///Created by R. Richards
+        ///Technicians CRUD functionality
+        /// </summary>
+
+        public static List<Technicians> GetTechnicians()
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand selQuery = new SqlCommand();
+            selQuery.Connection = con;
+            selQuery.CommandText =
+                @"
+                    SELECT TechID, Name, Email, Phone
+                    FROM Technicians
+                    ";
+            con.Open();
+            SqlDataReader rdr = selQuery.ExecuteReader();
+            List<Technicians> technicians = new List<Technicians>();
+            while (rdr.Read())
+            {
+                Technicians tempTech = new Technicians();
+                tempTech.TechID = (int)rdr["@TechID"];
+                tempTech.Name = rdr["@Name"].ToString();
+                tempTech.Email = rdr["@Email"].ToString();
+                tempTech.Phone = rdr["@Phone"].ToString();
+
+                technicians.Add(tempTech);
+            }
+            return technicians;
+        }
     }
 }
