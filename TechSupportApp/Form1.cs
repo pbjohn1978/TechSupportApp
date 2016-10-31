@@ -25,17 +25,32 @@ namespace TechSupportApp
             FormCustomer cust = new FormCustomer();
             cust.Show();
         }
-
+        /// <summary>
+        /// Created by: Christian
+        /// opens registration form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRegistrations_Click(object sender, EventArgs e)
         {
             FormRegistration reg = new FormRegistration();
             reg.Show();
         }
-
+        /// <summary>
+        /// created by: Christian 
+        /// opens product form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnProducts_Click(object sender, EventArgs e)
         {
             FormProduct prod = new FormProduct();
             prod.Show();
+        }
+
+        private void btnIncidents_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

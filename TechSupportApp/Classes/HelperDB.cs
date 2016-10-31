@@ -227,6 +227,55 @@ where CustomerID=@custid";
         }
 
 
+        #region Products
+
+        public static List<Product> GetProdNames()
+        {
+            List<Product> prods = new List<Product>();
+
+            SqlConnection con = new SqlConnection(GetConnectionString());
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "@SELECT [ProductCode],[Name],[Version],[ReleaseDate]";
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Product prod = new Product();
+                        prod.ProductCode = reader.GetString(0);
+                        prod.Name = reader.GetString(1);
+                        prod.Version = reader.GetDecimal(2);
+                        prod.ReleaseDate = reader.GetDateTime(3);
+                        
+                        prods.Add(prod);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return prods;
+
+        }   
+
+        #endregion
+
 
     }
 }
