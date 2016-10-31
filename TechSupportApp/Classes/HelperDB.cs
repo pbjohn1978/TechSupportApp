@@ -22,7 +22,7 @@ namespace TechSupportApp.Classes
         {
             List<Customer> customers = new List<Customer>();
             //Van Halen: Dreams :)
-            SqlConnection con = new SqlConnection(GetConnectionString());
+            SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = @"SELECT[CustomerID],[Name],[Address],[City],[State],[ZipCode],[Phone],[Email]
@@ -78,20 +78,7 @@ FROM[TechSupport].[dbo].[Customers]";
 
             return customers;
         }
-
-        /// <summary>
-        /// Code By: BeekerMeMe
-        /// this code takes in no arguments and returns the connection string to Database server...
-        /// 
-        /// Future Note: for the production version we will need to change the connection string to the Production Servers connection string
-        ///     this string is for LocalHost during the devolpment process... :)
-        /// 
-        /// </summary>
-        /// <returns>String representing the Connection String to the Database Sever :) </returns>
-        public static string GetConnectionString()
-        {
-            return @"Data Source=localhost;Initial Catalog=TechSupport;Integrated Security=True";
-        }
+        
 
         public static SqlConnection GetConnectionStringAppConfig()
         {
@@ -120,7 +107,7 @@ FROM[TechSupport].[dbo].[Customers]";
             if (HelperDB.IsCustInDB(cust))
             {
 
-                SqlConnection con = new SqlConnection(GetConnectionString());
+                SqlConnection con = GetConnectionStringAppConfig();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandText = @"UPDATE[dbo].[Customers] SET [Name] = @name , [Address] = @addre, [City] = @city , [State] = @state , [ZipCode] = @zipco , [Phone] = @phone , [Email] = @email
@@ -152,7 +139,7 @@ WHERE CustomerID = @id ";
             }
             else
             {
-                SqlConnection con = new SqlConnection(GetConnectionString());
+                SqlConnection con = GetConnectionStringAppConfig();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandText = @"INSERT INTO [dbo].[Customers]([Name],[Address],[City],[State],[ZipCode],[Phone],[Email])
@@ -200,7 +187,7 @@ VALUES(@name,@addre,@city,@state,@zipco,@phone,@email)";
             throw new NotImplementedException();
             bool isCustInTheDB;
 
-            SqlConnection con = new SqlConnection(GetConnectionString());
+            SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = @"SELECT[CustomerID],[Name],[Address],[City],[State],[ZipCode],[Phone],[Email]
@@ -328,7 +315,7 @@ where CustomerID=@custid";
         {
             List<Product> prods = new List<Product>();
 
-            SqlConnection con = new SqlConnection(GetConnectionString());
+            SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = "@SELECT [ProductCode],[Name],[Version],[ReleaseDate]";
