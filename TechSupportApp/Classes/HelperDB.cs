@@ -318,7 +318,11 @@ where CustomerID=@custid";
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = "@SELECT [ProductCode],[Name],[Version],[ReleaseDate]";
+            cmd.CommandText = @"SELECT [ProductCode]
+                                        ,[Name]
+                                        ,[Version]
+                                        ,[ReleaseDate] 
+                                FROM Products";
 
             try
             {
