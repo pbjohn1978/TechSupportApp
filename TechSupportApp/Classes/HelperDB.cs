@@ -83,7 +83,7 @@ FROM[TechSupport].[dbo].[Customers]";
         public static SqlConnection GetConnectionStringAppConfig()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["memeConnectionString"].ConnectionString;
             return con;
         }
 
@@ -221,6 +221,49 @@ where CustomerID=@custid";
             return isCustInTheDB;
         }
 
+        /// <summary>
+        /// 
+        /// Code By: BeekerMeMe
+        /// 
+        /// throws NotImplementedException not working yet...
+        /// 
+        /// takes in a INT representing the customer ID of the customer to be deleted... it will return true if deleted successfully and false if there was an issue with the
+        /// query or if 0 was delete or if more than one was deleted
+        /// NOTE: because CustomerID is a primary key in the db it will NEVER delete more than one customer this is why we will can assume that
+        /// this methoud will only return true=deletedSuccefully or false=NoneDeleted
+        /// </summary>
+        /// <param name="custID">INT</param>
+        /// <returns>bool</returns>
+        public static bool DeleteCustomer(int custID)
+        {
+            throw new NotImplementedException();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+
+            cmd.CommandText = @"DELETE FROM [dbo].[Customers]
+WHERE CustomerID = @custid";
+
+            cmd.Parameters.AddWithValue("@custid", custID);
+
+            try
+            {
+                con.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows == 1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
+
+
+
         ///<summary>
         ///Code by: R. Richards
         ///Technician CRUD functionality
@@ -306,7 +349,7 @@ where CustomerID=@custid";
 
         public static string ErrorMessage(string dbQueryType)
         {
-            return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";
+            return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";//i want to change this to a c#6 string... they are so much prettier... hehe... but i won't... :P :) 
         }
 
         #region Products

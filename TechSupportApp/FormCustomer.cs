@@ -21,12 +21,9 @@ namespace TechSupportApp
 
         private void FormCustomer_Load(object sender, EventArgs e)
         {
-            List<Customer> cust = HelperDB.GetAllCustomers();
-            foreach (Customer customer in cust)
-            {
-                cboCustomerList.Items.Add(customer.Name);
-            }
+            PopulateCustomerList();
         }
+
 
         private void cboCustomerList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -45,6 +42,7 @@ namespace TechSupportApp
                     txtLabCustomerID.Text = Convert.ToString(customer.CustomerID);
                 }
             }
+            btnCustomerDelete.Enabled = true;
         }
 
         private void btnCustomerAddNew_Click(object sender, EventArgs e)
@@ -72,6 +70,28 @@ namespace TechSupportApp
                 {
                     MessageBox.Show("Please Check the inputted data and submit it again... I think there is a problem");
                 }
+            }
+        }
+
+        private void btnCustomerDelete_Click(object sender, EventArgs e)
+        {
+            if (HelperDB.DeleteCustomer(Convert.ToInt32(txtLabCustomerID.Text)))
+            {
+                MessageBox.Show("Customer is like deleted and stuff...");
+                PopulateCustomerList();
+            }
+            else
+            {
+                MessageBox.Show("sorry... database connection issue... call IT... wait... we are IT... we should fix this... :)");
+            }
+        }
+        
+        private void PopulateCustomerList()
+        {
+            List<Customer> cust = HelperDB.GetAllCustomers();
+            foreach (Customer customer in cust)
+            {
+                cboCustomerList.Items.Add(customer.Name);
             }
         }
     }
