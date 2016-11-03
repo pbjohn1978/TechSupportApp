@@ -83,7 +83,7 @@ FROM[TechSupport].[dbo].[Customers]";
         public static SqlConnection GetConnectionStringAppConfig()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["memeConnectionString"].ConnectionString;
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             return con;
         }
 
