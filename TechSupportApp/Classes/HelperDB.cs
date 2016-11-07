@@ -491,5 +491,33 @@ WHERE CustomerID = @custid";
                 con.Dispose();
             }
         }
+
+        public static bool UpdateTechnician(Technicians tech) {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand update = new SqlCommand();
+            update.Connection = con;
+            update.CommandText = @"UPDATE Technicians SET Name = @name, Email = @email, Phone = @phone) WHERE TechID = @id";
+            update.Parameters.AddWithValue("@id", tech.TechID);
+            update.Parameters.AddWithValue("@name", tech.Name);
+            update.Parameters.AddWithValue("@email", tech.Email);
+            update.Parameters.AddWithValue("@phone", tech.Phone);
+            try
+            {
+                con.Open();
+                int rows = update.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
     }
 }
