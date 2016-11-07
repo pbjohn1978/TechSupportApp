@@ -435,5 +435,61 @@ WHERE CustomerID = @custid";
             }
             return technicians;
         }
+
+        public static bool DeleteTechnician(int id)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand delete = new SqlCommand();
+            delete.CommandText = @"
+                DELETE Technicians
+                WHERE TechID = @techID
+                ";
+            delete.Parameters.AddWithValue("@techID", id);
+
+            try
+            {
+                con.Open();
+                int rows = delete.ExecuteNonQuery();
+                if(rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("delete");
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
+
+        public static bool AddTechnician(Technicians tech) {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand insert = new SqlCommand();
+            insert.Connection = con;
+            insert.CommandText = @"INSERT INTO Technicians(Name, Email, Phone) VALUES (@name, @email, @phone)";
+            insert.Parameters.AddWithValue("@name", tech.Name);
+            insert.Parameters.AddWithValue("@email", tech.Email);
+            insert.Parameters.AddWithValue("@phone", tech.Phone);
+            try
+            {
+                con.Open();
+                int rows = insert.ExecuteNonQuery();
+                if (rows == 1) {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
     }
 }
