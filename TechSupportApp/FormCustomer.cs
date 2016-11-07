@@ -58,7 +58,7 @@ namespace TechSupportApp
                 cust.ZipCode = txtCustomerZip.Text;
                 cust.Phone = txtCustomerPhone.Text;
                 cust.Email = txtCustomerEmail.Text;
-                isValid = CustomerValidator.IsValidCustomer(cust);
+                isValid = Validation.IsValidCustomer(cust);
             }
             finally
             {

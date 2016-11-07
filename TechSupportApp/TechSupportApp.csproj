@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CustomerValidator.cs" />
+    <Compile Include="Classes\Validation.cs" />
     <Compile Include="Classes\Customer.cs" />
     <Compile Include="Classes\HelperDB.cs" />
     <Compile Include="Classes\Incidents.cs" />

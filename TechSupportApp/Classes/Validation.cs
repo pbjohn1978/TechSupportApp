@@ -7,7 +7,7 @@ using TechSupport;
 
 namespace TechSupportApp.Classes
 {
-    public class CustomerValidator
+    public class Validation
     {
         public static bool IsValidCustomer(Customer customer)
         {
