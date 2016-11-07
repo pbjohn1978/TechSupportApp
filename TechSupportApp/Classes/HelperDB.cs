@@ -98,7 +98,7 @@ FROM[TechSupport].[dbo].[Customers]";
         /// </summary>
         /// <param name="cust"></param>
         /// <returns> bool : true = Customer added, False = Customer was NOT added</returns>
-        public static bool AddCustomerToDB(Customer cust)
+        public static bool AddOrUpdateCustomerInDB(Customer cust)
         {
             throw new NotImplementedException();
             bool isInDB = false;
@@ -106,7 +106,6 @@ FROM[TechSupport].[dbo].[Customers]";
             //if false it will add the New Customer to the database... :)
             if (HelperDB.IsCustInDB(cust))
             {
-
                 SqlConnection con = GetConnectionStringAppConfig();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
@@ -184,13 +183,12 @@ VALUES(@name,@addre,@city,@state,@zipco,@phone,@email)";
         /// <returns>bool representing weather or not the customer is in the database</returns>
         public static bool IsCustInDB(Customer cust)
         {
-            throw new NotImplementedException();
             bool isCustInTheDB;
 
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
-            cmd.CommandText = @"SELECT[CustomerID],[Name],[Address],[City],[State],[ZipCode],[Phone],[Email]
+            cmd.CommandText = @"SELECT[CustomerID]
 FROM[TechSupport].[dbo].[Customers]
 where CustomerID=@custid";
 
@@ -225,8 +223,6 @@ where CustomerID=@custid";
         /// 
         /// Code By: BeekerMeMe
         /// 
-        /// throws NotImplementedException not working yet...
-        /// 
         /// takes in a INT representing the customer ID of the customer to be deleted... it will return true if deleted successfully and false if there was an issue with the
         /// query or if 0 was delete or if more than one was deleted
         /// NOTE: because CustomerID is a primary key in the db it will NEVER delete more than one customer this is why we will can assume that
@@ -236,21 +232,34 @@ where CustomerID=@custid";
         /// <returns>bool</returns>
         public static bool DeleteCustomer(int custID)
         {
-            throw new NotImplementedException();
             SqlConnection con = GetConnectionStringAppConfig();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
+            SqlCommand cmd1 = new SqlCommand();
+            SqlCommand cmd2 = new SqlCommand();
+            SqlCommand cmd3 = new SqlCommand();
+            cmd1.Connection = con;
+            cmd2.Connection = con;
+            cmd3.Connection = con;
 
-            cmd.CommandText = @"DELETE FROM [dbo].[Customers]
-WHERE CustomerID = @custid";
+            cmd1.CommandText = @"DELETE FROM [dbo].[Incidents]
+WHERE CustomerID = @custid1";
 
-            cmd.Parameters.AddWithValue("@custid", custID);
+            cmd2.CommandText = @"DELETE FROM [dbo].[Customers]
+WHERE CustomerID = @custid2";
+
+            cmd3.CommandText = @"DELETE FROM [dbo].[Registrations]
+WHERE CustomerID = @custid3";
+
+            cmd1.Parameters.AddWithValue("@custid1", custID);
+            cmd2.Parameters.AddWithValue("@custid2", custID);
+            cmd3.Parameters.AddWithValue("@custid3", custID);
 
             try
             {
                 con.Open();
-                int rows = cmd.ExecuteNonQuery();
-                if (rows == 1){
+                int rows1 = cmd1.ExecuteNonQuery();
+                int rows3 = cmd3.ExecuteNonQuery();
+                int rows2 = cmd2.ExecuteNonQuery();
+                if (rows2 == 1){
                     return true;
                 }else{
                     return false;
