@@ -52,5 +52,10 @@ namespace TechSupportApp
         {
 
         }
+
+        private void btnTechnicians_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
