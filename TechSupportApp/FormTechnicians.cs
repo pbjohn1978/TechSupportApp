@@ -25,7 +25,15 @@ namespace TechSupportApp
 
         private void cboTechnicians_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            List<Technicians> technicians = HelperDB.GetTechnicians();
+            foreach (Technicians techs in technicians) {
+                if (techs.Name.ToString().Equals(cboTechnicians.Text.ToString()))
+                {
+                    txtTechnicianName.Text = techs.Name.ToString();
+                    txtTechnicianEmail.Text = techs.Email.ToString();
+                    txtTechicianPhone.Text = techs.Email.ToString();
+                }
+            }
         }
 
         private void PopulateTechnicians() {
