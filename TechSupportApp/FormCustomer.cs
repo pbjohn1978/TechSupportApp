@@ -110,7 +110,7 @@ namespace TechSupportApp
                 cust.Phone = txtCustomerPhone.Text;
                 cust.Email = txtCustomerEmail.Text;
                 cust.CustomerID = Convert.ToInt32(txtLabCustomerID.Text);
-                isValid = CustomerValidator.IsValidCustomer(cust);
+                isValid = Validation.IsValidCustomer(cust);
             }
             finally
             {
