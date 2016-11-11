@@ -26,7 +26,13 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
+            Product prod = HelperDB.GetProdObject(cboProducts.Text);
 
+            if (HelperDB.AddRegistration(cust, prod, dateTimeRegDate.Value))
+            {
+                MessageBox.Show("Registration added Successfully");
+            }
         }
         /// <summary>
         /// Created by: Christian
@@ -55,7 +61,23 @@ namespace TechSupportApp
             List<Product> prod = HelperDB.GetProdNames();
             foreach (Product product in prod)
             {
-                cboProducts.Items.Add(product.Name + "Version: " + product.Version);
+                cboProducts.Items.Add(product.Name);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
+            Product prod = HelperDB.GetProdObject(cboProducts.Text);
+            Registration reg = HelperDB.GetRegObject(cust, prod);
+
+            if (HelperDB.DeleteRegistration(reg))
+            {
+                MessageBox.Show("Registration successfully deleted.");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong :(");
             }
         }
     }

@@ -410,9 +410,252 @@ WHERE CustomerID = @custid3";
 
             return prods;
 
-        }   
+        }
+
+        public static Product GetProdObject(string prodName)
+        {
+            Product produc = new Product();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT [ProductCode]
+                                        ,[Name]
+                                        ,[Version]
+                                        ,[ReleaseDate] 
+                                FROM Products
+                                WHERE Name = @prodName";
+
+            cmd.Parameters.AddWithValue("@prodName", prodName);
+
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        produc.ProductCode = reader.GetString(0);
+                        produc.Name = reader.GetString(1);
+                        produc.Version = reader.GetDecimal(2);
+                        produc.ReleaseDate = reader.GetDateTime(3);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return produc;
+
+
+        }
+
 
         #endregion
+
+        public static Customer GetCustObject(string custName)
+        {
+            Customer custom = new Customer();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText =
+                @"SELECT [CustomerID]
+                            ,[Name]
+                            ,[Address]
+                            ,[City]
+                            ,[State]
+                            ,[ZipCode]
+                            ,[Phone]
+                            ,[Email]
+                FROM[TechSupport].[dbo].[Customers]
+                WHERE Name = @custName"
+                ;
+
+            cmd.Parameters.AddWithValue("@custName", custName);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    custom.CustomerID = reader.GetInt32(0);
+                    custom.Name = reader.GetString(1);
+                    custom.Address = reader.GetString(2);
+                    custom.City = reader.GetString(3);
+                    custom.State = reader.GetString(4);
+                    custom.ZipCode = reader.GetString(5);
+                    if (reader.GetString(6) != null)
+                    {
+                        custom.Phone = reader.GetString(6);
+                    }
+                    else
+                    {
+                        custom.Phone = "***no phone listed in database***";
+                    }
+                    if (reader.GetString(7) != null)
+                    {
+                        custom.Email = reader.GetString(7);
+                    }
+                    else
+                    {
+                        custom.Phone = "***no email listed in database***";
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+
+            return custom;
+
+
+        }
+
+        public static bool AddRegistration(Customer cust, Product prod, DateTime regDate)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand insert = new SqlCommand();
+            insert.Connection = con;
+            bool Success = false;
+            insert.CommandText =
+                @"
+                    INSERT INTO Registrations
+                        (CustomerID, ProductCode, RegistrationDate)
+                    VALUES
+                        (@CustID, @ProdCode, @regdate)
+                ";
+
+            insert.Parameters.AddWithValue("@CustID", cust.CustomerID);
+            insert.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+            insert.Parameters.AddWithValue("@regDate", regDate);
+
+            try
+            {
+                con.Open();
+                int rows = insert.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    Success = true;
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                throw sqlex;
+                //System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
+
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Success;
+
+        }
+
+        public static Registration GetRegObject(Customer cust, Product prod)
+        {
+            Registration reg = new Registration();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT CustomerID
+                                    ,ProductCode
+                                    ,RegistrationDate
+                                FROM Registrations
+                                WHERE CustomerID = @CustID
+                                        AND
+                                      ProductCode = @ProdCode";
+            cmd.Parameters.AddWithValue("@CustID", cust.CustomerID);
+            cmd.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        reg.CustomerID = reader.GetInt32(0);
+                        reg.ProductCode = reader.GetString(1);
+                        reg.RegistrationDate = reader.GetDateTime(2);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return reg;
+        }
+
+        public static bool DeleteRegistration(Registration reg)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand delete = new SqlCommand();
+            delete.Connection = con;
+            delete.CommandText = @"
+                DELETE Registrations
+                WHERE CustomerId = @CustID
+                    AND
+                    ProductCode = @ProdCode
+                ";
+            delete.Parameters.AddWithValue("@CustID", reg.CustomerID);
+            delete.Parameters.AddWithValue("@ProdCode", reg.ProductCode);
+
+            try
+            {
+                con.Open();
+                int rows = delete.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         ///<summary>
         ///Created by R. Richards
