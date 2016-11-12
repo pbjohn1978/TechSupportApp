@@ -76,5 +76,10 @@ namespace TechSupportApp
             Technicians selectedTech = (Technicians)cboTechnicians.SelectedItem;
             return selectedTech.Name;
         }
+
+        private void btnAddTechnician_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

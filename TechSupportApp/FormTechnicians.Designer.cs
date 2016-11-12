@@ -116,6 +116,7 @@
             this.btnAddTechnician.TabIndex = 8;
             this.btnAddTechnician.Text = "Add New Technician";
             this.btnAddTechnician.UseVisualStyleBackColor = true;
+            this.btnAddTechnician.Click += new System.EventHandler(this.btnAddTechnician_Click);
             // 
             // button2
             // 

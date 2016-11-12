@@ -27,7 +27,7 @@ namespace TechSupportApp
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
-            Product prod = HelperDB.GetProdObject(cboProducts.Text);
+            Product prod = HelperDB.GetProdObjectFromName(cboProducts.Text);
 
             if (HelperDB.AddRegistration(cust, prod, dateTimeRegDate.Value))
             {
@@ -43,6 +43,7 @@ namespace TechSupportApp
         /// <param name="e"></param>
         private void cboCustomers_DropDown(object sender, EventArgs e)
         {
+            cboCustomers.Items.Clear();
             List<Customer> cust = HelperDB.GetAllCustomers();
             foreach (Customer customer in cust)
             {
@@ -58,7 +59,8 @@ namespace TechSupportApp
         /// <param name="e"></param>
         private void cboProducts_DropDown(object sender, EventArgs e)
         {
-            List<Product> prod = HelperDB.GetProdNames();
+            cboProducts.Items.Clear();
+            List<Product> prod = HelperDB.GetProds();
             foreach (Product product in prod)
             {
                 cboProducts.Items.Add(product.Name);
@@ -68,7 +70,7 @@ namespace TechSupportApp
         private void btnDelete_Click(object sender, EventArgs e)
         {
             Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
-            Product prod = HelperDB.GetProdObject(cboProducts.Text);
+            Product prod = HelperDB.GetProdObjectFromName(cboProducts.Text);
             Registration reg = HelperDB.GetRegObject(cust, prod);
 
             if (HelperDB.DeleteRegistration(reg))

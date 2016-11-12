@@ -363,7 +363,76 @@ WHERE CustomerID = @custid3";
 
         #region Products
 
-        public static List<Product> GetProdNames()
+        public static bool AddProduct(Product prod)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand insert = new SqlCommand();
+            insert.Connection = con;
+            bool success = false;
+            insert.CommandText = @"
+                                    INSERT INTO Products
+                                        (ProductCode, Name, Version, ReleaseDate)
+                                    VALUES
+                                        (@ProdCode, @Name, @Version, @RelDate)
+                                  ";
+            insert.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+            insert.Parameters.AddWithValue("@Name", prod.Name);
+            insert.Parameters.AddWithValue("@Version", prod.Version);
+            insert.Parameters.AddWithValue("@RelDate", prod.ReleaseDate);
+
+            try
+            {
+                con.Open();
+                int rows = insert.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException sqlex)
+            {
+                
+                System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
+                
+            }
+            finally
+            {
+                con.Close();
+            }
+            return success;
+        }
+
+        public static bool DeleteProduct(Product prod)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand delete = new SqlCommand();
+            delete.Connection = con;
+            delete.CommandText = @"
+                                    DELETE FROM Products
+                                    WHERE ProductCode = @ProdCode
+                                  ";
+            delete.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+
+            try
+            {
+                con.Open();
+                int rows = delete.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        
+        public static List<Product> GetProds()
         {
             List<Product> prods = new List<Product>();
 
@@ -412,7 +481,56 @@ WHERE CustomerID = @custid3";
 
         }
 
-        public static Product GetProdObject(string prodName)
+        public static Product GetProdObjectFromCode(string prodCode)
+        {
+            Product produc = new Product();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT [ProductCode]
+                                        ,[Name]
+                                        ,[Version]
+                                        ,[ReleaseDate] 
+                                FROM Products
+                                WHERE ProductCode = @prodCode";
+
+            cmd.Parameters.AddWithValue("@prodCode", prodCode);
+
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        produc.ProductCode = reader.GetString(0);
+                        produc.Name = reader.GetString(1);
+                        produc.Version = reader.GetDecimal(2);
+                        produc.ReleaseDate = reader.GetDateTime(3);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return produc;
+        }
+
+        public static Product GetProdObjectFromName(string prodName)
         {
             Product produc = new Product();
             SqlConnection con = GetConnectionStringAppConfig();
@@ -535,6 +653,8 @@ WHERE CustomerID = @custid3";
 
         }
 
+        #region Registrations
+
         public static bool AddRegistration(Customer cust, Product prod, DateTime regDate)
         {
             SqlConnection con = GetConnectionStringAppConfig();
@@ -565,7 +685,7 @@ WHERE CustomerID = @custid3";
             catch (SqlException sqlex)
             {
                 throw sqlex;
-                //System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
+                System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
 
             }
             finally
@@ -656,6 +776,8 @@ WHERE CustomerID = @custid3";
                 con.Close();
             }
         }
+
+        #endregion
 
         ///<summary>
         ///Created by R. Richards
