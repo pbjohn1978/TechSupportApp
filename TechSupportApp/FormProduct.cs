@@ -106,7 +106,7 @@ namespace TechSupportApp
 
             if (HelperDB.DeleteProduct(prod))
             {
-                MessageBox.Show($"Product ({prod.Name}) has successfully been deleted :)");
+                MessageBox.Show($"Product '{prod.Name}' has successfully been deleted :)");
             }
             else
             {
