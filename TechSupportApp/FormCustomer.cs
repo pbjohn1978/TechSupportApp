@@ -100,6 +100,7 @@ namespace TechSupportApp
         {
             bool isValid = false;
             Customer cust = new Customer();
+            
             try
             {
                 cust.Name = txtCustomerName.Text;
