@@ -401,7 +401,11 @@ WHERE CustomerID = @custid3";
             }
             return success;
         }
-
+        /// <summary>
+        /// takes in a product and deletes it from the database
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns>true or false</returns>
         public static bool DeleteProduct(Product prod)
         {
             SqlConnection con = GetConnectionStringAppConfig();
@@ -431,7 +435,10 @@ WHERE CustomerID = @custid3";
                 con.Close();
             }
         }
-        
+        /// <summary>
+        /// returns a full list of all products in the database
+        /// </summary>
+        /// <returns>a list of products</returns>
         public static List<Product> GetProds()
         {
             List<Product> prods = new List<Product>();
@@ -480,7 +487,11 @@ WHERE CustomerID = @custid3";
             return prods;
 
         }
-
+        /// <summary>
+        /// takes a product code and returns the product object
+        /// </summary>
+        /// <param name="prodCode"></param>
+        /// <returns>product </returns>
         public static Product GetProdObjectFromCode(string prodCode)
         {
             Product produc = new Product();
@@ -529,7 +540,11 @@ WHERE CustomerID = @custid3";
 
             return produc;
         }
-
+        /// <summary>
+        /// Takes in a product name and returns a product object
+        /// </summary>
+        /// <param name="prodName"></param>
+        /// <returns>product</returns>
         public static Product GetProdObjectFromName(string prodName)
         {
             Product produc = new Product();
