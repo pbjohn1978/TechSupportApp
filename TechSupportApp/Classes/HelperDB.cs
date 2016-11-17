@@ -792,6 +792,16 @@ WHERE CustomerID = @custid3";
             }
         }
 
+        public static List<Registration> GetRegistrations(Product prod)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static List<Registration> GetRegistrations(Customer cust)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         ///<summary>
