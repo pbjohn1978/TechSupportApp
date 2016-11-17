@@ -363,6 +363,11 @@ WHERE CustomerID = @custid3";
 
         #region Products
 
+        /// <summary>
+        /// adds a product to the database
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns></returns>
         public static bool AddProduct(Product prod)
         {
             SqlConnection con = GetConnectionStringAppConfig();
@@ -488,10 +493,11 @@ WHERE CustomerID = @custid3";
 
         }
         /// <summary>
-        /// takes a product code and returns the product object
+        /// searches the database for a product
+        /// mathcing the given productCode
         /// </summary>
         /// <param name="prodCode"></param>
-        /// <returns>product </returns>
+        /// <returns>product object</returns>
         public static Product GetProdObjectFromCode(string prodCode)
         {
             Product produc = new Product();
@@ -541,10 +547,11 @@ WHERE CustomerID = @custid3";
             return produc;
         }
         /// <summary>
-        /// Takes in a product name and returns a product object
+        /// searches the database for a product
+        /// mathcing the given productName
         /// </summary>
         /// <param name="prodName"></param>
-        /// <returns>product</returns>
+        /// <returns>product object</returns>
         public static Product GetProdObjectFromName(string prodName)
         {
             Product produc = new Product();
@@ -598,7 +605,12 @@ WHERE CustomerID = @custid3";
 
 
         #endregion
-
+        /// <summary>
+        /// Searches the database for a customer
+        /// matching the given customerName
+        /// </summary>
+        /// <param name="custName"></param>
+        /// <returns>Customer object</returns>
         public static Customer GetCustObject(string custName)
         {
             Customer custom = new Customer();
@@ -670,6 +682,13 @@ WHERE CustomerID = @custid3";
 
         #region Registrations
 
+        /// <summary>
+        /// Adds a Registration to the database
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <param name="prod"></param>
+        /// <param name="regDate"></param>
+        /// <returns></returns>
         public static bool AddRegistration(Customer cust, Product prod, DateTime regDate)
         {
             SqlConnection con = GetConnectionStringAppConfig();
@@ -711,6 +730,13 @@ WHERE CustomerID = @custid3";
 
         }
 
+        /// <summary>
+        /// searches the dateabase for a registration
+        /// matching the given customer and product
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <param name="prod"></param>
+        /// <returns>registration object</returns>
         public static Registration GetRegObject(Customer cust, Product prod)
         {
             Registration reg = new Registration();
@@ -758,7 +784,11 @@ WHERE CustomerID = @custid3";
 
             return reg;
         }
-
+        /// <summary>
+        /// deletes a registration object from the database
+        /// </summary>
+        /// <param name="reg"></param>
+        /// <returns></returns>
         public static bool DeleteRegistration(Registration reg)
         {
             SqlConnection con = GetConnectionStringAppConfig();
@@ -791,7 +821,12 @@ WHERE CustomerID = @custid3";
                 con.Close();
             }
         }
-
+        /// <summary>
+        /// Gets a list of registrations from the database
+        /// for a given product
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns>list of registration objects</returns>
         public static List<Registration> GetRegistrations(Product prod)
         {
             List<Registration> registrations = new List<Registration>();
@@ -839,7 +874,12 @@ WHERE CustomerID = @custid3";
 
             return registrations;
         }
-
+        /// <summary>
+        /// Gets a list of registrations from the database
+        /// for a given customer
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns>list of registration objects</returns>
         public static List<Registration> GetRegistrations(Customer cust)
         {
             List<Registration> registrations = new List<Registration>();
