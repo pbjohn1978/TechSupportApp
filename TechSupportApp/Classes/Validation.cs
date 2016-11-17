@@ -25,10 +25,6 @@ namespace TechSupportApp.Classes
             {
                 return false;
             }
-            if(!IsValidPhoneNumber(customer.Phone.ToString()))
-            {
-                return false;
-            }
             return true;
         }
 

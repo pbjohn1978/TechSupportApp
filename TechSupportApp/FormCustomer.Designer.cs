@@ -157,6 +157,7 @@
             this.txtCustomerAddress.Name = "txtCustomerAddress";
             this.txtCustomerAddress.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerAddress.TabIndex = 14;
+            this.txtCustomerAddress.TextChanged += new System.EventHandler(this.txtCustomerAddress_TextChanged);
             // 
             // txtCustomerCity
             // 
@@ -164,6 +165,7 @@
             this.txtCustomerCity.Name = "txtCustomerCity";
             this.txtCustomerCity.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerCity.TabIndex = 15;
+            this.txtCustomerCity.TextChanged += new System.EventHandler(this.txtCustomerCity_TextChanged);
             // 
             // txtCustomerState
             // 
@@ -171,6 +173,7 @@
             this.txtCustomerState.Name = "txtCustomerState";
             this.txtCustomerState.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerState.TabIndex = 16;
+            this.txtCustomerState.TextChanged += new System.EventHandler(this.txtCustomerState_TextChanged);
             // 
             // txtCustomerZip
             // 
@@ -178,6 +181,7 @@
             this.txtCustomerZip.Name = "txtCustomerZip";
             this.txtCustomerZip.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerZip.TabIndex = 17;
+            this.txtCustomerZip.TextChanged += new System.EventHandler(this.txtCustomerZip_TextChanged);
             // 
             // txtCustomerPhone
             // 
@@ -185,6 +189,7 @@
             this.txtCustomerPhone.Name = "txtCustomerPhone";
             this.txtCustomerPhone.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerPhone.TabIndex = 18;
+            this.txtCustomerPhone.TextChanged += new System.EventHandler(this.txtCustomerPhone_TextChanged);
             // 
             // txtCustomerEmail
             // 
@@ -192,6 +197,7 @@
             this.txtCustomerEmail.Name = "txtCustomerEmail";
             this.txtCustomerEmail.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerEmail.TabIndex = 19;
+            this.txtCustomerEmail.TextChanged += new System.EventHandler(this.txtCustomerEmail_TextChanged);
             // 
             // btnUpdate
             // 
@@ -210,6 +216,7 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(289, 20);
             this.txtCustomerName.TabIndex = 21;
+            this.txtCustomerName.TextChanged += new System.EventHandler(this.txtCustomerName_TextChanged);
             // 
             // btnCustomerAddNew
             // 
