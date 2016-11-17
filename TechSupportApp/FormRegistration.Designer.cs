@@ -39,8 +39,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnViewRegsForCust = new System.Windows.Forms.Button();
+            this.btnViewRegsForProd = new System.Windows.Forms.Button();
+            this.listBoxDisplay = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -133,23 +134,36 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // button1
+            // btnViewRegsForCust
             // 
-            this.button1.Location = new System.Drawing.Point(385, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "View Registrations for this Customer";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnViewRegsForCust.Location = new System.Drawing.Point(385, 25);
+            this.btnViewRegsForCust.Name = "btnViewRegsForCust";
+            this.btnViewRegsForCust.Size = new System.Drawing.Size(191, 23);
+            this.btnViewRegsForCust.TabIndex = 9;
+            this.btnViewRegsForCust.Text = "View Registrations for this Customer";
+            this.btnViewRegsForCust.UseVisualStyleBackColor = true;
+            this.btnViewRegsForCust.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnViewRegsForProd
             // 
-            this.button2.Location = new System.Drawing.Point(385, 78);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(191, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "View Registrations for this Product";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnViewRegsForProd.Location = new System.Drawing.Point(385, 78);
+            this.btnViewRegsForProd.Name = "btnViewRegsForProd";
+            this.btnViewRegsForProd.Size = new System.Drawing.Size(191, 23);
+            this.btnViewRegsForProd.TabIndex = 10;
+            this.btnViewRegsForProd.Text = "View Registrations for this Product";
+            this.btnViewRegsForProd.UseVisualStyleBackColor = true;
+            this.btnViewRegsForProd.Click += new System.EventHandler(this.btnViewRegsForProd_Click);
+            // 
+            // listBoxDisplay
+            // 
+            this.listBoxDisplay.FormattingEnabled = true;
+            this.listBoxDisplay.Items.AddRange(new object[] {
+            "CustomerID        ProductCode        RegistrationDate"});
+            this.listBoxDisplay.Location = new System.Drawing.Point(613, 25);
+            this.listBoxDisplay.Name = "listBoxDisplay";
+            this.listBoxDisplay.ScrollAlwaysVisible = true;
+            this.listBoxDisplay.Size = new System.Drawing.Size(279, 186);
+            this.listBoxDisplay.TabIndex = 11;
             // 
             // FormRegistration
             // 
@@ -157,9 +171,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(607, 287);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(904, 287);
+            this.Controls.Add(this.listBoxDisplay);
+            this.Controls.Add(this.btnViewRegsForProd);
+            this.Controls.Add(this.btnViewRegsForCust);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSubmit);
@@ -188,7 +203,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnViewRegsForCust;
+        private System.Windows.Forms.Button btnViewRegsForProd;
+        private System.Windows.Forms.ListBox listBoxDisplay;
     }
 }

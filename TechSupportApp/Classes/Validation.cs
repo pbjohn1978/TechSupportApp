@@ -106,6 +106,95 @@ namespace TechSupportApp.Classes
             return true;
         }
 
+        #region Product Validation
+
+        public static bool IsValidProduct(string prodCode, string prodName, decimal version, DateTime relDate)
+        {
+            if (!IsValidProductCode(prodCode))
+            {
+                return false;
+            }
+            if (!IsValidProductName(prodName))
+            {
+                return false;
+            }
+            if (!IsValidProductVersion(version))
+            {
+                return false;
+            }
+            if (!IsValidProductReleaseDate(relDate))
+            {
+                return false;
+            }
+            return true;          
+
+        }
+
+        public static bool IsValidProductCode(string prodCode)
+        {
+            Regex r = new Regex("^[A-Z0-9]*$");
+            if (r.IsMatch(prodCode))
+            {
+                return true;
+            }
+            MessageBox.Show("Please make sure Product code is all caps and only contains alphanumeric characters.");
+            return false;
+        }
+
+        public static bool IsValidProductName(string prodName)
+        {
+            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$");
+            if (r.IsMatch(prodName))
+            {
+                return true;
+            }
+            MessageBox.Show("Please make sure Name doesn't contain any special characters and is between 1 and 20 characters in length.");
+            return false;
+        }
+
+        public static bool IsDecimal(string version)
+        {
+            decimal number;
+            if (!decimal.TryParse(version, out number))
+            {
+                MessageBox.Show("Version must only contain numbers");
+                return false;
+            }
+            int num;
+            if (int.TryParse(version, out num))
+            {
+                MessageBox.Show("Version number must be in decimal format.");
+                return false;
+            }
+            return true;
+        }
+
+        public static bool IsValidProductVersion(decimal version)
+        {
+            
+
+            if (version <= 0)
+            {
+                MessageBox.Show("Version number must be greater than 0");
+                return false;
+            }
+            return true;
+            
+        }
+
+        public static bool IsValidProductReleaseDate(DateTime relDate)
+        {
+            if (relDate.Year < 2000 && relDate.Year > (DateTime.Now.Year + 10))
+            {
+                MessageBox.Show("Please enter a reasonable year :)");
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
+
     }
 
 }

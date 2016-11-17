@@ -794,12 +794,98 @@ WHERE CustomerID = @custid3";
 
         public static List<Registration> GetRegistrations(Product prod)
         {
-            throw new NotImplementedException();
+            List<Registration> registrations = new List<Registration>();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT CustomerID
+                                        ,ProductCode
+                                        ,RegistrationDate
+                                FROM Registrations
+                                WHERE ProductCode = @ProdCode";
+            cmd.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Registration reg = new Registration();
+                        reg.CustomerID = reader.GetInt32(0);
+                        reg.ProductCode = reader.GetString(1);
+                        reg.RegistrationDate = reader.GetDateTime(2);
+
+                        registrations.Add(reg);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return registrations;
         }
 
         public static List<Registration> GetRegistrations(Customer cust)
         {
-            throw new NotImplementedException();
+            List<Registration> registrations = new List<Registration>();
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = @"SELECT CustomerID
+                                        ,ProductCode
+                                        ,RegistrationDate
+                                FROM Registrations
+                                WHERE CustomerID = @CustID";
+            cmd.Parameters.AddWithValue("@CustID", cust.CustomerID);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Registration reg = new Registration();
+                        reg.CustomerID = reader.GetInt32(0);
+                        reg.ProductCode = reader.GetString(1);
+                        reg.RegistrationDate = reader.GetDateTime(2);
+
+                        registrations.Add(reg);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Unable to retrieve data from the database");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return registrations;
         }
 
         #endregion

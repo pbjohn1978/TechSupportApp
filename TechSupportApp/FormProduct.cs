@@ -21,31 +21,39 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (rdoBtnCreate.Checked)
+            if (!Validation.IsDecimal(txtVersion.Text))
             {
-                Product prod = new Product();
-
-                prod.ProductCode = txtProdCode.Text;
-                prod.Name = txtName.Text;
-                prod.Version = Convert.ToDecimal(txtVersion.Text); //
-                prod.ReleaseDate = dateTimeProd.Value;
-
-                if (HelperDB.AddProduct(prod))
+                return;
+            }
+            decimal version = Convert.ToDecimal(txtVersion.Text);
+            if (Validation.IsValidProduct(txtProdCode.Text, txtName.Text, version, dateTimeProd.Value))
+            {
+                if (rdoBtnCreate.Checked)
                 {
-                    MessageBox.Show("Product Successfully added :)");
+                    Product prod = new Product();
+
+                    prod.ProductCode = txtProdCode.Text;
+                    prod.Name = txtName.Text;
+                    prod.Version = Convert.ToDecimal(version); 
+                    prod.ReleaseDate = dateTimeProd.Value;
+
+                    if (HelperDB.AddProduct(prod))
+                    {
+                        MessageBox.Show("Product Successfully added :)");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong :(");
+                    }
+                }
+                else if (rdoBtnView.Checked)
+                {
+                    MessageBox.Show("Please select the Creat Product option.");
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong :(");
+                    MessageBox.Show("Please select an option.");
                 }
-            }
-            else if (rdoBtnView.Checked)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("Please select and option.");
             }
         }
 

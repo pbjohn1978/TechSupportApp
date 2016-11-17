@@ -82,5 +82,31 @@ namespace TechSupportApp
                 MessageBox.Show("Something went wrong :(");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBoxDisplay.Items.Clear();
+            Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
+
+            List<Registration> registrations = HelperDB.GetRegistrations(cust);
+
+            foreach (Registration reg in registrations)
+            {
+                listBoxDisplay.Items.Add($"{reg.CustomerID} \t {reg.ProductCode} \t {reg.RegistrationDate.ToShortDateString()}");
+            }
+        }
+
+        private void btnViewRegsForProd_Click(object sender, EventArgs e)
+        {
+            listBoxDisplay.Items.Clear();
+            Product prod = HelperDB.GetProdObjectFromName(cboProducts.Text);
+
+            List<Registration> registrations = HelperDB.GetRegistrations(prod);
+
+            foreach (Registration reg in registrations)
+            {
+                listBoxDisplay.Items.Add($"{reg.CustomerID} \t {reg.ProductCode} \t {reg.RegistrationDate.ToShortDateString()}");
+            }
+        }
     }
 }
