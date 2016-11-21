@@ -44,7 +44,7 @@
             // cboTechnicians
             // 
             this.cboTechnicians.FormattingEnabled = true;
-            this.cboTechnicians.Location = new System.Drawing.Point(44, 42);
+            this.cboTechnicians.Location = new System.Drawing.Point(44, 44);
             this.cboTechnicians.Name = "cboTechnicians";
             this.cboTechnicians.Size = new System.Drawing.Size(265, 21);
             this.cboTechnicians.TabIndex = 0;
