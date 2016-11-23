@@ -30,31 +30,54 @@ namespace TechSupportApp
             {
                 if (rdoBtnCreate.Checked)
                 {
-                    Product prod = new Product();
-
-                    prod.ProductCode = txtProdCode.Text;
-                    prod.Name = txtName.Text;
-                    prod.Version = Convert.ToDecimal(version); 
-                    prod.ReleaseDate = dateTimeProd.Value;
-
-                    if (HelperDB.AddProduct(prod))
+                    if (Validation.IsValidProduct(txtProdCode.Text, txtName.Text, version, dateTimeProd.Value))
                     {
-                        MessageBox.Show("Product Successfully added :)");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong :(");
+
+                        Product prod = new Product();
+
+                        prod.ProductCode = txtProdCode.Text;
+                        prod.Name = txtName.Text;
+                        prod.Version = Convert.ToDecimal(version);
+                        prod.ReleaseDate = dateTimeProd.Value;
+
+                        if (HelperDB.AddProduct(prod))
+                        {
+                            MessageBox.Show("Product Successfully added :)");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Something went wrong :(");
+                        }
                     }
                 }
                 else if (rdoBtnView.Checked)
                 {
-                    MessageBox.Show("Please select the Creat Product option.");
+                    MessageBox.Show("Please select the 'Create New Product' or 'Update Product' option.");
+                }
+                else if (rdoBtnUpdate.Checked)
+                {
+                    Product prod = new Product();
+
+                    prod.ProductCode = cboProdCode.Text;
+                    prod.Name = txtName.Text;
+                    prod.Version = version;
+                    prod.ReleaseDate = dateTimeProd.Value;
+
+                    if (HelperDB.UpdateProduct(prod))
+                    {
+                        MessageBox.Show("Product updated successfully :)");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Product did not update :(");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Please select an option.");
                 }
             }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -151,6 +174,17 @@ namespace TechSupportApp
             cboName.Text = prod.Name;
             txtVersion.Text = prod.Version.ToString();
             dateTimeProd.Value = prod.ReleaseDate;
+        }
+
+        private void rdoBtnUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            cboProdCode.Visible = true;
+            txtProdCode.Visible = false;
+            cboName.Visible = false;
+            txtName.Visible = true;
+            txtVersion.ReadOnly = false;
+            dateTimeProd.Enabled = true;
+            btnDeleteProd.Enabled = false;
         }
     }
 }

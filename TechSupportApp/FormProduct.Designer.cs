@@ -44,6 +44,7 @@
             this.rdoBtnCreate = new System.Windows.Forms.RadioButton();
             this.rdoBtnView = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoBtnUpdate = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,7 +169,7 @@
             // rdoBtnCreate
             // 
             this.rdoBtnCreate.AutoSize = true;
-            this.rdoBtnCreate.Location = new System.Drawing.Point(6, 32);
+            this.rdoBtnCreate.Location = new System.Drawing.Point(6, 40);
             this.rdoBtnCreate.Name = "rdoBtnCreate";
             this.rdoBtnCreate.Size = new System.Drawing.Size(121, 17);
             this.rdoBtnCreate.TabIndex = 14;
@@ -180,7 +181,7 @@
             // 
             this.rdoBtnView.AutoSize = true;
             this.rdoBtnView.Checked = true;
-            this.rdoBtnView.Location = new System.Drawing.Point(6, 9);
+            this.rdoBtnView.Location = new System.Drawing.Point(6, 17);
             this.rdoBtnView.Name = "rdoBtnView";
             this.rdoBtnView.Size = new System.Drawing.Size(88, 17);
             this.rdoBtnView.TabIndex = 15;
@@ -191,13 +192,26 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdoBtnUpdate);
             this.groupBox1.Controls.Add(this.rdoBtnView);
             this.groupBox1.Controls.Add(this.rdoBtnCreate);
             this.groupBox1.Location = new System.Drawing.Point(280, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(122, 57);
+            this.groupBox1.Size = new System.Drawing.Size(128, 90);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
+            // 
+            // rdoBtnUpdate
+            // 
+            this.rdoBtnUpdate.AutoSize = true;
+            this.rdoBtnUpdate.Location = new System.Drawing.Point(6, 64);
+            this.rdoBtnUpdate.Name = "rdoBtnUpdate";
+            this.rdoBtnUpdate.Size = new System.Drawing.Size(100, 17);
+            this.rdoBtnUpdate.TabIndex = 16;
+            this.rdoBtnUpdate.TabStop = true;
+            this.rdoBtnUpdate.Text = "Update Product";
+            this.rdoBtnUpdate.UseVisualStyleBackColor = true;
+            this.rdoBtnUpdate.CheckedChanged += new System.EventHandler(this.rdoBtnUpdate_CheckedChanged);
             // 
             // FormProduct
             // 
@@ -205,7 +219,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(409, 288);
+            this.ClientSize = new System.Drawing.Size(420, 288);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDeleteProd);
             this.Controls.Add(this.cboProdCode);
@@ -247,5 +261,6 @@
         private System.Windows.Forms.RadioButton rdoBtnCreate;
         private System.Windows.Forms.RadioButton rdoBtnView;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoBtnUpdate;
     }
 }

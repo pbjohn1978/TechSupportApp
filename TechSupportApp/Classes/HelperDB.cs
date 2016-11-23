@@ -397,7 +397,7 @@ WHERE CustomerID = @custid3";
             catch (SqlException sqlex)
             {
                 
-                System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
+                System.Windows.Forms.MessageBox.Show("Product Code is already in the database");
                 
             }
             finally
@@ -600,9 +600,46 @@ WHERE CustomerID = @custid3";
 
             return produc;
 
-
         }
 
+        public static bool UpdateProduct(Product prod)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand update = new SqlCommand();
+            update.Connection = con;
+            update.CommandText = @"UPDATE Products SET 
+                                    Name = @Name
+                                    ,[Version] = @Version
+                                    ,ReleaseDate = @RelDate
+                                    WHERE ProductCode = @ProdCode";
+            update.Parameters.AddWithValue("@ProdCode", prod.ProductCode);
+            update.Parameters.AddWithValue("@Name", prod.Name);
+            update.Parameters.AddWithValue("@Version", prod.Version);
+            update.Parameters.AddWithValue("@RelDate", prod.ReleaseDate);
+
+            try
+            {
+                con.Open();
+                int rows = update.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
 
         #endregion
         /// <summary>
