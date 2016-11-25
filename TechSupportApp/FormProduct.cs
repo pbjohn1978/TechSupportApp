@@ -172,6 +172,7 @@ namespace TechSupportApp
             Product prod = HelperDB.GetProdObjectFromCode(cboProdCode.Text);
 
             cboName.Text = prod.Name;
+            txtName.Text = prod.Name;
             txtVersion.Text = prod.Version.ToString();
             dateTimeProd.Value = prod.ReleaseDate;
         }

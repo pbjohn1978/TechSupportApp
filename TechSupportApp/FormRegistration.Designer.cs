@@ -42,6 +42,9 @@
             this.btnViewRegsForCust = new System.Windows.Forms.Button();
             this.btnViewRegsForProd = new System.Windows.Forms.Button();
             this.listBoxDisplay = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -158,12 +161,39 @@
             // 
             this.listBoxDisplay.FormattingEnabled = true;
             this.listBoxDisplay.Items.AddRange(new object[] {
-            "CustomerID        ProductCode        RegistrationDate"});
-            this.listBoxDisplay.Location = new System.Drawing.Point(613, 25);
+            " "});
+            this.listBoxDisplay.Location = new System.Drawing.Point(613, 41);
             this.listBoxDisplay.Name = "listBoxDisplay";
             this.listBoxDisplay.ScrollAlwaysVisible = true;
             this.listBoxDisplay.Size = new System.Drawing.Size(279, 186);
             this.listBoxDisplay.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(610, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "CustomerID";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(693, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "ProductCode";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(780, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "RegistrationDate";
             // 
             // FormRegistration
             // 
@@ -172,6 +202,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(904, 287);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.listBoxDisplay);
             this.Controls.Add(this.btnViewRegsForProd);
             this.Controls.Add(this.btnViewRegsForCust);
@@ -206,5 +239,8 @@
         private System.Windows.Forms.Button btnViewRegsForCust;
         private System.Windows.Forms.Button btnViewRegsForProd;
         private System.Windows.Forms.ListBox listBoxDisplay;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
