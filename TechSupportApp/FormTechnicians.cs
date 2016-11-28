@@ -11,9 +11,9 @@ using TechSupportApp.Classes;
 
 namespace TechSupportApp
 {
-    public partial class FormTechnicians : Form
+    public partial class frmTechnicians : Form
     {
-        public FormTechnicians()
+        public frmTechnicians()
         {
             InitializeComponent();
         }
