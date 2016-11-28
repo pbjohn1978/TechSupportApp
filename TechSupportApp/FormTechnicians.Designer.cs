@@ -32,13 +32,13 @@
             this.lblTechnician = new System.Windows.Forms.Label();
             this.txtTechnicianName = new System.Windows.Forms.TextBox();
             this.txtTechnicianEmail = new System.Windows.Forms.TextBox();
-            this.txtTechicianPhone = new System.Windows.Forms.TextBox();
             this.lblTechnicianName = new System.Windows.Forms.Label();
             this.lblTechnicianEmail = new System.Windows.Forms.Label();
             this.lblTechnicianPhone = new System.Windows.Forms.Label();
             this.btnAddTechnician = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnDeleteTechnician = new System.Windows.Forms.Button();
+            this.maskTechnicianPhone = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // cboTechnicians
@@ -73,13 +73,6 @@
             this.txtTechnicianEmail.Name = "txtTechnicianEmail";
             this.txtTechnicianEmail.Size = new System.Drawing.Size(238, 20);
             this.txtTechnicianEmail.TabIndex = 3;
-            // 
-            // txtTechicianPhone
-            // 
-            this.txtTechicianPhone.Location = new System.Drawing.Point(155, 177);
-            this.txtTechicianPhone.Name = "txtTechicianPhone";
-            this.txtTechicianPhone.Size = new System.Drawing.Size(238, 20);
-            this.txtTechicianPhone.TabIndex = 4;
             // 
             // lblTechnicianName
             // 
@@ -137,23 +130,31 @@
             this.btnDeleteTechnician.UseVisualStyleBackColor = true;
             this.btnDeleteTechnician.Click += new System.EventHandler(this.btnDeleteTechnician_Click);
             // 
-            // frmTechnicians
+            // maskTechnicianPhone
+            // 
+            this.maskTechnicianPhone.Location = new System.Drawing.Point(156, 184);
+            this.maskTechnicianPhone.Mask = "(999) 000-0000";
+            this.maskTechnicianPhone.Name = "maskTechnicianPhone";
+            this.maskTechnicianPhone.Size = new System.Drawing.Size(86, 20);
+            this.maskTechnicianPhone.TabIndex = 11;
+            // 
+            // FormTechnicians
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 306);
+            this.Controls.Add(this.maskTechnicianPhone);
             this.Controls.Add(this.btnDeleteTechnician);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnAddTechnician);
             this.Controls.Add(this.lblTechnicianPhone);
             this.Controls.Add(this.lblTechnicianEmail);
             this.Controls.Add(this.lblTechnicianName);
-            this.Controls.Add(this.txtTechicianPhone);
             this.Controls.Add(this.txtTechnicianEmail);
             this.Controls.Add(this.txtTechnicianName);
             this.Controls.Add(this.lblTechnician);
             this.Controls.Add(this.cboTechnicians);
-            this.Name = "frmTechnicians";
+            this.Name = "FormTechnicians";
             this.Text = "Technicians";
             this.Load += new System.EventHandler(this.frmTechnicians_Load);
             this.ResumeLayout(false);
@@ -167,12 +168,12 @@
         private System.Windows.Forms.Label lblTechnician;
         private System.Windows.Forms.TextBox txtTechnicianName;
         private System.Windows.Forms.TextBox txtTechnicianEmail;
-        private System.Windows.Forms.TextBox txtTechicianPhone;
         private System.Windows.Forms.Label lblTechnicianName;
         private System.Windows.Forms.Label lblTechnicianEmail;
         private System.Windows.Forms.Label lblTechnicianPhone;
         private System.Windows.Forms.Button btnAddTechnician;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnDeleteTechnician;
+        private System.Windows.Forms.MaskedTextBox maskTechnicianPhone;
     }
 }
