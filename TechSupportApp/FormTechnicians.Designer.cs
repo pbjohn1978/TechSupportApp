@@ -1,6 +1,6 @@
 ﻿namespace TechSupportApp
 {
-    partial class frmTechnicians
+    partial class FormTechnicians
     {
         /// <summary>
         /// Required designer variable.
