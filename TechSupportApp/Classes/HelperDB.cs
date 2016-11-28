@@ -91,7 +91,6 @@ Order by [Name] asc";
         /// <summary>
         /// Code By: BeekerMeMe
         /// 
-        ///     THROWS NOT IMPLEMENTED EXCEPTION!!!!!!
         /// 
         /// this methoud will take in a Customer Object and add it to the database... Please ensure that the Customer object is a valid Customer object 
         ///     AND THAT THE CUSTOMER ID NUMBER IS NOT TAKEN BEFORE CALLING THIS METHOUD... :)
@@ -174,7 +173,6 @@ VALUES(@name,@addre,@city,@state,@zipco,@phone,@email)";
         /// <summary>
         /// Code By: BeekerMeMe
         /// 
-        ///     THROWS NOT IMPLEMENTED EXCEPTION!!!!!
         /// 
         /// this methoud will take in a Customer object an will return a bool representing weather or not the Customer is already in the db... :)
         ///     Please ensure the Customer is a valid Customer object before calling this methoud... :)
