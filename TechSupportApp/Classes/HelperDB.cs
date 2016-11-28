@@ -84,7 +84,7 @@ Order by [Name] asc";
         public static SqlConnection GetConnectionStringAppConfig()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["memeconnectionString"].ConnectionString;
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             return con;
         }
 
