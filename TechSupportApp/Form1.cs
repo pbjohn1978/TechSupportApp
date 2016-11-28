@@ -50,14 +50,12 @@ namespace TechSupportApp
 
         private void btnIncidents_Click(object sender, EventArgs e)
         {
-            FormIncidents incidentForm = new FormIncidents();
-            incidentForm.Show();
+
         }
 
         private void btnTechnicians_Click(object sender, EventArgs e)
         {
-            FormTechnicians techFrom = new FormTechnicians();
-            techFrom.Show();
+
         }
     }
 }
