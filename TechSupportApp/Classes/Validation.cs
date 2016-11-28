@@ -12,24 +12,24 @@ namespace TechSupportApp.Classes
     public class Validation
     {
         public IEnumerable<Control> Controls { get; private set; }
+        private static String states = "|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY|";
+
 
         public static bool IsValidCustomer(Customer customer)
         {
-            //bool isValidInfo = true;
-            
-            if (!IsValidZipCode(customer.ZipCode.ToString()))
+            if (!isStateAbbreviation(customer.State.ToString()))
             {
+                MessageBox.Show("The state entered is not a Valid state code.");
                 return false;
             }
             if(!IsValidEmail(customer.Email.ToString()))
-            {
                 return false;
-            }
-            if(!IsValidPhoneNumber(customer.Phone.ToString()))
-            {
-                return false;
-            }
             return true;
+        }
+        
+        public static bool isStateAbbreviation(String state)
+        {
+            return state.Length == 2 && states.IndexOf(state) > 0;
         }
 
 

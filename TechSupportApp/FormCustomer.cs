@@ -49,20 +49,46 @@ namespace TechSupportApp
 
         private void btnCustomerAddNew_Click(object sender, EventArgs e)
         {
-            AddOrUpdatCustomerInfo();
+            if (CheckRequiredTextBoxesForText())
+                AddOrUpdatCustomerInfo();
         }
-        
+
+        private bool CheckRequiredTextBoxesForText()
+        {
+            if (txtCustomerName.Text.Equals(""))
+            {
+                MessageBox.Show("Customer Name must be entered.");
+                return false;
+            }
+            if (txtCustomerAddress.Text.Equals(""))
+            {
+                MessageBox.Show("Customer Address must be entered.");
+                return false;
+            }
+            if (txtCustomerCity.Text.Equals(""))
+            {
+                MessageBox.Show("Customer City must be entered.");
+                return false;
+            }
+            if (txtCustomerZip.Text.ToString().Length != 5)
+            {
+                MessageBox.Show("Customer zip must be 5 numbers.");
+                return false;
+            }
+            return true;
+        }
+
         private void btnCustomerDelete_Click(object sender, EventArgs e)
         {
             if (HelperDB.DeleteCustomer(Convert.ToInt32(txtLabCustomerID.Text)))
             {
-                MessageBox.Show("Customer is like deleted and stuff...");
+                MessageBox.Show("Customer has been deleted.");
                 PopulateCustomerList();
                 ClearTextBoxes();
             }
             else
             {
-                MessageBox.Show("sorry... database connection issue... call IT... wait... we are IT... we should fix this... :)");
+                MessageBox.Show("There was a database connection issue.");
             }
         }
         
@@ -92,7 +118,10 @@ namespace TechSupportApp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            AddOrUpdatCustomerInfo();
+            if (CheckRequiredTextBoxesForText())
+                AddOrUpdatCustomerInfo();
+            else
+                MessageBox.Show("All Required boxes must be filled in.");
         }
 
 
@@ -100,7 +129,7 @@ namespace TechSupportApp
         {
             bool isValid = false;
             Customer cust = new Customer();
-            
+            string showMessage = "The customer was added.";
             try
             {
                 cust.Name = txtCustomerName.Text;
@@ -110,7 +139,11 @@ namespace TechSupportApp
                 cust.ZipCode = txtCustomerZip.Text;
                 cust.Phone = txtCustomerPhone.Text;
                 cust.Email = txtCustomerEmail.Text;
-                cust.CustomerID = Convert.ToInt32(txtLabCustomerID.Text);
+                if (txtLabCustomerID.Text.ToString().Length > 1)
+                {
+                    cust.CustomerID = Convert.ToInt32(txtLabCustomerID.Text);
+                    showMessage = "The Customer was Updated.";
+                }
                 isValid = Validation.IsValidCustomer(cust);
             }
             finally
@@ -118,12 +151,51 @@ namespace TechSupportApp
                 if (isValid)
                 {
                     bool isAdded = HelperDB.AddOrUpdateCustomerInDB(cust);
-                }
-                else
-                {
-                    MessageBox.Show("Please Check the inputted data and submit it again... I think there is a problem");
+                    MessageBox.Show(showMessage);
+                    PopulateCustomerList();
+                    ClearTextBoxes();
                 }
             }
         }
+
+        //private void txtCustomerName_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+        
+        //private void txtCustomerAddress_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+
+        //private void txtCustomerCity_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+
+        //private void txtCustomerState_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+
+        //private void txtCustomerZip_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+
+        //private void txtCustomerPhone_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+
+        //private void txtCustomerEmail_TextChanged(object sender, EventArgs e)
+        //{
+        //    UpdateOrAddButtonSelect();
+        //}
+        
+        //private void UpdateOrAddButtonSelect()
+        //{
+            
+        //}
     }
 }

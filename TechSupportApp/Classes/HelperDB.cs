@@ -15,7 +15,7 @@ namespace TechSupportApp.Classes
 
         /// <summary>
         /// Code By: BeekerMeMeMe
-        /// this methoud takes in no arguments and returns a List<Customer> ... :)
+        /// this methoud takes in no arguments and returns a List<Customer> ... 
         /// </summary>
         /// <returns> this methoud returns a List<Customer> (a list of customer objects) </returns>
         public static List<Customer> GetAllCustomers()
@@ -26,7 +26,8 @@ namespace TechSupportApp.Classes
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandText = @"SELECT[CustomerID],[Name],[Address],[City],[State],[ZipCode],[Phone],[Email]
-FROM[TechSupport].[dbo].[Customers]";
+FROM[TechSupport].[dbo].[Customers]
+Order by [Name] asc";
 
             try
             {
@@ -83,7 +84,7 @@ FROM[TechSupport].[dbo].[Customers]";
         public static SqlConnection GetConnectionStringAppConfig()
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["memeconnectionString"].ConnectionString;
             return con;
         }
 
@@ -100,7 +101,6 @@ FROM[TechSupport].[dbo].[Customers]";
         /// <returns> bool : true = Customer added, False = Customer was NOT added</returns>
         public static bool AddOrUpdateCustomerInDB(Customer cust)
         {
-            throw new NotImplementedException();
             bool isInDB = false;
             //the following if statement will update the customers info if true
             //if false it will add the New Customer to the database... :)
