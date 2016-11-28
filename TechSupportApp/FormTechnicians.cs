@@ -31,7 +31,7 @@ namespace TechSupportApp
                 {
                     txtTechnicianName.Text = techs.Name.ToString();
                     txtTechnicianEmail.Text = techs.Email.ToString();
-                    txtTechicianPhone.Text = techs.Email.ToString();
+                    maskTechnicianPhone.Text = techs.Phone.ToString();
                 }
             }
         }
