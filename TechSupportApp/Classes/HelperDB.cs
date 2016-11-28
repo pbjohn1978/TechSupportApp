@@ -302,24 +302,56 @@ WHERE CustomerID = @custid3";
                     JOIN Technicians
                     ON Incidents.TechID = Technicians.TechID
                     ";
-                con.Open();
-                SqlDataReader rdr = selQuery.ExecuteReader();
+                
+                
                 List<Incidents> incidents = new List<Incidents>();
-                while (rdr.Read())
+                try
                 {
-                    Incidents tempIncident = new Incidents();
-                    tempIncident.IncidentID = (int)rdr["@Incidents.IncidentID"];
-                    tempIncident.CustomerID = (int)rdr["@Incidents.CustomerID"];
-                    tempIncident.CustomerName = rdr["@Customers.Name"].ToString();
-                    tempIncident.ProductCode = rdr["@Incidents.ProductCode"].ToString();
-                    tempIncident.ProductName = rdr["@Products.Name"].ToString();
-                    tempIncident.TechID = (int)rdr["@Incidents.TechID"];
-                    tempIncident.TechName = rdr["@Technicians.Name"].ToString();
-                    tempIncident.DateOpened = (DateTime)rdr["@Incidents.DateOpened"];
-                    tempIncident.DateClosed = (DateTime)rdr["@Incidents.DateClosed"];
-                    tempIncident.Title = rdr["@Incidents.Title"].ToString();
-                    tempIncident.Description = rdr["@Incidents.Description"].ToString();
-                    incidents.Add(tempIncident);
+                    con.Open();
+                    SqlDataReader rdr = selQuery.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+
+                        while (rdr.Read())
+                        {
+                            Incidents tempIncident = new Incidents();
+                            tempIncident.IncidentID = rdr.GetInt32(0);
+                            tempIncident.CustomerID = rdr.GetInt32(1);
+                            tempIncident.CustomerName = rdr.GetString(2);
+                            tempIncident.ProductCode = rdr.GetString(3);
+                            tempIncident.ProductName = rdr.GetString(4);
+                            tempIncident.TechID = rdr.GetInt32(5);
+                            tempIncident.TechName = rdr.GetString(6);
+                            tempIncident.DateOpened = rdr.GetDateTime(7);
+                            if (rdr.GetDateTime(8) != null)
+                            {
+                                tempIncident.DateClosed = rdr.GetDateTime(8);
+                               
+                            }
+                            else
+                            {
+                                tempIncident.DateClosed = string.Empty;
+                            }
+                            tempIncident.Title = rdr.GetString(9);
+                            tempIncident.Description = rdr.GetString(10);
+                            //tempIncident.IncidentID = (int)rdr["@Incidents.IncidentID"];
+                            //tempIncident.CustomerID = (int)rdr["@Incidents.CustomerID"];
+                            //tempIncident.CustomerName = rdr["@Customers.Name"].ToString();
+                            //tempIncident.ProductCode = rdr["@Incidents.ProductCode"].ToString();
+                            //tempIncident.ProductName = rdr["@Products.Name"].ToString();
+                            //tempIncident.TechID = (int)rdr["@Incidents.TechID"];
+                            //tempIncident.TechName = rdr["@Technicians.Name"].ToString();
+                            //tempIncident.DateOpened = (DateTime)rdr["@Incidents.DateOpened"];
+                            //tempIncident.DateClosed = (DateTime)rdr["@Incidents.DateClosed"];
+                            //tempIncident.Title = rdr["@Incidents.Title"].ToString();
+                            //tempIncident.Description = rdr["@Incidents.Description"].ToString();
+                            incidents.Add(tempIncident);
+                        }
+                    }
+                }
+                finally
+                {
+                    con.Dispose();
                 }
                 return incidents;
             }
@@ -975,27 +1007,41 @@ WHERE CustomerID = @custid3";
         public static List<Technicians> GetTechnicians()
         {
             SqlConnection con = GetConnectionStringAppConfig();
-            SqlCommand selQuery = new SqlCommand();
-            selQuery.Connection = con;
-            selQuery.CommandText =
-                @"
-                    SELECT TechID, Name, Email, Phone
-                    FROM Technicians
-                    ";
-            con.Open();
-            SqlDataReader rdr = selQuery.ExecuteReader();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText =
+                @"SELECT TechID, Name, Email, Phone
+                    FROM Technicians";
             List<Technicians> technicians = new List<Technicians>();
-            while (rdr.Read())
+            try
             {
-                Technicians tempTech = new Technicians();
-                tempTech.TechID = (int)rdr["@TechID"];
-                tempTech.Name = rdr["@Name"].ToString();
-                tempTech.Email = rdr["@Email"].ToString();
-                tempTech.Phone = rdr["@Phone"].ToString();
-
-                technicians.Add(tempTech);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        Technicians tempTech = new Technicians();
+                        tempTech.TechID = rdr.GetInt32(0);
+                        tempTech.Name = rdr.GetString(1);
+                        tempTech.Email = rdr.GetString(2);
+                        tempTech.Phone = rdr.GetString(3);
+                        //tempTech.TechID = (int)rdr["@TechID"];
+                        //tempTech.Name = rdr["@Name"].ToString();
+                        //tempTech.Email = rdr["@Email"].ToString();
+                        //tempTech.Phone = rdr["@Phone"].ToString();
+                        technicians.Add(tempTech);
+                    }
+                    
+                }
+            }
+            finally
+            {
+                con.Dispose();
             }
             return technicians;
+
+
         }
 
         public static bool DeleteTechnician(int id)

@@ -63,6 +63,7 @@
             this.cboIncCustomerName.Size = new System.Drawing.Size(228, 21);
             this.cboIncCustomerName.TabIndex = 1;
             this.cboIncCustomerName.Text = "Select Customer";
+            this.cboIncCustomerName.SelectedIndexChanged += new System.EventHandler(this.cboIncCustomerName_SelectedIndexChanged);
             // 
             // lblCustomersProducts
             // 
@@ -148,6 +149,7 @@
             this.dtpDateTicketClosed.Name = "dtpDateTicketClosed";
             this.dtpDateTicketClosed.Size = new System.Drawing.Size(200, 20);
             this.dtpDateTicketClosed.TabIndex = 12;
+            this.dtpDateTicketClosed.ValueChanged += new System.EventHandler(this.dtpDateTicketClosed_ValueChanged);
             // 
             // label1
             // 
@@ -209,6 +211,7 @@
             this.Controls.Add(this.lblCustomerName);
             this.Name = "FormIncidents";
             this.Text = "Incidents";
+            this.Load += new System.EventHandler(this.FormIncidents_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

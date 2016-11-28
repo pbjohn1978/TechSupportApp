@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupportApp.Classes;
 
 namespace TechSupportApp
 {
@@ -15,6 +16,31 @@ namespace TechSupportApp
         public FormIncidents()
         {
             InitializeComponent();
+        }
+
+        private void cboIncCustomerName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PopulateIncidents()
+        {
+            cboIncCustomerName.Items.Clear();
+            List<Incidents> incidents = HelperDB.GetIncidents();
+            foreach (Incidents i in incidents)
+            {
+                cboIncCustomerName.Items.Add(i.CustomerName);
+            }
+        }
+
+        private void FormIncidents_Load(object sender, EventArgs e)
+        {
+            PopulateIncidents();
+        }
+
+        private void dtpDateTicketClosed_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
