@@ -100,7 +100,6 @@ namespace TechSupportApp
             {
                 cboCustomerList.Items.Add(customer.Name);
             }
-            cboCustomerList.SelectedIndex = 0;
         }
 
         private void ClearTextBoxes()
@@ -158,44 +157,11 @@ namespace TechSupportApp
             }
         }
 
-        //private void txtCustomerName_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-        
-        //private void txtCustomerAddress_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-
-        //private void txtCustomerCity_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-
-        //private void txtCustomerState_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-
-        //private void txtCustomerZip_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-
-        //private void txtCustomerPhone_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-
-        //private void txtCustomerEmail_TextChanged(object sender, EventArgs e)
-        //{
-        //    UpdateOrAddButtonSelect();
-        //}
-        
-        //private void UpdateOrAddButtonSelect()
-        //{
-            
-        //}
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            PopulateCustomerList();
+            ClearTextBoxes();
+            cboCustomerList.Text = "Select Customer From List:";
+        }
     }
 }
