@@ -22,8 +22,9 @@ namespace TechSupportApp.Classes
                 MessageBox.Show("The state entered is not a Valid state code.");
                 return false;
             }
-            if(!IsValidEmail(customer.Email.ToString()))
-                return false;
+            if( !customer.Email.Equals("") )
+                if( !IsValidEmail(customer.Email) )
+                     return false;
             return true;
         }
         
