@@ -107,9 +107,12 @@ namespace TechSupportApp
             {
                 cboName.Visible = false;
                 txtName.Visible = true;
+                txtName.Clear();
                 cboProdCode.Visible = false;
                 txtProdCode.Visible = true;
+                txtProdCode.Clear();
                 txtVersion.ReadOnly = false;
+                txtVersion.Clear();
                 dateTimeProd.Enabled = true;
                 btnDeleteProd.Enabled = false;
             }
