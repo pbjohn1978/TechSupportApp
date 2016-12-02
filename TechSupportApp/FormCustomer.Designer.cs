@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCustomer));
             this.cboCustomerList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.btnCustomerDelete = new System.Windows.Forms.Button();
             this.txtCustomerPhone = new System.Windows.Forms.MaskedTextBox();
             this.txtCustomerZip = new System.Windows.Forms.MaskedTextBox();
+            this.btnClearForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboCustomerList
@@ -235,11 +237,22 @@
             this.txtCustomerZip.TabIndex = 5;
             this.txtCustomerZip.ValidatingType = typeof(int);
             // 
+            // btnClearForm
+            // 
+            this.btnClearForm.Location = new System.Drawing.Point(478, 192);
+            this.btnClearForm.Name = "btnClearForm";
+            this.btnClearForm.Size = new System.Drawing.Size(123, 42);
+            this.btnClearForm.TabIndex = 11;
+            this.btnClearForm.Text = "Clear Form";
+            this.btnClearForm.UseVisualStyleBackColor = true;
+            this.btnClearForm.Click += new System.EventHandler(this.btnClearForm_Click);
+            // 
             // FormCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 454);
+            this.Controls.Add(this.btnClearForm);
             this.Controls.Add(this.txtCustomerZip);
             this.Controls.Add(this.txtCustomerPhone);
             this.Controls.Add(this.btnCustomerDelete);
@@ -261,6 +274,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboCustomerList);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCustomer";
             this.Text = "0";
             this.Load += new System.EventHandler(this.FormCustomer_Load);
@@ -292,5 +306,6 @@
         private System.Windows.Forms.Button btnCustomerDelete;
         private System.Windows.Forms.MaskedTextBox txtCustomerPhone;
         private System.Windows.Forms.MaskedTextBox txtCustomerZip;
+        private System.Windows.Forms.Button btnClearForm;
     }
 }
