@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport;
 using TechSupportApp.Classes;
 
 namespace TechSupportApp
@@ -35,7 +36,13 @@ namespace TechSupportApp
 
         private void FormIncidents_Load(object sender, EventArgs e)
         {
-            PopulateIncidents();
+            //populate the customers from DB
+            cboIncCustomerName.Items.Clear();
+            List<Customer> customers = HelperDB.GetAllCustomers();
+            foreach (Customer customer in customers)
+            {
+                cboIncCustomerName.Items.Add(customer.Name);
+            }
         }
 
         private void dtpDateTicketClosed_ValueChanged(object sender, EventArgs e)

@@ -96,11 +96,10 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string regexPattern = "^([0-9]{9})$";
-            Match validPhoneNumber = Regex.Match(phoneNumber, regexPattern);
-            if (!validPhoneNumber.Success)
+            //phone number uses masked text box, validate length is 10-digit number
+            if(phoneNumber.Length != 10)
             {
-                MessageBox.Show("Invalid phone number.  Please enter in valid format:  xxx-xxx-xxxx");
+                MessageBox.Show("Invalid phone number.  Please enter area code and number");
                 return false;
             }
             return true;
