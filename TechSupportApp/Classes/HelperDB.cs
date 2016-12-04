@@ -331,7 +331,7 @@ WHERE CustomerID = @custid3";
                             else
                             {
                                 //TODO- change the date time picker to allow null values for closed tickets DO NOT USE DATETIEME.NOW
-                                tempIncident.DateClosed = "";
+                                //tempIncident.DateClosed = "";
                             }
                             tempIncident.Title = rdr.GetString(9);
                             tempIncident.Description = rdr.GetString(10);
