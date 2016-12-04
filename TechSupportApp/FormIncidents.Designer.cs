@@ -41,9 +41,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveIncident = new System.Windows.Forms.Button();
             this.cboIncidentName = new System.Windows.Forms.ComboBox();
-            this.chkAddNewIncident = new System.Windows.Forms.CheckBox();
             this.mskDateOpened = new System.Windows.Forms.MaskedTextBox();
             this.mskDateClosed = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNewIncidentTitle = new System.Windows.Forms.TextBox();
+            this.btnDeleteIncident = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCustomerName
@@ -68,7 +71,7 @@
             // lblCustomersProducts
             // 
             this.lblCustomersProducts.AutoSize = true;
-            this.lblCustomersProducts.Location = new System.Drawing.Point(11, 62);
+            this.lblCustomersProducts.Location = new System.Drawing.Point(8, 62);
             this.lblCustomersProducts.Name = "lblCustomersProducts";
             this.lblCustomersProducts.Size = new System.Drawing.Size(160, 13);
             this.lblCustomersProducts.TabIndex = 2;
@@ -77,7 +80,7 @@
             // cboIncProducts
             // 
             this.cboIncProducts.FormattingEnabled = true;
-            this.cboIncProducts.Location = new System.Drawing.Point(195, 58);
+            this.cboIncProducts.Location = new System.Drawing.Point(195, 56);
             this.cboIncProducts.Name = "cboIncProducts";
             this.cboIncProducts.Size = new System.Drawing.Size(228, 21);
             this.cboIncProducts.TabIndex = 1;
@@ -86,7 +89,7 @@
             // lblTechnician
             // 
             this.lblTechnician.AutoSize = true;
-            this.lblTechnician.Location = new System.Drawing.Point(62, 93);
+            this.lblTechnician.Location = new System.Drawing.Point(59, 93);
             this.lblTechnician.Name = "lblTechnician";
             this.lblTechnician.Size = new System.Drawing.Size(109, 13);
             this.lblTechnician.TabIndex = 4;
@@ -95,7 +98,7 @@
             // cboIncTecnician
             // 
             this.cboIncTecnician.FormattingEnabled = true;
-            this.cboIncTecnician.Location = new System.Drawing.Point(195, 91);
+            this.cboIncTecnician.Location = new System.Drawing.Point(195, 87);
             this.cboIncTecnician.Name = "cboIncTecnician";
             this.cboIncTecnician.Size = new System.Drawing.Size(228, 21);
             this.cboIncTecnician.TabIndex = 2;
@@ -104,16 +107,16 @@
             // lblIssue
             // 
             this.lblIssue.AutoSize = true;
-            this.lblIssue.Location = new System.Drawing.Point(89, 126);
+            this.lblIssue.Location = new System.Drawing.Point(73, 126);
             this.lblIssue.Name = "lblIssue";
-            this.lblIssue.Size = new System.Drawing.Size(79, 13);
+            this.lblIssue.Size = new System.Drawing.Size(95, 13);
             this.lblIssue.TabIndex = 6;
-            this.lblIssue.Text = "Incident Name:";
+            this.lblIssue.Text = "Add New Incident:";
             // 
             // lblIncDescription
             // 
             this.lblIncDescription.AutoSize = true;
-            this.lblIncDescription.Location = new System.Drawing.Point(75, 164);
+            this.lblIncDescription.Location = new System.Drawing.Point(75, 205);
             this.lblIncDescription.Name = "lblIncDescription";
             this.lblIncDescription.Size = new System.Drawing.Size(93, 13);
             this.lblIncDescription.TabIndex = 8;
@@ -121,16 +124,16 @@
             // 
             // txtIncidentDescription
             // 
-            this.txtIncidentDescription.Location = new System.Drawing.Point(195, 160);
+            this.txtIncidentDescription.Location = new System.Drawing.Point(76, 221);
             this.txtIncidentDescription.Multiline = true;
             this.txtIncidentDescription.Name = "txtIncidentDescription";
-            this.txtIncidentDescription.Size = new System.Drawing.Size(457, 111);
+            this.txtIncidentDescription.Size = new System.Drawing.Size(347, 111);
             this.txtIncidentDescription.TabIndex = 5;
             // 
             // lblDateTicketOpened
             // 
             this.lblDateTicketOpened.AutoSize = true;
-            this.lblDateTicketOpened.Location = new System.Drawing.Point(61, 299);
+            this.lblDateTicketOpened.Location = new System.Drawing.Point(61, 350);
             this.lblDateTicketOpened.Name = "lblDateTicketOpened";
             this.lblDateTicketOpened.Size = new System.Drawing.Size(107, 13);
             this.lblDateTicketOpened.TabIndex = 11;
@@ -139,15 +142,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 326);
+            this.label1.Location = new System.Drawing.Point(66, 377);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Date Ticket Closed";
+            this.label1.Text = "Date Ticket Closed:";
             // 
             // btnSaveIncident
             // 
-            this.btnSaveIncident.Location = new System.Drawing.Point(295, 360);
+            this.btnSaveIncident.Location = new System.Drawing.Point(51, 425);
             this.btnSaveIncident.Name = "btnSaveIncident";
             this.btnSaveIncident.Size = new System.Drawing.Size(100, 53);
             this.btnSaveIncident.TabIndex = 8;
@@ -157,25 +160,15 @@
             // cboIncidentName
             // 
             this.cboIncidentName.FormattingEnabled = true;
-            this.cboIncidentName.Location = new System.Drawing.Point(357, 124);
+            this.cboIncidentName.Location = new System.Drawing.Point(195, 172);
             this.cboIncidentName.Name = "cboIncidentName";
-            this.cboIncidentName.Size = new System.Drawing.Size(295, 21);
+            this.cboIncidentName.Size = new System.Drawing.Size(228, 21);
             this.cboIncidentName.TabIndex = 4;
             this.cboIncidentName.Text = "Select to Update an Incident";
             // 
-            // chkAddNewIncident
-            // 
-            this.chkAddNewIncident.AutoSize = true;
-            this.chkAddNewIncident.Location = new System.Drawing.Point(195, 127);
-            this.chkAddNewIncident.Name = "chkAddNewIncident";
-            this.chkAddNewIncident.Size = new System.Drawing.Size(111, 17);
-            this.chkAddNewIncident.TabIndex = 3;
-            this.chkAddNewIncident.Text = "Add New Incident";
-            this.chkAddNewIncident.UseVisualStyleBackColor = true;
-            // 
             // mskDateOpened
             // 
-            this.mskDateOpened.Location = new System.Drawing.Point(195, 299);
+            this.mskDateOpened.Location = new System.Drawing.Point(195, 350);
             this.mskDateOpened.Mask = "00/00/0000";
             this.mskDateOpened.Name = "mskDateOpened";
             this.mskDateOpened.Size = new System.Drawing.Size(136, 20);
@@ -184,21 +177,58 @@
             // 
             // mskDateClosed
             // 
-            this.mskDateClosed.Location = new System.Drawing.Point(195, 326);
+            this.mskDateClosed.Location = new System.Drawing.Point(195, 377);
             this.mskDateClosed.Mask = "00/00/0000";
             this.mskDateClosed.Name = "mskDateClosed";
             this.mskDateClosed.Size = new System.Drawing.Size(136, 20);
             this.mskDateClosed.TabIndex = 7;
             this.mskDateClosed.ValidatingType = typeof(System.DateTime);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(114, 148);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "OR";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(48, 172);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Select Existing Incident:";
+            // 
+            // txtNewIncidentTitle
+            // 
+            this.txtNewIncidentTitle.Location = new System.Drawing.Point(195, 118);
+            this.txtNewIncidentTitle.Name = "txtNewIncidentTitle";
+            this.txtNewIncidentTitle.Size = new System.Drawing.Size(228, 20);
+            this.txtNewIncidentTitle.TabIndex = 16;
+            // 
+            // btnDeleteIncident
+            // 
+            this.btnDeleteIncident.Location = new System.Drawing.Point(323, 425);
+            this.btnDeleteIncident.Name = "btnDeleteIncident";
+            this.btnDeleteIncident.Size = new System.Drawing.Size(100, 53);
+            this.btnDeleteIncident.TabIndex = 17;
+            this.btnDeleteIncident.Text = "Delete Incident";
+            this.btnDeleteIncident.UseVisualStyleBackColor = true;
+            // 
             // FormIncidents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 432);
+            this.ClientSize = new System.Drawing.Size(464, 499);
+            this.Controls.Add(this.btnDeleteIncident);
+            this.Controls.Add(this.txtNewIncidentTitle);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.mskDateClosed);
             this.Controls.Add(this.mskDateOpened);
-            this.Controls.Add(this.chkAddNewIncident);
             this.Controls.Add(this.cboIncidentName);
             this.Controls.Add(this.btnSaveIncident);
             this.Controls.Add(this.label1);
@@ -235,8 +265,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveIncident;
         private System.Windows.Forms.ComboBox cboIncidentName;
-        private System.Windows.Forms.CheckBox chkAddNewIncident;
         private System.Windows.Forms.MaskedTextBox mskDateOpened;
         private System.Windows.Forms.MaskedTextBox mskDateClosed;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNewIncidentTitle;
+        private System.Windows.Forms.Button btnDeleteIncident;
     }
 }
