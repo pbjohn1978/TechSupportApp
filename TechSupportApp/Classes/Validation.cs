@@ -33,16 +33,16 @@ namespace TechSupportApp.Classes
         }
 
 
-        public bool IsValidTechnician(Technicians tech)
+        public static bool IsValidTechnician(Technicians tech)
         {
-            if(!IsValidEmail(tech.Email.ToString()))
-            {
-                return false;
-            }
-            if(!IsValidPhoneNumber(tech.Phone.ToString()))
-            {
-                return false;
-            }
+            //if(!IsValidEmail(tech.Email.ToString()))
+            //{
+            //    return false;
+            //}
+            //if(!IsValidPhoneNumber(tech.Phone.ToString()))
+            //{
+            //    return false;
+            //}
             return true;
         }
 
@@ -96,7 +96,7 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string regexPattern = "^(?([0-9]{3}))?[-]?([0-9]{3})[-]?([0-9]{4})$";
+            string regexPattern = "^([0-9]{9})$";
             Match validPhoneNumber = Regex.Match(phoneNumber, regexPattern);
             if (!validPhoneNumber.Success)
             {

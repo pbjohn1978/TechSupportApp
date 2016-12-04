@@ -37,13 +37,13 @@
             this.lblIssue = new System.Windows.Forms.Label();
             this.lblIncDescription = new System.Windows.Forms.Label();
             this.txtIncidentDescription = new System.Windows.Forms.TextBox();
-            this.dtpDateTicketOpened = new System.Windows.Forms.DateTimePicker();
             this.lblDateTicketOpened = new System.Windows.Forms.Label();
-            this.dtpDateTicketClosed = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveIncident = new System.Windows.Forms.Button();
             this.cboIncidentName = new System.Windows.Forms.ComboBox();
             this.chkAddNewIncident = new System.Windows.Forms.CheckBox();
+            this.mskDateOpened = new System.Windows.Forms.MaskedTextBox();
+            this.mskDateClosed = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // lblCustomerName
@@ -61,7 +61,7 @@
             this.cboIncCustomerName.Location = new System.Drawing.Point(195, 25);
             this.cboIncCustomerName.Name = "cboIncCustomerName";
             this.cboIncCustomerName.Size = new System.Drawing.Size(228, 21);
-            this.cboIncCustomerName.TabIndex = 1;
+            this.cboIncCustomerName.TabIndex = 0;
             this.cboIncCustomerName.Text = "Select Customer";
             this.cboIncCustomerName.SelectedIndexChanged += new System.EventHandler(this.cboIncCustomerName_SelectedIndexChanged);
             // 
@@ -80,7 +80,7 @@
             this.cboIncProducts.Location = new System.Drawing.Point(195, 58);
             this.cboIncProducts.Name = "cboIncProducts";
             this.cboIncProducts.Size = new System.Drawing.Size(228, 21);
-            this.cboIncProducts.TabIndex = 3;
+            this.cboIncProducts.TabIndex = 1;
             this.cboIncProducts.Text = "Select Product";
             // 
             // lblTechnician
@@ -98,7 +98,7 @@
             this.cboIncTecnician.Location = new System.Drawing.Point(195, 91);
             this.cboIncTecnician.Name = "cboIncTecnician";
             this.cboIncTecnician.Size = new System.Drawing.Size(228, 21);
-            this.cboIncTecnician.TabIndex = 5;
+            this.cboIncTecnician.TabIndex = 2;
             this.cboIncTecnician.Text = "Select Technician";
             // 
             // lblIssue
@@ -125,14 +125,7 @@
             this.txtIncidentDescription.Multiline = true;
             this.txtIncidentDescription.Name = "txtIncidentDescription";
             this.txtIncidentDescription.Size = new System.Drawing.Size(457, 111);
-            this.txtIncidentDescription.TabIndex = 9;
-            // 
-            // dtpDateTicketOpened
-            // 
-            this.dtpDateTicketOpened.Location = new System.Drawing.Point(195, 293);
-            this.dtpDateTicketOpened.Name = "dtpDateTicketOpened";
-            this.dtpDateTicketOpened.Size = new System.Drawing.Size(200, 20);
-            this.dtpDateTicketOpened.TabIndex = 10;
+            this.txtIncidentDescription.TabIndex = 5;
             // 
             // lblDateTicketOpened
             // 
@@ -142,14 +135,6 @@
             this.lblDateTicketOpened.Size = new System.Drawing.Size(107, 13);
             this.lblDateTicketOpened.TabIndex = 11;
             this.lblDateTicketOpened.Text = "Date Ticket Opened:";
-            // 
-            // dtpDateTicketClosed
-            // 
-            this.dtpDateTicketClosed.Location = new System.Drawing.Point(195, 322);
-            this.dtpDateTicketClosed.Name = "dtpDateTicketClosed";
-            this.dtpDateTicketClosed.Size = new System.Drawing.Size(200, 20);
-            this.dtpDateTicketClosed.TabIndex = 12;
-            this.dtpDateTicketClosed.ValueChanged += new System.EventHandler(this.dtpDateTicketClosed_ValueChanged);
             // 
             // label1
             // 
@@ -165,7 +150,7 @@
             this.btnSaveIncident.Location = new System.Drawing.Point(295, 360);
             this.btnSaveIncident.Name = "btnSaveIncident";
             this.btnSaveIncident.Size = new System.Drawing.Size(100, 53);
-            this.btnSaveIncident.TabIndex = 14;
+            this.btnSaveIncident.TabIndex = 8;
             this.btnSaveIncident.Text = "Save Incident";
             this.btnSaveIncident.UseVisualStyleBackColor = true;
             // 
@@ -175,7 +160,7 @@
             this.cboIncidentName.Location = new System.Drawing.Point(357, 124);
             this.cboIncidentName.Name = "cboIncidentName";
             this.cboIncidentName.Size = new System.Drawing.Size(295, 21);
-            this.cboIncidentName.TabIndex = 15;
+            this.cboIncidentName.TabIndex = 4;
             this.cboIncidentName.Text = "Select to Update an Incident";
             // 
             // chkAddNewIncident
@@ -184,22 +169,40 @@
             this.chkAddNewIncident.Location = new System.Drawing.Point(195, 127);
             this.chkAddNewIncident.Name = "chkAddNewIncident";
             this.chkAddNewIncident.Size = new System.Drawing.Size(111, 17);
-            this.chkAddNewIncident.TabIndex = 16;
+            this.chkAddNewIncident.TabIndex = 3;
             this.chkAddNewIncident.Text = "Add New Incident";
             this.chkAddNewIncident.UseVisualStyleBackColor = true;
+            // 
+            // mskDateOpened
+            // 
+            this.mskDateOpened.Location = new System.Drawing.Point(195, 299);
+            this.mskDateOpened.Mask = "00/00/0000";
+            this.mskDateOpened.Name = "mskDateOpened";
+            this.mskDateOpened.Size = new System.Drawing.Size(136, 20);
+            this.mskDateOpened.TabIndex = 6;
+            this.mskDateOpened.ValidatingType = typeof(System.DateTime);
+            // 
+            // mskDateClosed
+            // 
+            this.mskDateClosed.Location = new System.Drawing.Point(195, 326);
+            this.mskDateClosed.Mask = "00/00/0000";
+            this.mskDateClosed.Name = "mskDateClosed";
+            this.mskDateClosed.Size = new System.Drawing.Size(136, 20);
+            this.mskDateClosed.TabIndex = 7;
+            this.mskDateClosed.ValidatingType = typeof(System.DateTime);
             // 
             // FormIncidents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 432);
+            this.Controls.Add(this.mskDateClosed);
+            this.Controls.Add(this.mskDateOpened);
             this.Controls.Add(this.chkAddNewIncident);
             this.Controls.Add(this.cboIncidentName);
             this.Controls.Add(this.btnSaveIncident);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dtpDateTicketClosed);
             this.Controls.Add(this.lblDateTicketOpened);
-            this.Controls.Add(this.dtpDateTicketOpened);
             this.Controls.Add(this.txtIncidentDescription);
             this.Controls.Add(this.lblIncDescription);
             this.Controls.Add(this.lblIssue);
@@ -228,12 +231,12 @@
         private System.Windows.Forms.Label lblIssue;
         private System.Windows.Forms.Label lblIncDescription;
         private System.Windows.Forms.TextBox txtIncidentDescription;
-        private System.Windows.Forms.DateTimePicker dtpDateTicketOpened;
         private System.Windows.Forms.Label lblDateTicketOpened;
-        private System.Windows.Forms.DateTimePicker dtpDateTicketClosed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveIncident;
         private System.Windows.Forms.ComboBox cboIncidentName;
         private System.Windows.Forms.CheckBox chkAddNewIncident;
+        private System.Windows.Forms.MaskedTextBox mskDateOpened;
+        private System.Windows.Forms.MaskedTextBox mskDateClosed;
     }
 }

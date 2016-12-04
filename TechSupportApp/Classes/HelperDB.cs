@@ -283,7 +283,7 @@ WHERE CustomerID = @custid3";
         ///<summary>
         ///Incidents CRUD Functionality
         /// </summary>
-        ///TODO:  Connect Customer Name, Product Name and Technician Name to display for easy reference
+        
         public static List<Incidents> GetIncidents()
         {
             using (SqlConnection con = GetConnectionStringAppConfig())
@@ -330,7 +330,8 @@ WHERE CustomerID = @custid3";
                             }
                             else
                             {
-                                tempIncident.DateClosed = string.Empty;
+                                //TODO- change the date time picker to allow null values for closed tickets DO NOT USE DATETIEME.NOW
+                                tempIncident.DateClosed = "";
                             }
                             tempIncident.Title = rdr.GetString(9);
                             tempIncident.Description = rdr.GetString(10);
@@ -357,7 +358,7 @@ WHERE CustomerID = @custid3";
             }
         }
 
-        public static bool DeleteIncident(int id)
+        public static bool DeleteIncident(Incidents i)
         {
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand delete = new SqlCommand();
@@ -365,7 +366,7 @@ WHERE CustomerID = @custid3";
                 DELETE Incidents
                 WHERE IncidentID = @incidentID
                 ";
-            delete.Parameters.AddWithValue("@incidentID", id);
+            delete.Parameters.AddWithValue("@incidentID", i.IncidentID);
 
             try
             {
@@ -388,6 +389,81 @@ WHERE CustomerID = @custid3";
 
         }
 
+        public static bool AddIncident(Incidents i)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand insert = new SqlCommand();
+            insert.Connection = con;
+            insert.CommandText = @"INSERT INTO Incidents (CustomerID, ProductCode, TechID, DateOpened, DateClosed, Title, Description) 
+                                VALUES (@customerID, @productCode, @techID, @dateOpened, @dateClosed, @title, @description)";
+            insert.Parameters.AddWithValue("@customerID", i.CustomerID);
+            insert.Parameters.AddWithValue("@productCode", i.ProductCode);
+            insert.Parameters.AddWithValue("@techID", i.TechID);
+            insert.Parameters.AddWithValue("@dateOpened", i.DateOpened);
+            insert.Parameters.AddWithValue("@dateClosed", i.DateClosed);
+            insert.Parameters.AddWithValue("@title", i.Title);
+            insert.Parameters.AddWithValue("@description", i.Description);
+            try
+            {
+                con.Open();
+                int rows = insert.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("add incident");
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
+
+        public static bool UpdateIncident(Incidents i)
+        {
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand update = new SqlCommand();
+            update.Connection = con;
+            update.CommandText = @"UPDATE Incidents 
+                                    SET CustomerID = @customerID
+                                    , ProductCode = @productCode
+                                    , TechID = @techID
+                                    , DateOpened = @dateOpened
+                                    , DateClosed = @dateClosed
+                                    , Title = @title
+                                    , Description = @description
+                                    WHERE IncidentID = @incidentID";
+            update.Parameters.AddWithValue("@incidentID", i.IncidentID);
+            update.Parameters.AddWithValue("@customerID", i.CustomerID);
+            update.Parameters.AddWithValue("@productCode", i.ProductCode);
+            update.Parameters.AddWithValue("@techID", i.TechID);
+            update.Parameters.AddWithValue("@dateOpened", i.DateOpened);
+            update.Parameters.AddWithValue("@dateClosed", i.DateClosed);
+            update.Parameters.AddWithValue("@title", i.Title);
+            update.Parameters.AddWithValue("@description", i.Description);
+            try
+            {
+                con.Open();
+                int rows = update.ExecuteNonQuery();
+                if (rows == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("update incident");
+                    return false;
+                }
+            }
+            finally
+            {
+                con.Dispose();
+            }
+        }
         public static string ErrorMessage(string dbQueryType)
         {
             return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";//i want to change this to a c#6 string... they are so much prettier... hehe... but i won't... :P :) 
@@ -1078,7 +1154,7 @@ WHERE CustomerID = @custid3";
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand insert = new SqlCommand();
             insert.Connection = con;
-            insert.CommandText = @"INSERT INTO Technicians(Name, Email, Phone) VALUES (@name, @email, @phone)";
+            insert.CommandText = @"INSERT INTO Technicians (Name, Email, Phone) VALUES (@name, @email, @phone)";
             insert.Parameters.AddWithValue("@name", tech.Name);
             insert.Parameters.AddWithValue("@email", tech.Email);
             insert.Parameters.AddWithValue("@phone", tech.Phone);
@@ -1104,8 +1180,12 @@ WHERE CustomerID = @custid3";
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand update = new SqlCommand();
             update.Connection = con;
-            update.CommandText = @"UPDATE Technicians SET Name = @name, Email = @email, Phone = @phone) WHERE TechID = @id";
-            update.Parameters.AddWithValue("@id", tech.TechID);
+            update.CommandText = @"UPDATE Technicians 
+                                    SET Name = @name
+                                    , Email = @email
+                                    , Phone = @phone 
+                                    WHERE TechID = @techId";
+            update.Parameters.AddWithValue("@techId", tech.TechID);
             update.Parameters.AddWithValue("@name", tech.Name);
             update.Parameters.AddWithValue("@email", tech.Email);
             update.Parameters.AddWithValue("@phone", tech.Phone);

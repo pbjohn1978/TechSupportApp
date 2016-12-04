@@ -79,7 +79,53 @@ namespace TechSupportApp
 
         private void btnAddTechnician_Click(object sender, EventArgs e)
         {
+            Technicians addTech = new Technicians();
+            bool isValid = false;
+            try
+            {
+                addTech.Name = txtTechnicianName.ToString();
+                addTech.Email = txtTechnicianEmail.ToString();
+                addTech.Phone = maskTechnicianPhone.ToString();
+                isValid = Validation.IsValidTechnician(addTech);
+                if (isValid)
+                {
+                    HelperDB.AddTechnician(addTech);
+                }
+                else
+                {
+                    MessageBox.Show("Technician was not added.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        private void btnUpdateTechnician_Click(object sender, EventArgs e)
+        {
+            Technicians updatedTech = new Technicians();
+            bool isValid = false;
+            try
+            {
+                updatedTech.TechID = GetSelectedTechnicianID();
+                updatedTech.Name = txtTechnicianName.ToString();
+                updatedTech.Email = txtTechnicianEmail.ToString();
+                updatedTech.Phone = maskTechnicianPhone.ToString();
+                isValid = Validation.IsValidTechnician(updatedTech);
+                if (isValid)
+                {
+                    HelperDB.UpdateTechnician(updatedTech);
+                }
+                else
+                {
+                    MessageBox.Show("Technician was not updated.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

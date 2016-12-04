@@ -36,7 +36,7 @@
             this.lblTechnicianEmail = new System.Windows.Forms.Label();
             this.lblTechnicianPhone = new System.Windows.Forms.Label();
             this.btnAddTechnician = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnUpdateTechnician = new System.Windows.Forms.Button();
             this.btnDeleteTechnician = new System.Windows.Forms.Button();
             this.maskTechnicianPhone = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
@@ -65,14 +65,14 @@
             this.txtTechnicianName.Location = new System.Drawing.Point(155, 96);
             this.txtTechnicianName.Name = "txtTechnicianName";
             this.txtTechnicianName.Size = new System.Drawing.Size(238, 20);
-            this.txtTechnicianName.TabIndex = 2;
+            this.txtTechnicianName.TabIndex = 1;
             // 
             // txtTechnicianEmail
             // 
             this.txtTechnicianEmail.Location = new System.Drawing.Point(155, 137);
             this.txtTechnicianEmail.Name = "txtTechnicianEmail";
             this.txtTechnicianEmail.Size = new System.Drawing.Size(238, 20);
-            this.txtTechnicianEmail.TabIndex = 3;
+            this.txtTechnicianEmail.TabIndex = 2;
             // 
             // lblTechnicianName
             // 
@@ -106,26 +106,27 @@
             this.btnAddTechnician.Location = new System.Drawing.Point(47, 225);
             this.btnAddTechnician.Name = "btnAddTechnician";
             this.btnAddTechnician.Size = new System.Drawing.Size(88, 51);
-            this.btnAddTechnician.TabIndex = 8;
+            this.btnAddTechnician.TabIndex = 4;
             this.btnAddTechnician.Text = "Add New Technician";
             this.btnAddTechnician.UseVisualStyleBackColor = true;
             this.btnAddTechnician.Click += new System.EventHandler(this.btnAddTechnician_Click);
             // 
-            // button2
+            // btnUpdateTechnician
             // 
-            this.button2.Location = new System.Drawing.Point(185, 225);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 51);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Update Technician";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnUpdateTechnician.Location = new System.Drawing.Point(185, 225);
+            this.btnUpdateTechnician.Name = "btnUpdateTechnician";
+            this.btnUpdateTechnician.Size = new System.Drawing.Size(84, 51);
+            this.btnUpdateTechnician.TabIndex = 5;
+            this.btnUpdateTechnician.Text = "Update Technician";
+            this.btnUpdateTechnician.UseVisualStyleBackColor = true;
+            this.btnUpdateTechnician.Click += new System.EventHandler(this.btnUpdateTechnician_Click);
             // 
             // btnDeleteTechnician
             // 
             this.btnDeleteTechnician.Location = new System.Drawing.Point(317, 225);
             this.btnDeleteTechnician.Name = "btnDeleteTechnician";
             this.btnDeleteTechnician.Size = new System.Drawing.Size(86, 51);
-            this.btnDeleteTechnician.TabIndex = 10;
+            this.btnDeleteTechnician.TabIndex = 6;
             this.btnDeleteTechnician.Text = "Delete Technician";
             this.btnDeleteTechnician.UseVisualStyleBackColor = true;
             this.btnDeleteTechnician.Click += new System.EventHandler(this.btnDeleteTechnician_Click);
@@ -136,16 +137,16 @@
             this.maskTechnicianPhone.Mask = "(999) 000-0000";
             this.maskTechnicianPhone.Name = "maskTechnicianPhone";
             this.maskTechnicianPhone.Size = new System.Drawing.Size(86, 20);
-            this.maskTechnicianPhone.TabIndex = 11;
+            this.maskTechnicianPhone.TabIndex = 3;
             // 
-            // FormTechnicians
+            // frmTechnicians
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 306);
             this.Controls.Add(this.maskTechnicianPhone);
             this.Controls.Add(this.btnDeleteTechnician);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnUpdateTechnician);
             this.Controls.Add(this.btnAddTechnician);
             this.Controls.Add(this.lblTechnicianPhone);
             this.Controls.Add(this.lblTechnicianEmail);
@@ -154,7 +155,7 @@
             this.Controls.Add(this.txtTechnicianName);
             this.Controls.Add(this.lblTechnician);
             this.Controls.Add(this.cboTechnicians);
-            this.Name = "FormTechnicians";
+            this.Name = "frmTechnicians";
             this.Text = "Technicians";
             this.Load += new System.EventHandler(this.frmTechnicians_Load);
             this.ResumeLayout(false);
@@ -172,7 +173,7 @@
         private System.Windows.Forms.Label lblTechnicianEmail;
         private System.Windows.Forms.Label lblTechnicianPhone;
         private System.Windows.Forms.Button btnAddTechnician;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUpdateTechnician;
         private System.Windows.Forms.Button btnDeleteTechnician;
         private System.Windows.Forms.MaskedTextBox maskTechnicianPhone;
     }
