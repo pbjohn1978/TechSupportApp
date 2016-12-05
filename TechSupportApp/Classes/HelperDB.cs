@@ -467,6 +467,138 @@ WHERE CustomerID = @custid3";
                 con.Dispose();
             }
         }
+        /// <summary>
+        /// Method is created to populate the Customer List for Incident Form
+        /// It will only return a customer object that includes an id
+        /// and name, all data included in a customer object is not needed 
+        /// for the incident List
+        /// </summary>
+        /// <returns></returns>
+        public static List<Customer> GetCustomerForIncidents()
+        { 
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText =
+                    @"SELECT CustomerID, Name
+                        FROM Customers ";
+                List<Customer> customerList = new List<Customer>();
+                try
+                {
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+
+                        while (rdr.Read())
+                        {
+                            Customer tempCustomer = new Customer();
+                            tempCustomer.CustomerID = (int)rdr["CustomerID"];
+                            tempCustomer.Name = rdr["Name"].ToString();
+                            customerList.Add(tempCustomer);
+                        }
+                    }
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+                return customerList;
+            }
+        }
+
+        public static List<Product> GetProductForIncidentsByCustomer(int id)
+        {
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText =
+                        @"SELECT Registrations.CustomerID, 
+                            Registrations.ProductCode, Products.Name, Products.Version
+                    FROM Registrations
+                    JOIN Products ON 
+                    Products.ProductCode = Registrations.ProductCode
+                    WHERE CustomerID =@customerID";
+                  
+                List<Product> productList = new List<Product>();
+                try
+                {
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            Product tempProduct = new Product();
+
+                            tempProduct.ProductCode = rdr["ProductCode"].ToString();
+                            tempProduct.Name = rdr["Product.Name"].ToString();
+                            tempProduct.Version = (decimal)rdr["Product.Version"];
+                            productList.Add(tempProduct);
+                        }
+                    }
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+                return productList;
+            }
+        }
+
+        public static List<Incidents> GetIncidentsRegisteredToCustomerByProduct(int customerID, string productCode)
+        {
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText =
+                         @"
+                    SELECT Incidents.IncidentID, Incidents.CustomerID, Customers.Name, Incidents.ProductCode, Products.Name,
+	                    Incidents.TechID, Technicians.Name, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
+                    FROM Incidents JOIN Customers
+                    ON Customers.CustomerID = Incidents.CustomerID
+                    JOIN Products
+                    ON Incidents.ProductCode = Products.ProductCode
+                    JOIN Technicians
+                    ON Incidents.TechID = Technicians.TechID
+                    WHERE Products.ProductCode = @productCode AND
+                    Incidents.CustomerID = @customerID";
+
+                List<Incidents> incidentList = new List<Incidents>();
+                try
+                {
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            Incidents tempIncident = new Incidents();
+                            tempIncident.IncidentID = (int)rdr["Incidents.IncidentID"];
+                            tempIncident.CustomerID = (int)rdr["Incidents.CustomerID"];
+                            tempIncident.CustomerName = rdr["Customers.Name"].ToString();
+                            tempIncident.ProductCode = rdr["Incidents.ProductCode"].ToString();
+                            tempIncident.ProductName = rdr["Products.Name"].ToString();
+                            tempIncident.TechID = (int)rdr["Incidents.TechID"];
+                            tempIncident.TechName = rdr["Technicians.Name"].ToString();
+                            tempIncident.DateOpened = (DateTime)rdr["Incidents.DateOpened"];
+                            tempIncident.DateClosed = (DateTime)rdr["Incidents.DateClosed"];
+                            tempIncident.Title = rdr["Incidents.Title"].ToString();
+                            tempIncident.Description = rdr["Incidents.Description"].ToString();
+                            incidentList.Add(tempIncident);
+                        }
+                    }
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+                return incidentList;
+            }
+        }
         public static string ErrorMessage(string dbQueryType)
         {
             return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";//i want to change this to a c#6 string... they are so much prettier... hehe... but i won't... :P :) 
@@ -1077,7 +1209,7 @@ WHERE CustomerID = @custid3";
         }
 
         #endregion
-
+        #region Technicians
         ///<summary>
         ///Created by R. Richards
         ///Technicians CRUD functionality
@@ -1201,5 +1333,6 @@ WHERE CustomerID = @custid3";
                 con.Dispose();
             }
         }
+        #endregion
     }
 }
