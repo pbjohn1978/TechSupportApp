@@ -60,11 +60,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddNewIncident.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewIncident.Designer.cs">
+      <DependentUpon>FormAddNewIncident.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCustomer.Designer.cs">
       <DependentUpon>FormCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIncident.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIncident.Designer.cs">
+      <DependentUpon>FormIncident.cs</DependentUpon>
     </Compile>
     <Compile Include="FormProduct.cs">
       <SubType>Form</SubType>
@@ -100,8 +112,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddNewIncident.resx">
+      <DependentUpon>FormAddNewIncident.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIncident.resx">
+      <DependentUpon>FormIncident.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProduct.resx">
       <DependentUpon>FormProduct.cs</DependentUpon>

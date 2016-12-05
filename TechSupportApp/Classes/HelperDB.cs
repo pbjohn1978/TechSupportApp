@@ -315,37 +315,40 @@ WHERE CustomerID = @custid3";
                         while (rdr.Read())
                         {
                             Incidents tempIncident = new Incidents();
-                            tempIncident.IncidentID = rdr.GetInt32(0);
-                            tempIncident.CustomerID = rdr.GetInt32(1);
-                            tempIncident.CustomerName = rdr.GetString(2);
-                            tempIncident.ProductCode = rdr.GetString(3);
-                            tempIncident.ProductName = rdr.GetString(4);
-                            tempIncident.TechID = rdr.GetInt32(5);
-                            tempIncident.TechName = rdr.GetString(6);
-                            tempIncident.DateOpened = rdr.GetDateTime(7);
-                            if (rdr.GetDateTime(8) != null)
-                            {
-                                tempIncident.DateClosed = rdr.GetDateTime(8);
-                               
-                            }
-                            else
-                            {
-                                //TODO- change the date time picker to allow null values for closed tickets DO NOT USE DATETIEME.NOW
-                                //tempIncident.DateClosed = "";
-                            }
-                            tempIncident.Title = rdr.GetString(9);
-                            tempIncident.Description = rdr.GetString(10);
-                            //tempIncident.IncidentID = (int)rdr["@Incidents.IncidentID"];
-                            //tempIncident.CustomerID = (int)rdr["@Incidents.CustomerID"];
-                            //tempIncident.CustomerName = rdr["@Customers.Name"].ToString();
-                            //tempIncident.ProductCode = rdr["@Incidents.ProductCode"].ToString();
-                            //tempIncident.ProductName = rdr["@Products.Name"].ToString();
-                            //tempIncident.TechID = (int)rdr["@Incidents.TechID"];
-                            //tempIncident.TechName = rdr["@Technicians.Name"].ToString();
-                            //tempIncident.DateOpened = (DateTime)rdr["@Incidents.DateOpened"];
-                            //tempIncident.DateClosed = (DateTime)rdr["@Incidents.DateClosed"];
-                            //tempIncident.Title = rdr["@Incidents.Title"].ToString();
-                            //tempIncident.Description = rdr["@Incidents.Description"].ToString();
+                            #region commented code- 
+                            //tempIncident.IncidentID = rdr.GetInt32(0);
+                            //tempIncident.CustomerID = rdr.GetInt32(1);
+                            //tempIncident.CustomerName = rdr.GetString(2);
+                            //tempIncident.ProductCode = rdr.GetString(3);
+                            //tempIncident.ProductName = rdr.GetString(4);
+                            //tempIncident.TechID = rdr.GetInt32(5);
+                            //tempIncident.TechName = rdr.GetString(6);
+                            //tempIncident.DateOpened = rdr.GetDateTime(7);
+                            //if (rdr.GetDateTime(8) != null)
+                            //{
+                            //    tempIncident.DateClosed = rdr.GetDateTime(8);
+
+                            //}
+                            //else
+                            //{
+                            //    //TODO- change the date time picker to allow null values for closed tickets DO NOT USE DATETIEME.NOW
+                            //    //tempIncident.DateClosed = "";
+                            //}
+                            //tempIncident.Title = rdr.GetString(9);
+                            //tempIncident.Description = rdr.GetString(10);
+
+                            #endregion
+                            tempIncident.IncidentID = (int)rdr["Incidents.IncidentID"];
+                            tempIncident.CustomerID = (int)rdr["Incidents.CustomerID"];
+                            tempIncident.CustomerName = rdr["Customers.Name"].ToString();
+                            tempIncident.ProductCode = rdr["Incidents.ProductCode"].ToString();
+                            tempIncident.ProductName = rdr["Products.Name"].ToString();
+                            tempIncident.TechID = (int)rdr["Incidents.TechID"];
+                            tempIncident.TechName = rdr["Technicians.Name"].ToString();
+                            tempIncident.DateOpened = (DateTime)rdr["Incidents.DateOpened"];
+                            tempIncident.DateClosed = (DateTime)rdr["Incidents.DateClosed"];
+                            tempIncident.Title = rdr["Incidents.Title"].ToString();
+                            tempIncident.Description = rdr["Incidents.Description"].ToString();
                             incidents.Add(tempIncident);
                         }
                     }
@@ -1098,17 +1101,13 @@ WHERE CustomerID = @custid3";
                     while (rdr.Read())
                     {
                         Technicians tempTech = new Technicians();
-                        tempTech.TechID = rdr.GetInt32(0);
-                        tempTech.Name = rdr.GetString(1);
-                        tempTech.Email = rdr.GetString(2);
-                        tempTech.Phone = rdr.GetString(3);
-                        //tempTech.TechID = (int)rdr["@TechID"];
-                        //tempTech.Name = rdr["@Name"].ToString();
-                        //tempTech.Email = rdr["@Email"].ToString();
-                        //tempTech.Phone = rdr["@Phone"].ToString();
+                       
+                        tempTech.TechID = (int)rdr["TechID"];
+                        tempTech.Name = rdr["Name"].ToString();
+                        tempTech.Email = rdr["Email"].ToString();
+                        tempTech.Phone = rdr["Phone"].ToString();
                         technicians.Add(tempTech);
                     }
-                    
                 }
             }
             finally
@@ -1116,8 +1115,6 @@ WHERE CustomerID = @custid3";
                 con.Dispose();
             }
             return technicians;
-
-
         }
 
         public static bool DeleteTechnician(int id)
@@ -1138,11 +1135,8 @@ WHERE CustomerID = @custid3";
                 {
                     return true;
                 }
-                else
-                {
-                    ErrorMessage("delete");
-                    return false;
-                }
+                ErrorMessage("delete");
+                return false; 
             }
             finally
             {

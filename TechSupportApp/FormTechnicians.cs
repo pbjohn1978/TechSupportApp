@@ -29,6 +29,7 @@ namespace TechSupportApp
             foreach (Technicians techs in technicians) {
                 if (techs.Name.ToString().Equals(cboTechnicians.Text.ToString()))
                 {
+                    
                     txtTechnicianName.Text = techs.Name.ToString();
                     txtTechnicianEmail.Text = techs.Email.ToString();
                     maskTechnicianPhone.Text = techs.Phone.ToString();
