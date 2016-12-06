@@ -12,24 +12,25 @@ namespace TechSupportApp.Classes
         public int IncidentID { get; set; }
 
         public int CustomerID { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Name is required")]
         public string CustomerName { get; set; }
 
         public string ProductCode { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Product is required")]
         public string ProductName { get; set; }
 
         public int TechID { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Technician is required")]
         public string TechName { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Date is required")]
+
         public DateTime DateOpened { get; set; }
 
         public DateTime? DateClosed { get; set; }
-        [Required]
-        public String Title { get; set; }
-        [Required]
-        public String Description { get; set; }
+        [Required(ErrorMessage ="Title is required")]
+        public string Title { get; set; }
+        [Required(ErrorMessage ="Description is required")]
+        public string Description { get; set; }
 
        
     }
