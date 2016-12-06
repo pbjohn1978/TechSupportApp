@@ -144,7 +144,7 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidProductName(string prodName)
         {
-            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$");
+            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,30}$");
             if (r.IsMatch(prodName))
             {
                 return true;

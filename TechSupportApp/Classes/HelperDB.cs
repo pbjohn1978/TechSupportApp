@@ -753,7 +753,7 @@ WHERE CustomerID = @custid3";
             }
             catch (SqlException sqlex)
             {
-                throw sqlex;
+                
                 System.Windows.Forms.MessageBox.Show("Customer is already registered to this product");
 
             }

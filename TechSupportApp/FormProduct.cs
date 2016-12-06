@@ -56,6 +56,12 @@ namespace TechSupportApp
                 }
                 else if (rdoBtnUpdate.Checked)
                 {
+                    if (cboProdCode.SelectedValue == null)
+                    {
+                        MessageBox.Show("Please select a product code...");
+                        return;
+                    }
+
                     Product prod = new Product();
 
                     prod.ProductCode = cboProdCode.Text;
@@ -183,6 +189,7 @@ namespace TechSupportApp
         private void rdoBtnUpdate_CheckedChanged(object sender, EventArgs e)
         {
             cboProdCode.Visible = true;
+            cboProdCode.DropDownStyle = ComboBoxStyle.DropDownList;
             txtProdCode.Visible = false;
             cboName.Visible = false;
             txtName.Visible = true;
