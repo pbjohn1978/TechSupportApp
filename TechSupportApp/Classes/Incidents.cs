@@ -14,7 +14,7 @@ namespace TechSupportApp.Classes
         public int CustomerID { get; set; }
         [Required(ErrorMessage ="Name is required")]
         public string CustomerName { get; set; }
-
+        [Required(ErrorMessage = "Product Code is required")]
         public string ProductCode { get; set; }
         [Required(ErrorMessage ="Product is required")]
         public string ProductName { get; set; }
