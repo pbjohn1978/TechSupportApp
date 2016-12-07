@@ -141,5 +141,19 @@ namespace TechSupportApp
                 throw ex;
             }
         }
+
+        public void SetLabel()
+        {
+            int techID = GetSelectedTechnicianID();
+            if (techID > 0)
+            {
+                lblTechnicianID.Text = techID.ToString();
+            }
+        }
+
+        private void lblTechnicianID_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
