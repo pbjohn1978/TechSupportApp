@@ -33,8 +33,8 @@ namespace TechSupportApp
                 addNewIncident.CustomerID = GetSelectedCustomerIndex();
                 addNewIncident.ProductCode = cboProductListToRegisterIncident.Text;
                 addNewIncident.TechID = GetSelectedTechID();
-                addNewIncident.DateOpened = (DateTime)mskAddDateOpened.Text;
-                addNewIncident.DateClosed = (DateTime)mskAddDateResolved.Text;
+                addNewIncident.DateOpened = Convert.ToDateTime(mskAddDateOpened.Text).Date;
+                addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
                 addNewIncident.Title = txtAddIncidentTitle.Text;
                 addNewIncident.Description = txtDescribeIncident.Text;
                 if (isValid)
