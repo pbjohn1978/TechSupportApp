@@ -1254,6 +1254,7 @@ WHERE CustomerID = @custid3";
         {
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand delete = new SqlCommand();
+            delete.Connection = con;
             delete.CommandText = @"
                 DELETE Technicians
                 WHERE TechID = @techID

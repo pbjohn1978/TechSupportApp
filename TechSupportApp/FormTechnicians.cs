@@ -25,11 +25,12 @@ namespace TechSupportApp
 
         private void cboTechnicians_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             List<Technicians> technicians = HelperDB.GetTechnicians();
             foreach (Technicians techs in technicians) {
                 if (techs.Name.ToString().Equals(cboTechnicians.Text.ToString()))
                 {
-                    
+                    lblTechnicianID.Text = techs.TechID.ToString();
                     txtTechnicianName.Text = techs.Name.ToString();
                     txtTechnicianEmail.Text = techs.Email.ToString();
                     maskTechnicianPhone.Text = techs.Phone.ToString();
@@ -49,13 +50,16 @@ namespace TechSupportApp
         {
             if (cboTechnicians.SelectedIndex >= 0)
             {
+                
                 int selectedID = GetSelectedTechnicianID();
                 bool isDeleteTechSuccessful = HelperDB.DeleteTechnician(selectedID);
                 if (isDeleteTechSuccessful)
                 {
                     
-                    MessageBox.Show( GetTechnicianName() + " Deleted");
+                    MessageBox.Show("Technician Deleted");
                     PopulateTechnicians();
+                    ClearTextboxFields();
+                    
                 }
                 else
                 {
@@ -69,8 +73,9 @@ namespace TechSupportApp
 
         private int GetSelectedTechnicianID()
         {
-            Technicians selectedTech = (Technicians)cboTechnicians.SelectedItem;
-            return selectedTech.TechID;
+            //Technicians selectedTech = (Technicians)cboTechnicians.SelectedItem;
+
+            return Convert.ToInt32(lblTechnicianID.Text);
         }
 
         private string GetTechnicianName() {
@@ -108,6 +113,8 @@ namespace TechSupportApp
 
         private void ClearTextboxFields()
         {
+            cboTechnicians.Text = "Select Technician from list";
+            lblTechnicianID.Text = "";
             txtTechnicianEmail.Clear();
             txtTechnicianName.Clear();
             maskTechnicianPhone.Clear();
@@ -122,7 +129,7 @@ namespace TechSupportApp
                 updatedTech.TechID = GetSelectedTechnicianID();
                 updatedTech.Name = txtTechnicianName.Text;
                 updatedTech.Email = txtTechnicianEmail.Text;
-                updatedTech.Phone = maskTechnicianPhone.ToString();
+                updatedTech.Phone = maskTechnicianPhone.Text;
                 isValid = Validation.IsValidTechnician(updatedTech);
                 if (isValid)
                 {
@@ -144,11 +151,7 @@ namespace TechSupportApp
 
         public void SetLabel()
         {
-            int techID = GetSelectedTechnicianID();
-            if (techID > 0)
-            {
-                lblTechnicianID.Text = techID.ToString();
-            }
+            
         }
 
         private void lblTechnicianID_Click(object sender, EventArgs e)
