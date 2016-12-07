@@ -35,14 +35,15 @@
             this.cboSelectTechnicianToRegisterIncident = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAddIncidentTitle = new System.Windows.Forms.TextBox();
+            this.txtDescribeIncident = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.mskAddDateOpened = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.mskAddDateResolved = new System.Windows.Forms.MaskedTextBox();
             this.btnAddNewIncidentRecord = new System.Windows.Forms.Button();
+            this.cboSelectCustomerAddNewIncident = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -78,7 +79,7 @@
             this.cboProductListToRegisterIncident.FormattingEnabled = true;
             this.cboProductListToRegisterIncident.Location = new System.Drawing.Point(133, 55);
             this.cboProductListToRegisterIncident.Name = "cboProductListToRegisterIncident";
-            this.cboProductListToRegisterIncident.Size = new System.Drawing.Size(121, 21);
+            this.cboProductListToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboProductListToRegisterIncident.TabIndex = 4;
             // 
             // cboSelectTechnicianToRegisterIncident
@@ -86,7 +87,7 @@
             this.cboSelectTechnicianToRegisterIncident.FormattingEnabled = true;
             this.cboSelectTechnicianToRegisterIncident.Location = new System.Drawing.Point(133, 90);
             this.cboSelectTechnicianToRegisterIncident.Name = "cboSelectTechnicianToRegisterIncident";
-            this.cboSelectTechnicianToRegisterIncident.Size = new System.Drawing.Size(121, 21);
+            this.cboSelectTechnicianToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboSelectTechnicianToRegisterIncident.TabIndex = 5;
             // 
             // label3
@@ -107,20 +108,20 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Incident Title:";
             // 
-            // textBox1
+            // txtAddIncidentTitle
             // 
-            this.textBox1.Location = new System.Drawing.Point(133, 123);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 8;
+            this.txtAddIncidentTitle.Location = new System.Drawing.Point(133, 123);
+            this.txtAddIncidentTitle.Name = "txtAddIncidentTitle";
+            this.txtAddIncidentTitle.Size = new System.Drawing.Size(158, 20);
+            this.txtAddIncidentTitle.TabIndex = 8;
             // 
-            // textBox2
+            // txtDescribeIncident
             // 
-            this.textBox2.Location = new System.Drawing.Point(133, 170);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(308, 79);
-            this.textBox2.TabIndex = 9;
+            this.txtDescribeIncident.Location = new System.Drawing.Point(133, 170);
+            this.txtDescribeIncident.Multiline = true;
+            this.txtDescribeIncident.Name = "txtDescribeIncident";
+            this.txtDescribeIncident.Size = new System.Drawing.Size(308, 79);
+            this.txtDescribeIncident.TabIndex = 9;
             // 
             // label5
             // 
@@ -131,14 +132,14 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Describe Incident:";
             // 
-            // maskedTextBox1
+            // mskAddDateOpened
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(323, 58);
-            this.maskedTextBox1.Mask = "00/00/0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(118, 20);
-            this.maskedTextBox1.TabIndex = 11;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            this.mskAddDateOpened.Location = new System.Drawing.Point(323, 58);
+            this.mskAddDateOpened.Mask = "00/00/0000";
+            this.mskAddDateOpened.Name = "mskAddDateOpened";
+            this.mskAddDateOpened.Size = new System.Drawing.Size(118, 20);
+            this.mskAddDateOpened.TabIndex = 11;
+            this.mskAddDateOpened.ValidatingType = typeof(System.DateTime);
             // 
             // label6
             // 
@@ -158,14 +159,14 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "If Resolved, Enter Date:";
             // 
-            // maskedTextBox2
+            // mskAddDateResolved
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(326, 116);
-            this.maskedTextBox2.Mask = "00/00/0000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(115, 20);
-            this.maskedTextBox2.TabIndex = 14;
-            this.maskedTextBox2.ValidatingType = typeof(System.DateTime);
+            this.mskAddDateResolved.Location = new System.Drawing.Point(326, 116);
+            this.mskAddDateResolved.Mask = "00/00/0000";
+            this.mskAddDateResolved.Name = "mskAddDateResolved";
+            this.mskAddDateResolved.Size = new System.Drawing.Size(115, 20);
+            this.mskAddDateResolved.TabIndex = 14;
+            this.mskAddDateResolved.ValidatingType = typeof(System.DateTime);
             // 
             // btnAddNewIncidentRecord
             // 
@@ -175,20 +176,31 @@
             this.btnAddNewIncidentRecord.TabIndex = 15;
             this.btnAddNewIncidentRecord.Text = "Add New Incident";
             this.btnAddNewIncidentRecord.UseVisualStyleBackColor = true;
+            this.btnAddNewIncidentRecord.Click += new System.EventHandler(this.btnAddNewIncidentRecord_Click);
+            // 
+            // cboSelectCustomerAddNewIncident
+            // 
+            this.cboSelectCustomerAddNewIncident.FormattingEnabled = true;
+            this.cboSelectCustomerAddNewIncident.Location = new System.Drawing.Point(133, 27);
+            this.cboSelectCustomerAddNewIncident.Name = "cboSelectCustomerAddNewIncident";
+            this.cboSelectCustomerAddNewIncident.Size = new System.Drawing.Size(158, 21);
+            this.cboSelectCustomerAddNewIncident.TabIndex = 16;
+            this.cboSelectCustomerAddNewIncident.Text = "Select a Customer";
             // 
             // FormAddNewIncident
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(525, 343);
+            this.Controls.Add(this.cboSelectCustomerAddNewIncident);
             this.Controls.Add(this.btnAddNewIncidentRecord);
-            this.Controls.Add(this.maskedTextBox2);
+            this.Controls.Add(this.mskAddDateResolved);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.mskAddDateOpened);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDescribeIncident);
+            this.Controls.Add(this.txtAddIncidentTitle);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cboSelectTechnicianToRegisterIncident);
@@ -212,13 +224,14 @@
         private System.Windows.Forms.ComboBox cboSelectTechnicianToRegisterIncident;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAddIncidentTitle;
+        private System.Windows.Forms.TextBox txtDescribeIncident;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox mskAddDateOpened;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox mskAddDateResolved;
         private System.Windows.Forms.Button btnAddNewIncidentRecord;
+        private System.Windows.Forms.ComboBox cboSelectCustomerAddNewIncident;
     }
 }

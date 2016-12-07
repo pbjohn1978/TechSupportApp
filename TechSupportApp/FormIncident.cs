@@ -24,8 +24,14 @@ namespace TechSupportApp
             List<Customer> customers = HelperDB.GetCustomerForIncidents();
             foreach (Customer temp in customers)
             {
-                cboCustomerListforIncidents.Items.Add(temp);
+                //cboCustomerListforIncidents.Items.Add(temp.Name);
             }
+        }
+
+        private void btnAddNewIncident_Click(object sender, EventArgs e)
+        {
+            FormAddNewIncident formAddNewIncident = new FormAddNewIncident();
+            formAddNewIncident.Show();
         }
     }
 }

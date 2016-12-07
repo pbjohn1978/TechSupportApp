@@ -50,7 +50,7 @@ namespace TechSupportApp
 
         private void btnIncidents_Click(object sender, EventArgs e)
         {
-            FormIncidents incidents = new FormIncidents();
+            FormIncident incidents = new FormIncident();
             incidents.Show();
         }
 
