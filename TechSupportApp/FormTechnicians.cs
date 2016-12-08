@@ -25,7 +25,6 @@ namespace TechSupportApp
 
         private void cboTechnicians_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             List<Technicians> technicians = HelperDB.GetTechnicians();
             foreach (Technicians techs in technicians) {
                 if (techs.Name.ToString().Equals(cboTechnicians.Text.ToString()))
@@ -74,7 +73,7 @@ namespace TechSupportApp
         private int GetSelectedTechnicianID()
         {
             //Technicians selectedTech = (Technicians)cboTechnicians.SelectedItem;
-
+            
             return Convert.ToInt32(lblTechnicianID.Text);
         }
 
@@ -85,6 +84,11 @@ namespace TechSupportApp
 
         private void btnAddTechnician_Click(object sender, EventArgs e)
         {
+            //if(GetSelectedTechnicianID() > 0)
+            //{
+            //    MessageBox.Show("You cannot add an existing technician");
+            //    return;
+            //}
             bool isValid = true;
             try
             {

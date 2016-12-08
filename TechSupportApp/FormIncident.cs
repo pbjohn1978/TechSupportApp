@@ -21,10 +21,15 @@ namespace TechSupportApp
 
         private void FormIncident_Load(object sender, EventArgs e)
         {
+            NewMethod();
+        }
+
+        private void NewMethod()
+        {
             List<Customer> customers = HelperDB.GetCustomerForIncidents();
             foreach (Customer temp in customers)
             {
-                //cboCustomerListforIncidents.Items.Add(temp.Name);
+                cboCustomerListforIncidents.Items.Add(temp.Name);
             }
         }
 
@@ -32,6 +37,41 @@ namespace TechSupportApp
         {
             FormAddNewIncident formAddNewIncident = new FormAddNewIncident();
             formAddNewIncident.Show();
+        }
+
+        private void cboCustomerListforIncidents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Incidents> incidents = HelperDB.GetIncidents();
+            foreach (Incidents incident in incidents)
+            {
+                lblCustomerIDLabel.Text = "Customer ID:";
+                lblCustomerNameLabel.Text = "Customer Name:";
+                lblIncidentCustomerID.Text = GetSelectedCustomerID().ToString();
+                lblIncidentCustomerName.Text = GetSelectedCustomeName().ToString();
+            }
+            
+        }
+
+        private object GetSelectedCustomeName()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnViewRegisteredProductsIncidentForm(object sender, EventArgs e)
+        {
+            List<Incidents> incidents = HelperDB.GetIncidents();
+            foreach (Incidents temp in incidents)
+            {
+                if(GetSelectedCustomerID() == temp.CustomerID)
+                {
+
+                }
+            }
+        }
+
+        private int GetSelectedCustomerID()
+        {
+            throw new NotImplementedException();
         }
     }
 }

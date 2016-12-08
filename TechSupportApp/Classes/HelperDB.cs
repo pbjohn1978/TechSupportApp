@@ -509,45 +509,45 @@ WHERE CustomerID = @custid3";
             }
         }
 
-        public static List<Product> GetProductForIncidentsByCustomer(int id)
-        {
-            using (SqlConnection con = GetConnectionStringAppConfig())
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText =
-                        @"SELECT Registrations.CustomerID, 
-                            Registrations.ProductCode, Products.Name, Products.Version
-                    FROM Registrations
-                    JOIN Products ON 
-                    Products.ProductCode = Registrations.ProductCode
-                    WHERE CustomerID =@customerID";
+        //public static List<Registration> GetProductsRegisteredToCustomerforIncidentList(int id)
+        //{
+        //    using (SqlConnection con = GetConnectionStringAppConfig())
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.Connection = con;
+        //        cmd.CommandText =
+        //                @"SELECT Registrations.CustomerID, 
+        //                    Registrations.ProductCode, Products.Name, Products.Version
+        //            FROM Registrations
+        //            JOIN Products ON 
+        //            Products.ProductCode = Registrations.ProductCode
+        //            WHERE CustomerID =@customerID";
                   
-                List<Product> productList = new List<Product>();
-                try
-                {
-                    con.Open();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-                    if (rdr.HasRows)
-                    {
-                        while (rdr.Read())
-                        {
-                            Product tempProduct = new Product();
+        //        List<Registration> registrationList = new List<Registration>();
+        //        try
+        //        {
+        //            con.Open();
+        //            SqlDataReader rdr = cmd.ExecuteReader();
+        //            if (rdr.HasRows)
+        //            {
+        //                while (rdr.Read())
+        //                {
+        //                    Registration tempRegistration = new Registration();
 
-                            tempProduct.ProductCode = rdr["ProductCode"].ToString();
-                            tempProduct.Name = rdr["Product.Name"].ToString();
-                            tempProduct.Version = (decimal)rdr["Product.Version"];
-                            productList.Add(tempProduct);
-                        }
-                    }
-                }
-                finally
-                {
-                    con.Dispose();
-                }
-                return productList;
-            }
-        }
+        //                    tempRegistration.ProductCode = rdr["ProductCode"].ToString();
+        //                    //tempRegistration.Name = rdr["Product.Name"].ToString();
+        //                    //tempRegistration.Version = (decimal)rdr["Product.Version"];
+        //                    registrationList.Add(tempRegistration);
+        //                }
+        //            }
+        //        }
+        //        finally
+        //        {
+        //            con.Dispose();
+        //        }
+        //        return registrationList;
+        //    }
+        //}
 
         public static List<Incidents> GetIncidentsRegisteredToCustomerByProduct(int customerID, string productCode)
         {

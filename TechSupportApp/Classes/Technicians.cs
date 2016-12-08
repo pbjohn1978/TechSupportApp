@@ -12,16 +12,13 @@ namespace TechSupportApp.Classes
         [Key]
         public int TechID { get; set; }
 
-        [Required(ErrorMessage ="Name is required")]
-        [Display(Name ="Name")]
+        [Required(ErrorMessage ="Name is required")] 
         public string Name { get; set; }
 
         [Required(ErrorMessage ="Email is required")]
-        [Display(Name ="Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage ="10-digit number is required")]
-        [Display(Name ="Phone")]
         public string Phone { get; set; }
     }
 }
