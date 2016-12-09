@@ -19,6 +19,7 @@ namespace TechSupportApp.Classes
         [Required(ErrorMessage ="Product is required")]
         public string ProductName { get; set; }
 
+        public string Version { get; set; }
         public int TechID { get; set; }
         [Required(ErrorMessage ="Technician is required")]
         public string TechName { get; set; }

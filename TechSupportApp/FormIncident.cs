@@ -48,6 +48,7 @@ namespace TechSupportApp
                 lblCustomerNameLabel.Text = "Customer Name:";
                 lblIncidentCustomerID.Text = GetSelectedCustomerID().ToString();
                 lblIncidentCustomerName.Text = GetSelectedCustomeName().ToString();
+                lstProductsRegisteredToCustomer.Text = incident.ProductName.ToString() + " " + incident.Version;
             }
             
         }
