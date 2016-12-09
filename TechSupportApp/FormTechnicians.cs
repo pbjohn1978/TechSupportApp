@@ -84,35 +84,58 @@ namespace TechSupportApp
 
         private void btnAddTechnician_Click(object sender, EventArgs e)
         {
-            //if(GetSelectedTechnicianID() > 0)
-            //{
-            //    MessageBox.Show("You cannot add an existing technician");
-            //    return;
-            //}
+            if (IncludesAllRequiredFields())
+            {
+                try
+                {
+                    Technicians addTech = new Technicians();
+                    addTech.Name = txtTechnicianName.Text;
+                    addTech.Email = txtTechnicianEmail.Text;
+                    addTech.Phone = maskTechnicianPhone.Text;
+                    if (Validation.IsValidTechnician(addTech))
+                    {
+                        HelperDB.AddTechnician(addTech);
+                        MessageBox.Show(addTech.Name + " added to database");
+                        PopulateTechnicians();
+                        ClearTextboxFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Technician was not added.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                DisplayErrorMessage();
+            }
+        }
+
+        private static void DisplayErrorMessage()
+        {
+            MessageBox.Show("All fields are required");
+        }
+
+        private bool IncludesAllRequiredFields()
+        {
             bool isValid = true;
-            try
+            if (txtTechnicianName.Text == "")
             {
-                Technicians addTech = new Technicians();
-                addTech.Name = txtTechnicianName.Text;
-                addTech.Email = txtTechnicianEmail.Text;
-                addTech.Phone = maskTechnicianPhone.Text;
-                isValid = Validation.IsValidTechnician(addTech);
-                if (isValid)
-                {
-                    HelperDB.AddTechnician(addTech);
-                    MessageBox.Show(addTech.Name + " added to database");
-                    PopulateTechnicians();
-                    ClearTextboxFields();
-                }
-                else
-                {
-                    MessageBox.Show("Technician was not added.");
-                }
+                isValid = false;
             }
-            catch (Exception ex)
+            if (txtTechnicianEmail.Text == "")
             {
-                throw ex;
+                isValid = false;
             }
+            if (maskTechnicianPhone.Text == null)
+            {
+                isValid = false;
+            }
+            return isValid;
         }
 
         private void ClearTextboxFields()
@@ -126,30 +149,35 @@ namespace TechSupportApp
 
         private void btnUpdateTechnician_Click(object sender, EventArgs e)
         {
-            Technicians updatedTech = new Technicians();
-            bool isValid = true;
-            try
+            if (IncludesAllRequiredFields())
             {
-                updatedTech.TechID = GetSelectedTechnicianID();
-                updatedTech.Name = txtTechnicianName.Text;
-                updatedTech.Email = txtTechnicianEmail.Text;
-                updatedTech.Phone = maskTechnicianPhone.Text;
-                isValid = Validation.IsValidTechnician(updatedTech);
-                if (isValid)
+                Technicians updatedTech = new Technicians();
+                try
                 {
-                    HelperDB.UpdateTechnician(updatedTech);
-                    MessageBox.Show(updatedTech.Name + " updated");
-                    PopulateTechnicians();
-                    ClearTextboxFields();
+                    updatedTech.TechID = GetSelectedTechnicianID();
+                    updatedTech.Name = txtTechnicianName.Text;
+                    updatedTech.Email = txtTechnicianEmail.Text;
+                    updatedTech.Phone = maskTechnicianPhone.Text;
+                    if (Validation.IsValidTechnician(updatedTech))
+                    {
+                        HelperDB.UpdateTechnician(updatedTech);
+                        MessageBox.Show(updatedTech.Name + " updated");
+                        PopulateTechnicians();
+                        ClearTextboxFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Technician was not updated.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Technician was not updated.");
+                    throw ex;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                DisplayErrorMessage();
             }
         }
 

@@ -82,6 +82,7 @@
             this.cboProductListToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboProductListToRegisterIncident.TabIndex = 4;
             this.cboProductListToRegisterIncident.Text = "Select Product from List";
+            this.cboProductListToRegisterIncident.SelectedIndexChanged += new System.EventHandler(this.cboProductListToRegisterIncident_SelectedIndexChanged);
             // 
             // cboSelectTechnicianToRegisterIncident
             // 
@@ -91,6 +92,7 @@
             this.cboSelectTechnicianToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboSelectTechnicianToRegisterIncident.TabIndex = 5;
             this.cboSelectTechnicianToRegisterIncident.Text = "Select Technician from List";
+            this.cboSelectTechnicianToRegisterIncident.SelectedIndexChanged += new System.EventHandler(this.cboSelectTechnicianToRegisterIncident_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -188,6 +190,7 @@
             this.cboSelectCustomerAddNewIncident.Size = new System.Drawing.Size(158, 21);
             this.cboSelectCustomerAddNewIncident.TabIndex = 16;
             this.cboSelectCustomerAddNewIncident.Text = "Select a Customer";
+            this.cboSelectCustomerAddNewIncident.SelectedIndexChanged += new System.EventHandler(this.cboSelectCustomerAddNewIncident_SelectedIndexChanged);
             // 
             // FormAddNewIncident
             // 

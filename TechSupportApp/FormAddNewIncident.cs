@@ -48,6 +48,7 @@ namespace TechSupportApp
             List<Customer> customers = HelperDB.GetCustomerForIncidents();
             foreach (Customer customer in customers)
             {
+
                 cboSelectCustomerAddNewIncident.Items.Add(customer.Name);
             }
         }
@@ -65,7 +66,7 @@ namespace TechSupportApp
             {
 
                 addNewIncident.CustomerID = GetSelectedCustomerIndex();
-                addNewIncident.ProductCode = cboProductListToRegisterIncident.Text;
+                addNewIncident.ProductCode = GetSelectedProductCode();
                 addNewIncident.TechID = GetSelectedTechID();
                 addNewIncident.DateOpened = Convert.ToDateTime(mskAddDateOpened.Text).Date;
                 addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
@@ -90,16 +91,35 @@ namespace TechSupportApp
             }
         }
 
-        private int GetSelectedTechID()
+        private void cboSelectCustomerAddNewIncident_SelectedIndexChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            GetSelectedCustomerIndex();
         }
-
         private int GetSelectedCustomerIndex()
         {
-            throw new NotImplementedException();
+            Customer selectedCustomer = (Customer)cboSelectCustomerAddNewIncident.SelectedItem;
+            return Convert.ToInt32(selectedCustomer.CustomerID);
         }
 
+        private void cboProductListToRegisterIncident_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetSelectedProductCode();
+        }
+        private string GetSelectedProductCode()
+        {
+            Product selectedProduct = (Product)cboProductListToRegisterIncident.SelectedItem;
+            return selectedProduct.ProductCode;
+        }
 
+        private int GetSelectedTechID()
+        {
+            Technicians selectedTech = (Technicians)cboSelectTechnicianToRegisterIncident.SelectedItem;
+            return Convert.ToInt32(selectedTech.TechID);
+        }
+
+        private void cboSelectTechnicianToRegisterIncident_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetSelectedTechID();
+        }
     }
 }
