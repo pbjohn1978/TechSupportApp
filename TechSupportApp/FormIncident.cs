@@ -21,10 +21,10 @@ namespace TechSupportApp
 
         private void FormIncident_Load(object sender, EventArgs e)
         {
-            NewMethod();
+            PopulateCustomers();
         }
 
-        private void NewMethod()
+        private void PopulateCustomers()
         {
             List<Customer> customers = HelperDB.GetCustomerForIncidents();
             foreach (Customer temp in customers)
