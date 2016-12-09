@@ -52,7 +52,8 @@ namespace TechSupportApp
         }
         public int GetSelectedCustomerID()
         {
-            return Convert.ToInt32(lblID.Text);
+            Customer selectedCustomer = (Customer)cboAllCustomersIncidentsForm.SelectedItem;
+            return selectedCustomer.CustomerID;
         }
 
         public string GetSelectedCustomeName()

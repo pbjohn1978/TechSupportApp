@@ -28,29 +28,24 @@ namespace TechSupportApp
         private void PopulateTechnicians()
         {
             List<Technicians> techs = HelperDB.GetTechniansForIncidents();
-            foreach(Technicians tech in techs)
-            {
-                cboSelectTechnicianToRegisterIncident.Items.Add(tech.Name);
-            }
+            cboSelectTechnicianToRegisterIncident.DataSource = techs;
+            cboSelectTechnicianToRegisterIncident.DisplayMember = "Name";
+            
         }
 
         private void PopulateProducts()
         {
             List<Product> products = HelperDB.GetProductsForIncidents();
-            foreach(Product product in products)
-            {
-                cboProductListToRegisterIncident.Items.Add(product.Name + " " + product.ProductCode);
-            }
+            cboProductListToRegisterIncident.DataSource = products;
+            cboProductListToRegisterIncident.DisplayMember = "Name";  
         }
 
         private void PopulateCustomers()
         {
             List<Customer> customers = HelperDB.GetCustomerForIncidents();
-            foreach (Customer customer in customers)
-            {
-
-                cboSelectCustomerAddNewIncident.Items.Add(customer.Name);
-            }
+            cboSelectCustomerAddNewIncident.DataSource = customers;
+            cboSelectCustomerAddNewIncident.DisplayMember = "Name";
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -72,18 +67,18 @@ namespace TechSupportApp
                 addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
                 addNewIncident.Title = txtAddIncidentTitle.Text;
                 addNewIncident.Description = txtDescribeIncident.Text;
-                if (isValid)
-                {
+                //if (isValid)
+                //{
                     HelperDB.AddIncident(addNewIncident);
-                    FormIncident goToForm = new FormIncident();
+                    FormIncidents goToForm = new FormIncidents();
                     goToForm.Show();
                     MessageBox.Show("Incident added to database");
                     
-                }
-                else
-                {
-                    MessageBox.Show("Incident was not added.");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Incident was not added.");
+                //}
             }
             catch (Exception ex)
             {
@@ -97,8 +92,8 @@ namespace TechSupportApp
         }
         private int GetSelectedCustomerIndex()
         {
-            Customer selectedCustomer = (Customer)cboSelectCustomerAddNewIncident.SelectedItem;
-            return Convert.ToInt32(selectedCustomer.CustomerID);
+            Customer selectedCustomer = (Customer)cboSelectCustomerAddNewIncident.SelectedValue;
+            return selectedCustomer.CustomerID;
         }
 
         private void cboProductListToRegisterIncident_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,7 +109,7 @@ namespace TechSupportApp
         private int GetSelectedTechID()
         {
             Technicians selectedTech = (Technicians)cboSelectTechnicianToRegisterIncident.SelectedItem;
-            return Convert.ToInt32(selectedTech.TechID);
+            return selectedTech.TechID;
         }
 
         private void cboSelectTechnicianToRegisterIncident_SelectedIndexChanged(object sender, EventArgs e)
