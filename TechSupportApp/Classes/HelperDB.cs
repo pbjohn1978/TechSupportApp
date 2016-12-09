@@ -295,8 +295,9 @@ WHERE CustomerID = @custid3";
             selQuery.Connection = con;
             selQuery.CommandText =
                 @"
-                SELECT IncidentID, Incidents.CustomerID, Customers.Name, Incidents.ProductCode, Products.Name, Products.Version,
-	                Incidents.TechID, Technicians.Name, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
+                SELECT IncidentID, Incidents.CustomerID AS CustomerID, Customers.Name AS CustomerName, 
+                    Incidents.ProductCode AS ProductCode, Products.Name AS ProductName, 
+                    Products.Version, Incidents.TechID AS TechID, Technicians.Name AS TechName, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
                 FROM Incidents JOIN Customers
                 ON Customers.CustomerID = Incidents.CustomerID
                 JOIN Products
@@ -317,43 +318,43 @@ WHERE CustomerID = @custid3";
                     while (rdr.Read())
                     {
                         Incidents tempIncident = new Incidents();
-                        #region commented code- 
-                        tempIncident.IncidentID = rdr.GetInt32(0);
-                        tempIncident.CustomerID = rdr.GetInt32(1);
-                        tempIncident.CustomerName = rdr.GetString(2);
-                        tempIncident.ProductCode = rdr.GetString(3);
-                        tempIncident.ProductName = rdr.GetString(4);
-                        tempIncident.ProductVersion = rdr.GetDecimal(5);
-                        tempIncident.TechID = rdr.GetInt32(6);
-                        tempIncident.TechName = rdr.GetString(7);
-                        tempIncident.DateOpened = rdr.GetDateTime(8);
-                        //if (rdr.GetDateTime(9)== null)
-                        //{
-                        //    tempIncident.DateClosed = DateTime.Now;
+                        //#region commented code- 
+                        //tempIncident.IncidentID = rdr.GetInt32(0);
+                        //tempIncident.CustomerID = rdr.GetInt32(1);
+                        //tempIncident.CustomerName = rdr.GetString(2);
+                        //tempIncident.ProductCode = rdr.GetString(3);
+                        //tempIncident.ProductName = rdr.GetString(4);
+                        //tempIncident.ProductVersion = rdr.GetDecimal(5);
+                        //tempIncident.TechID = rdr.GetInt32(6);
+                        //tempIncident.TechName = rdr.GetString(7);
+                        //tempIncident.DateOpened = rdr.GetDateTime(8);
+                        ////if (rdr.GetDateTime(9)== null)
+                        ////{
+                        ////    tempIncident.DateClosed = null;
 
 
-                        //}
-                        //else
-                        //{
-                        tempIncident.DateClosed = rdr.GetDateTime(9);
-                        //}
-                        tempIncident.Title = rdr.GetString(10);
-                        tempIncident.Description = rdr.GetString(11);
+                        ////}
+                        ////else
+                        ////{
+                        //tempIncident.DateClosed = rdr.GetDateTime(9);
+                        ////}
+                        //tempIncident.Title = rdr.GetString(10);
+                        //tempIncident.Description = rdr.GetString(11);
 
-                        #endregion
-                        //tempIncident.IncidentID = (int)rdr["IncidentID"];
-                        //tempIncident.CustomerID = (int)rdr["Incidents.CustomerID"];
-                        //tempIncident.CustomerName = rdr["Customers.Name"].ToString();
-                        //tempIncident.ProductCode = rdr["Incidents.ProductCode"].ToString();
-                        //tempIncident.ProductName = rdr["Products.Name"].ToString();
-                        //tempIncident.ProductVersion = rdr["Products.Version"].ToString();
-                        //tempIncident.TechID = (int)rdr["Incidents.TechID"];
-                        //tempIncident.TechName = rdr["Technicians.Name"].ToString();
-                        //tempIncident.DateOpened = (DateTime)rdr["Incidents.DateOpened"];
-                        //tempIncident.DateClosed = (DateTime)rdr["Incidents.DateClosed"];
-                        //tempIncident.Title = rdr["Incidents.Title"].ToString();
-                        //tempIncident.Description = rdr["Incidents.Description"].ToString();
-                        //incidents.Add(tempIncident);
+                        //#endregion
+                        tempIncident.IncidentID = (int)rdr["IncidentID"];
+                        tempIncident.CustomerID = (int)rdr["CustomerID"];
+                        tempIncident.CustomerName = rdr["CustomerName"].ToString();
+                        tempIncident.ProductCode = rdr["ProductCode"].ToString();
+                        tempIncident.ProductName = rdr["ProductName"].ToString();
+                        tempIncident.ProductVersion = (decimal)rdr["Version"];
+                        tempIncident.TechID = (int)rdr["TechID"];
+                        tempIncident.TechName = rdr["TechName"].ToString();
+                        tempIncident.DateOpened = (DateTime)rdr["DateOpened"];
+                        tempIncident.DateClosed = (DateTime)rdr["DateClosed"];
+                        tempIncident.Title = rdr["Title"].ToString();
+                        tempIncident.Description = rdr["Description"].ToString();
+                        incidents.Add(tempIncident);
                     }
                 }
             }

@@ -35,16 +35,16 @@
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productsTableAdapter = new TechSupportApp.TechSupportDataSetTableAdapters.ProductsTableAdapter();
             this.lstIncidents = new System.Windows.Forms.ListView();
+            this.chdIncidentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdProductVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdTech = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdIncidentOpenDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdClosed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cboAllCustomersIncidentsForm = new System.Windows.Forms.ComboBox();
             this.btnAddNewIncident = new System.Windows.Forms.Button();
             this.btnUpdateIncident = new System.Windows.Forms.Button();
             this.btnDeleteSelectedIncident = new System.Windows.Forms.Button();
-            this.chdProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chdProductVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chdIncidentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chdTech = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chdIncidentOpenDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chdClosed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblIDLabel = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.lblNameLabel = new System.Windows.Forms.Label();
@@ -92,6 +92,33 @@
             this.lstIncidents.TabIndex = 0;
             this.lstIncidents.UseCompatibleStateImageBehavior = false;
             // 
+            // chdIncidentID
+            // 
+            this.chdIncidentID.DisplayIndex = 2;
+            this.chdIncidentID.Text = "Incident ID";
+            // 
+            // chdProductName
+            // 
+            this.chdProductName.DisplayIndex = 0;
+            this.chdProductName.Text = "Product Name";
+            // 
+            // chdProductVersion
+            // 
+            this.chdProductVersion.DisplayIndex = 1;
+            this.chdProductVersion.Text = "Product Version";
+            // 
+            // chdTech
+            // 
+            this.chdTech.Text = "Technician Name";
+            // 
+            // chdIncidentOpenDate
+            // 
+            this.chdIncidentOpenDate.Text = "Open Date";
+            // 
+            // chdClosed
+            // 
+            this.chdClosed.Text = "Closed?";
+            // 
             // cboAllCustomersIncidentsForm
             // 
             this.cboAllCustomersIncidentsForm.FormattingEnabled = true;
@@ -120,6 +147,7 @@
             this.btnUpdateIncident.TabIndex = 3;
             this.btnUpdateIncident.Text = "Update Selected Incident";
             this.btnUpdateIncident.UseVisualStyleBackColor = true;
+            this.btnUpdateIncident.Click += new System.EventHandler(this.btnUpdateIncident_Click);
             // 
             // btnDeleteSelectedIncident
             // 
@@ -129,33 +157,7 @@
             this.btnDeleteSelectedIncident.TabIndex = 4;
             this.btnDeleteSelectedIncident.Text = "Delete Selected Incident";
             this.btnDeleteSelectedIncident.UseVisualStyleBackColor = true;
-            // 
-            // chdProductName
-            // 
-            this.chdProductName.DisplayIndex = 0;
-            this.chdProductName.Text = "Product Name";
-            // 
-            // chdProductVersion
-            // 
-            this.chdProductVersion.DisplayIndex = 1;
-            this.chdProductVersion.Text = "Product Version";
-            // 
-            // chdIncidentID
-            // 
-            this.chdIncidentID.DisplayIndex = 2;
-            this.chdIncidentID.Text = "Incident ID";
-            // 
-            // chdTech
-            // 
-            this.chdTech.Text = "Technician Name";
-            // 
-            // chdIncidentOpenDate
-            // 
-            this.chdIncidentOpenDate.Text = "Open Date";
-            // 
-            // chdClosed
-            // 
-            this.chdClosed.Text = "Closed?";
+            this.btnDeleteSelectedIncident.Click += new System.EventHandler(this.btnDeleteSelectedIncident_Click);
             // 
             // lblIDLabel
             // 

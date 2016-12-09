@@ -24,9 +24,7 @@ namespace TechSupportApp.Classes
         [Required(ErrorMessage ="Technician is required")]
         public string TechName { get; set; }
         [Required(ErrorMessage ="Date is required")]
-
         public DateTime DateOpened { get; set; }
-
         public DateTime? DateClosed { get; set; }
         [Required(ErrorMessage ="Title is required")]
         public string Title { get; set; }
