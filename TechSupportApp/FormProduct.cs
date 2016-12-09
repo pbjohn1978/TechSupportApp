@@ -21,6 +21,10 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (rdoBtnView.Checked)
+            {
+                return;
+            }
             if (!Validation.IsDecimal(txtVersion.Text))
             {
                 return;
