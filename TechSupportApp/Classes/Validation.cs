@@ -34,16 +34,15 @@ namespace TechSupportApp.Classes
 
 
         public static bool IsValidTechnician(Technicians tech)
-        {
-            
-            //if(!IsValidEmail(tech.Email.ToString()))
-            //{
-            //    return false;
-            //}
-            //if(!IsValidPhoneNumber(tech.Phone.ToString()))
-            //{
-            //    return false;
-            //}
+        { 
+            if(!IsValidEmail(tech.Email))
+            {
+                return false;
+            }
+            if (!IsValidPhoneNumber(tech.Phone))
+            {
+                return false;
+            }
             return true;
         }
 

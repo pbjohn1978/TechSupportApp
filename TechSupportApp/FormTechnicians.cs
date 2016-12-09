@@ -131,10 +131,6 @@ namespace TechSupportApp
             {
                 isValid = false;
             }
-            if (maskTechnicianPhone.Text == null)
-            {
-                isValid = false;
-            }
             return isValid;
         }
 
@@ -164,10 +160,6 @@ namespace TechSupportApp
                         MessageBox.Show(updatedTech.Name + " updated");
                         PopulateTechnicians();
                         ClearTextboxFields();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Technician was not updated.");
                     }
                 }
                 catch (Exception ex)
