@@ -26,12 +26,12 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (cboCustomers.SelectedValue == null)
+            if (cboCustomers.SelectedItem == null)
             {
                 MessageBox.Show("Please select a customer");
                 return;
             }
-            else if (cboProducts.SelectedValue == null)
+            else if (cboProducts.SelectedItem == null)
             {
                 MessageBox.Show("Please select a product");
                 return;
