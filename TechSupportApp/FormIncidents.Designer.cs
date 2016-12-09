@@ -110,6 +110,7 @@
             this.btnAddNewIncident.TabIndex = 2;
             this.btnAddNewIncident.Text = "Add New Incident";
             this.btnAddNewIncident.UseVisualStyleBackColor = true;
+            this.btnAddNewIncident.Click += new System.EventHandler(this.btnAddNewIncident_Click);
             // 
             // btnUpdateIncident
             // 

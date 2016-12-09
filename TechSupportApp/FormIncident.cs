@@ -21,17 +21,17 @@ namespace TechSupportApp
 
         private void FormIncident_Load(object sender, EventArgs e)
         {
-            PopulateCustomers();
+            //PopulateCustomers();
         }
 
-        private void PopulateCustomers()
-        {
-            List<Customer> customers = HelperDB.GetCustomerForIncidents();
-            foreach (Customer temp in customers)
-            {
-                cboCustomerListforIncidents.Items.Add(temp.Name);
-            }
-        }
+        //private void PopulateCustomers()
+        //{
+        //    List<Customer> customers = HelperDB.GetCustomerForIncidents();
+        //    foreach (Customer temp in customers)
+        //    {
+        //        cboCustomerListforIncidents.Items.Add(temp.Name);
+        //    }
+        //}
 
         private void btnAddNewIncident_Click(object sender, EventArgs e)
         {
@@ -48,7 +48,7 @@ namespace TechSupportApp
                 lblCustomerNameLabel.Text = "Customer Name:";
                 lblIncidentCustomerID.Text = GetSelectedCustomerID().ToString();
                 lblIncidentCustomerName.Text = GetSelectedCustomeName().ToString();
-                lstProductsRegisteredToCustomer.Text = incident.ProductName.ToString() + " " + incident.Version;
+                lstProductsRegisteredToCustomer.Text = incident.ProductName.ToString() + " " + incident.ProductVersion;
             }
             
         }

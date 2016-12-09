@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport;
 using TechSupportApp.Classes;
 
 namespace TechSupportApp
@@ -16,6 +17,39 @@ namespace TechSupportApp
         public FormAddNewIncident()
         {
             InitializeComponent();
+        }
+        private void FormAddNewIncident_Load(object sender, EventArgs e)
+        {
+            PopulateCustomers();
+            PopulateProducts();
+            PopulateTechnicians();
+        }
+
+        private void PopulateTechnicians()
+        {
+            List<Technicians> techs = HelperDB.GetTechniansForIncidents();
+            foreach(Technicians tech in techs)
+            {
+                cboSelectTechnicianToRegisterIncident.Items.Add(tech.Name);
+            }
+        }
+
+        private void PopulateProducts()
+        {
+            List<Product> products = HelperDB.GetProductsForIncidents();
+            foreach(Product product in products)
+            {
+                cboProductListToRegisterIncident.Items.Add(product.Name + " " + product.ProductCode);
+            }
+        }
+
+        private void PopulateCustomers()
+        {
+            List<Customer> customers = HelperDB.GetCustomerForIncidents();
+            foreach (Customer customer in customers)
+            {
+                cboSelectCustomerAddNewIncident.Items.Add(customer.Name);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -65,5 +99,7 @@ namespace TechSupportApp
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

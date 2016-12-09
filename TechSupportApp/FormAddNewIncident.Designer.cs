@@ -77,27 +77,29 @@
             // cboProductListToRegisterIncident
             // 
             this.cboProductListToRegisterIncident.FormattingEnabled = true;
-            this.cboProductListToRegisterIncident.Location = new System.Drawing.Point(133, 55);
+            this.cboProductListToRegisterIncident.Location = new System.Drawing.Point(133, 58);
             this.cboProductListToRegisterIncident.Name = "cboProductListToRegisterIncident";
             this.cboProductListToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboProductListToRegisterIncident.TabIndex = 4;
+            this.cboProductListToRegisterIncident.Text = "Select Product from List";
             // 
             // cboSelectTechnicianToRegisterIncident
             // 
             this.cboSelectTechnicianToRegisterIncident.FormattingEnabled = true;
-            this.cboSelectTechnicianToRegisterIncident.Location = new System.Drawing.Point(133, 90);
+            this.cboSelectTechnicianToRegisterIncident.Location = new System.Drawing.Point(133, 89);
             this.cboSelectTechnicianToRegisterIncident.Name = "cboSelectTechnicianToRegisterIncident";
             this.cboSelectTechnicianToRegisterIncident.Size = new System.Drawing.Size(158, 21);
             this.cboSelectTechnicianToRegisterIncident.TabIndex = 5;
+            this.cboSelectTechnicianToRegisterIncident.Text = "Select Technician from List";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 90);
+            this.label3.Location = new System.Drawing.Point(15, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Select Incident:";
+            this.label3.Text = "Select Technician:";
             // 
             // label4
             // 
@@ -210,6 +212,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormAddNewIncident";
             this.Text = "FormAddNewIncident";
+            this.Load += new System.EventHandler(this.FormAddNewIncident_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

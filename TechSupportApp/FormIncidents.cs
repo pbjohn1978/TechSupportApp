@@ -21,6 +21,7 @@ namespace TechSupportApp
 
         private void FormIncidents_Load(object sender, EventArgs e)
         {
+
             PopulateCustomers();
             //// TODO: This line of code loads data into the 'techSupportDataSet.Products' table. You can move, or remove it, as needed.
             //this.productsTableAdapter.Fill(this.techSupportDataSet.Products);
@@ -30,10 +31,10 @@ namespace TechSupportApp
         }
         private void PopulateCustomers()
         {
-            List<Customer> customers = HelperDB.GetCustomerForIncidents();
-            foreach (Customer temp in customers)
+            List<Incidents> incidents = HelperDB.GetIncidents();
+            foreach (Incidents temp in incidents)
             {
-                cboAllCustomersIncidentsForm.Items.Add(temp.Name);
+                cboAllCustomersIncidentsForm.Items.Add(temp.CustomerName);
             }
         }
 
@@ -58,6 +59,12 @@ namespace TechSupportApp
         {
             Customer selectedCustomer = (Customer)cboAllCustomersIncidentsForm.SelectedItem;
             return selectedCustomer.Name;
+        }
+
+        private void btnAddNewIncident_Click(object sender, EventArgs e)
+        {
+            FormAddNewIncident addIncident = new FormAddNewIncident();
+            addIncident.Show();
         }
     }
 }

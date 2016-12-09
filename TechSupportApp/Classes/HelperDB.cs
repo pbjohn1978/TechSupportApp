@@ -79,7 +79,7 @@ FROM[TechSupport].[dbo].[Customers]";
 
             return customers;
         }
-        
+
 
         public static SqlConnection GetConnectionStringAppConfig()
         {
@@ -260,9 +260,12 @@ WHERE CustomerID = @custid3";
                 int rows1 = cmd1.ExecuteNonQuery();
                 int rows3 = cmd3.ExecuteNonQuery();
                 int rows2 = cmd2.ExecuteNonQuery();
-                if (rows2 == 1){
+                if (rows2 == 1)
+                {
                     return true;
-                }else{
+                }
+                else
+                {
                     return false;
                 }
             }
@@ -284,82 +287,82 @@ WHERE CustomerID = @custid3";
         ///<summary>
         ///Incidents CRUD Functionality
         /// </summary>
-        
+
         public static List<Incidents> GetIncidents()
         {
-            using (SqlConnection con = GetConnectionStringAppConfig())
+            SqlConnection con = GetConnectionStringAppConfig();
+            SqlCommand selQuery = new SqlCommand();
+            selQuery.Connection = con;
+            selQuery.CommandText =
+                @"
+                SELECT IncidentID, Incidents.CustomerID, Customers.Name, Incidents.ProductCode, Products.Name, Products.Version,
+	                Incidents.TechID, Technicians.Name, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
+                FROM Incidents JOIN Customers
+                ON Customers.CustomerID = Incidents.CustomerID
+                JOIN Products
+                ON Incidents.ProductCode = Products.ProductCode
+                JOIN Technicians
+                ON Incidents.TechID = Technicians.TechID
+                ";
+
+
+            List<Incidents> incidents = new List<Incidents>();
+            try
             {
-               
-                SqlCommand selQuery = new SqlCommand();
-                selQuery.Connection = con;
-                selQuery.CommandText =
-                    @"
-                    SELECT Incidents.IncidentID, Incidents.CustomerID, Customers.Name, Incidents.ProductCode, Products.Name,
-	                    Incidents.TechID, Technicians.Name, Incidents.DateOpened, Incidents.DateClosed, Incidents.Title, Incidents.Description
-                    FROM Incidents JOIN Customers
-                    ON Customers.CustomerID = Incidents.CustomerID
-                    JOIN Products
-                    ON Incidents.ProductCode = Products.ProductCode
-                    JOIN Technicians
-                    ON Incidents.TechID = Technicians.TechID
-                    ";
-                
-                
-                List<Incidents> incidents = new List<Incidents>();
-                try
+                con.Open();
+                SqlDataReader rdr = selQuery.ExecuteReader();
+                if (rdr.HasRows)
                 {
-                    con.Open();
-                    SqlDataReader rdr = selQuery.ExecuteReader();
-                    if (rdr.HasRows)
+
+                    while (rdr.Read())
                     {
+                        Incidents tempIncident = new Incidents();
+                        #region commented code- 
+                        tempIncident.IncidentID = rdr.GetInt32(0);
+                        tempIncident.CustomerID = rdr.GetInt32(1);
+                        tempIncident.CustomerName = rdr.GetString(2);
+                        tempIncident.ProductCode = rdr.GetString(3);
+                        tempIncident.ProductName = rdr.GetString(4);
+                        tempIncident.ProductVersion = rdr.GetDecimal(5);
+                        tempIncident.TechID = rdr.GetInt32(6);
+                        tempIncident.TechName = rdr.GetString(7);
+                        tempIncident.DateOpened = rdr.GetDateTime(8);
+                        //if (rdr.GetDateTime(9)== null)
+                        //{
+                        //    tempIncident.DateClosed = DateTime.Now;
 
-                        while (rdr.Read())
-                        {
-                            Incidents tempIncident = new Incidents();
-                            #region commented code- 
-                            //tempIncident.IncidentID = rdr.GetInt32(0);
-                            //tempIncident.CustomerID = rdr.GetInt32(1);
-                            //tempIncident.CustomerName = rdr.GetString(2);
-                            //tempIncident.ProductCode = rdr.GetString(3);
-                            //tempIncident.ProductName = rdr.GetString(4);
-                            //tempIncident.TechID = rdr.GetInt32(5);
-                            //tempIncident.TechName = rdr.GetString(6);
-                            //tempIncident.DateOpened = rdr.GetDateTime(7);
-                            //if (rdr.GetDateTime(8) != null)
-                            //{
-                            //    tempIncident.DateClosed = rdr.GetDateTime(8);
 
-                            //}
-                            //else
-                            //{
-                            //    //TODO- change the date time picker to allow null values for closed tickets DO NOT USE DATETIEME.NOW
-                            //    //tempIncident.DateClosed = "";
-                            //}
-                            //tempIncident.Title = rdr.GetString(9);
-                            //tempIncident.Description = rdr.GetString(10);
+                        //}
+                        //else
+                        //{
+                        tempIncident.DateClosed = rdr.GetDateTime(9);
+                        //}
+                        tempIncident.Title = rdr.GetString(10);
+                        tempIncident.Description = rdr.GetString(11);
 
-                            #endregion
-                            tempIncident.IncidentID = (int)rdr["Incidents.IncidentID"];
-                            tempIncident.CustomerID = (int)rdr["Incidents.CustomerID"];
-                            tempIncident.CustomerName = rdr["Customers.Name"].ToString();
-                            tempIncident.ProductCode = rdr["Incidents.ProductCode"].ToString();
-                            tempIncident.ProductName = rdr["Products.Name"].ToString();
-                            tempIncident.TechID = (int)rdr["Incidents.TechID"];
-                            tempIncident.TechName = rdr["Technicians.Name"].ToString();
-                            tempIncident.DateOpened = (DateTime)rdr["Incidents.DateOpened"];
-                            tempIncident.DateClosed = (DateTime)rdr["Incidents.DateClosed"];
-                            tempIncident.Title = rdr["Incidents.Title"].ToString();
-                            tempIncident.Description = rdr["Incidents.Description"].ToString();
-                            incidents.Add(tempIncident);
-                        }
+                        #endregion
+                        //tempIncident.IncidentID = (int)rdr["IncidentID"];
+                        //tempIncident.CustomerID = (int)rdr["Incidents.CustomerID"];
+                        //tempIncident.CustomerName = rdr["Customers.Name"].ToString();
+                        //tempIncident.ProductCode = rdr["Incidents.ProductCode"].ToString();
+                        //tempIncident.ProductName = rdr["Products.Name"].ToString();
+                        //tempIncident.ProductVersion = rdr["Products.Version"].ToString();
+                        //tempIncident.TechID = (int)rdr["Incidents.TechID"];
+                        //tempIncident.TechName = rdr["Technicians.Name"].ToString();
+                        //tempIncident.DateOpened = (DateTime)rdr["Incidents.DateOpened"];
+                        //tempIncident.DateClosed = (DateTime)rdr["Incidents.DateClosed"];
+                        //tempIncident.Title = rdr["Incidents.Title"].ToString();
+                        //tempIncident.Description = rdr["Incidents.Description"].ToString();
+                        //incidents.Add(tempIncident);
                     }
                 }
-                finally
-                {
-                    con.Dispose();
-                }
-                return incidents;
             }
+            finally
+            {
+                con.Dispose();
+            }
+            return incidents;
+
         }
 
         public static bool DeleteIncident(Incidents i)
@@ -476,7 +479,7 @@ WHERE CustomerID = @custid3";
         /// </summary>
         /// <returns></returns>
         public static List<Customer> GetCustomerForIncidents()
-        { 
+        {
             using (SqlConnection con = GetConnectionStringAppConfig())
             {
                 SqlCommand cmd = new SqlCommand();
@@ -509,45 +512,75 @@ WHERE CustomerID = @custid3";
             }
         }
 
-        //public static List<Registration> GetProductsRegisteredToCustomerforIncidentList(int id)
-        //{
-        //    using (SqlConnection con = GetConnectionStringAppConfig())
-        //    {
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.Connection = con;
-        //        cmd.CommandText =
-        //                @"SELECT Registrations.CustomerID, 
-        //                    Registrations.ProductCode, Products.Name, Products.Version
-        //            FROM Registrations
-        //            JOIN Products ON 
-        //            Products.ProductCode = Registrations.ProductCode
-        //            WHERE CustomerID =@customerID";
-                  
-        //        List<Registration> registrationList = new List<Registration>();
-        //        try
-        //        {
-        //            con.Open();
-        //            SqlDataReader rdr = cmd.ExecuteReader();
-        //            if (rdr.HasRows)
-        //            {
-        //                while (rdr.Read())
-        //                {
-        //                    Registration tempRegistration = new Registration();
+        public static List<Technicians> GetTechniansForIncidents()
+        {
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = @"
+                    SELECT Name, TechID
+                    FROM Technicians";
+                List<Technicians> techs = new List<Technicians>();
+                try
+                {
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            Technicians tempTech = new Technicians();
+                            tempTech.Name = rdr["Name"].ToString();
+                            tempTech.TechID = (int)rdr["TechID"];
+                            techs.Add(tempTech);
 
-        //                    tempRegistration.ProductCode = rdr["ProductCode"].ToString();
-        //                    //tempRegistration.Name = rdr["Product.Name"].ToString();
-        //                    //tempRegistration.Version = (decimal)rdr["Product.Version"];
-        //                    registrationList.Add(tempRegistration);
-        //                }
-        //            }
-        //        }
-        //        finally
-        //        {
-        //            con.Dispose();
-        //        }
-        //        return registrationList;
-        //    }
-        //}
+                        }
+                    }
+
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+                return techs;
+            }
+        }
+        public static List<Product> GetProductsForIncidents()
+        {
+            using (SqlConnection con = GetConnectionStringAppConfig())
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = @"
+                    SELECT Name, Version, ProductCode
+                    FROM Products";
+                List<Product> products = new List<Product>();
+                try
+                {
+                    con.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            Product tempProd = new Product();
+                            tempProd.ProductCode = rdr["ProductCode"].ToString();
+                            tempProd.Version = (decimal)rdr["Version"];
+                            tempProd.Name = rdr["Name"].ToString();
+                            products.Add(tempProd);
+
+                        }
+                    }
+
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+                return products;
+            }
+        }
 
         public static List<Incidents> GetIncidentsRegisteredToCustomerByProduct(int customerID, string productCode)
         {
@@ -600,6 +633,7 @@ WHERE CustomerID = @custid3";
                 return incidentList;
             }
         }
+
         public static string ErrorMessage(string dbQueryType)
         {
             return "Unable to execute " + dbQueryType + ". Please try again.  If error persists, please contact IT.";//i want to change this to a c#6 string... they are so much prettier... hehe... but i won't... :P :) 
@@ -640,9 +674,9 @@ WHERE CustomerID = @custid3";
             }
             catch (SqlException sqlex)
             {
-                
+
                 System.Windows.Forms.MessageBox.Show("Product Code is already in the database");
-                
+
             }
             finally
             {
@@ -714,7 +748,7 @@ WHERE CustomerID = @custid3";
                         prod.Name = reader.GetString(1);
                         prod.Version = reader.GetDecimal(2);
                         prod.ReleaseDate = reader.GetDateTime(3);
-                        
+
                         prods.Add(prod);
                     }
                 }
@@ -874,7 +908,7 @@ WHERE CustomerID = @custid3";
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -1234,7 +1268,7 @@ WHERE CustomerID = @custid3";
                     while (rdr.Read())
                     {
                         Technicians tempTech = new Technicians();
-                       
+
                         tempTech.TechID = (int)rdr["TechID"];
                         tempTech.Name = rdr["Name"].ToString();
                         tempTech.Email = rdr["Email"].ToString();
@@ -1265,12 +1299,12 @@ WHERE CustomerID = @custid3";
             {
                 con.Open();
                 int rows = delete.ExecuteNonQuery();
-                if(rows == 1)
+                if (rows == 1)
                 {
                     return true;
                 }
                 ErrorMessage("delete");
-                return false; 
+                return false;
             }
             finally
             {
@@ -1278,7 +1312,8 @@ WHERE CustomerID = @custid3";
             }
         }
 
-        public static bool AddTechnician(Technicians tech) {
+        public static bool AddTechnician(Technicians tech)
+        {
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand insert = new SqlCommand();
             insert.Connection = con;
@@ -1290,7 +1325,8 @@ WHERE CustomerID = @custid3";
             {
                 con.Open();
                 int rows = insert.ExecuteNonQuery();
-                if (rows == 1) {
+                if (rows == 1)
+                {
                     return true;
                 }
                 else
@@ -1304,7 +1340,8 @@ WHERE CustomerID = @custid3";
             }
         }
 
-        public static bool UpdateTechnician(Technicians tech) {
+        public static bool UpdateTechnician(Technicians tech)
+        {
             SqlConnection con = GetConnectionStringAppConfig();
             SqlCommand update = new SqlCommand();
             update.Connection = con;
