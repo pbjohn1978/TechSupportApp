@@ -138,6 +138,7 @@
             // 
             // cboName
             // 
+            this.cboName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboName.FormattingEnabled = true;
             this.cboName.Location = new System.Drawing.Point(93, 66);
             this.cboName.Name = "cboName";
@@ -148,6 +149,7 @@
             // 
             // cboProdCode
             // 
+            this.cboProdCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProdCode.FormattingEnabled = true;
             this.cboProdCode.Location = new System.Drawing.Point(93, 29);
             this.cboProdCode.Name = "cboProdCode";

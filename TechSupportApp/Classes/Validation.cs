@@ -142,12 +142,12 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidProductName(string prodName)
         {
-            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,20}$");
+            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=,]{1,30}$");
             if (r.IsMatch(prodName))
             {
                 return true;
             }
-            MessageBox.Show("Please make sure Name doesn't contain any special characters and is between 1 and 20 characters in length.");
+            MessageBox.Show("Please make sure Name doesn't contain any special characters and is between 1 and 30 characters in length.");
             return false;
         }
 
