@@ -64,14 +64,16 @@ namespace TechSupportApp
                 addNewIncident.ProductCode = GetSelectedProductCode();
                 addNewIncident.TechID = GetSelectedTechID();
                 addNewIncident.DateOpened = Convert.ToDateTime(mskAddDateOpened.Text).Date;
-                addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
+                if (addNewIncident.DateClosed != null)
+                {
+                    addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
+                }
                 addNewIncident.Title = txtAddIncidentTitle.Text;
                 addNewIncident.Description = txtDescribeIncident.Text;
                 //if (isValid)
                 //{
                     HelperDB.AddIncident(addNewIncident);
-                    FormIncidents goToForm = new FormIncidents();
-                    goToForm.Show();
+                    this.Close();
                     MessageBox.Show("Incident added to database");
                     
                 //}

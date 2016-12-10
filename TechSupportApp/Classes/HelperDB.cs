@@ -351,6 +351,7 @@ WHERE CustomerID = @custid3";
                         tempIncident.TechID = (int)rdr["TechID"];
                         tempIncident.TechName = rdr["TechName"].ToString();
                         tempIncident.DateOpened = (DateTime)rdr["DateOpened"];
+                        
                         tempIncident.DateClosed = (DateTime)rdr["DateClosed"];
                         tempIncident.Title = rdr["Title"].ToString();
                         tempIncident.Description = rdr["Description"].ToString();
@@ -408,7 +409,14 @@ WHERE CustomerID = @custid3";
             insert.Parameters.AddWithValue("@productCode", i.ProductCode);
             insert.Parameters.AddWithValue("@techID", i.TechID);
             insert.Parameters.AddWithValue("@dateOpened", i.DateOpened);
-            insert.Parameters.AddWithValue("@dateClosed", i.DateClosed);
+            if (i.DateClosed != null)
+            {
+                insert.Parameters.AddWithValue("@dateClosed", i.DateClosed);
+            }
+            else
+            {
+                insert.Parameters.AddWithValue("@dateClosed", DBNull.Value);
+            }
             insert.Parameters.AddWithValue("@title", i.Title);
             insert.Parameters.AddWithValue("@description", i.Description);
             try
