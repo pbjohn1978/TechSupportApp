@@ -26,17 +26,18 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (cboCustomers.SelectedValue == null)
+            if (cboCustomers.SelectedItem == null)
             {
                 MessageBox.Show("Please select a customer");
                 return;
             }
-            else if (cboProducts.SelectedValue == null)
+            else if (cboProducts.SelectedItem == null)
             {
                 MessageBox.Show("Please select a product");
                 return;
             }
-            Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
+
+                Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
             Product prod = HelperDB.GetProdObjectFromName(cboProducts.Text);
 
             if (HelperDB.AddRegistration(cust, prod, dateTimeRegDate.Value))
@@ -79,6 +80,17 @@ namespace TechSupportApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (cboCustomers.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a customer");
+                return;
+            }
+            else if (cboProducts.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a product");
+                return;
+            }
+
             Customer cust = HelperDB.GetCustObject(cboCustomers.Text);
             Product prod = HelperDB.GetProdObjectFromName(cboProducts.Text);
             Registration reg = HelperDB.GetRegObject(cust, prod);

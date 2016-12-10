@@ -12,35 +12,34 @@ namespace TechSupportApp.Classes
     public class Validation
     {
         public IEnumerable<Control> Controls { get; private set; }
-        private static String states = "|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY|";
-
 
         public static bool IsValidCustomer(Customer customer)
         {
-            if (!isStateAbbreviation(customer.State.ToString()))
+            //bool isValidInfo = true;
+            
+            if (!IsValidZipCode(customer.ZipCode.ToString()))
             {
-                MessageBox.Show("The state entered is not a Valid state code.");
                 return false;
             }
-            if( !customer.Email.Equals("") )
-                if( !IsValidEmail(customer.Email) )
-                     return false;
+            if(!IsValidEmail(customer.Email.ToString()))
+            {
+                return false;
+            }
+            if(!IsValidPhoneNumber(customer.Phone.ToString()))
+            {
+                return false;
+            }
             return true;
         }
-        
-        public static bool isStateAbbreviation(String state)
-        {
-            return state.Length == 2 && states.IndexOf(state) > 0;
-        }
 
 
-        public bool IsValidTechnician(Technicians tech)
-        {
-            if(!IsValidEmail(tech.Email.ToString()))
+        public static bool IsValidTechnician(Technicians tech)
+        { 
+            if(!IsValidEmail(tech.Email))
             {
                 return false;
             }
-            if(!IsValidPhoneNumber(tech.Phone.ToString()))
+            if (!IsValidPhoneNumber(tech.Phone))
             {
                 return false;
             }
@@ -97,11 +96,10 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string regexPattern = "^(?([0-9]{3}))?[-]?([0-9]{3})[-]?([0-9]{4})$";
-            Match validPhoneNumber = Regex.Match(phoneNumber, regexPattern);
-            if (!validPhoneNumber.Success)
+            //phone number uses masked text box, validate length is 10-digit number
+            if(phoneNumber.Length != 10)
             {
-                MessageBox.Show("Invalid phone number.  Please enter in valid format:  xxx-xxx-xxxx");
+                MessageBox.Show("Invalid phone number.  Please enter area code and number");
                 return false;
             }
             return true;
@@ -144,12 +142,12 @@ namespace TechSupportApp.Classes
 
         public static bool IsValidProductName(string prodName)
         {
-            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,]{1,30}$");
+            Regex r = new Regex("^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=,]{1,30}$");
             if (r.IsMatch(prodName))
             {
                 return true;
             }
-            MessageBox.Show("Please make sure Name doesn't contain any special characters and is between 1 and 20 characters in length.");
+            MessageBox.Show("Please make sure Name doesn't contain any special characters and is between 1 and 30 characters in length.");
             return false;
         }
 

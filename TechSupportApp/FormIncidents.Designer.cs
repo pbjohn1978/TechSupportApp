@@ -28,209 +28,227 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCustomerName = new System.Windows.Forms.Label();
-            this.cboIncCustomerName = new System.Windows.Forms.ComboBox();
-            this.lblCustomersProducts = new System.Windows.Forms.Label();
-            this.cboIncProducts = new System.Windows.Forms.ComboBox();
-            this.lblTechnician = new System.Windows.Forms.Label();
-            this.cboIncTecnician = new System.Windows.Forms.ComboBox();
-            this.lblIssue = new System.Windows.Forms.Label();
-            this.lblIncDescription = new System.Windows.Forms.Label();
-            this.txtIncidentDescription = new System.Windows.Forms.TextBox();
-            this.dtpDateTicketOpened = new System.Windows.Forms.DateTimePicker();
-            this.lblDateTicketOpened = new System.Windows.Forms.Label();
-            this.dtpDateTicketClosed = new System.Windows.Forms.DateTimePicker();
+            this.components = new System.ComponentModel.Container();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.techSupportDataSet = new TechSupportApp.TechSupportDataSet();
+            this.customersTableAdapter = new TechSupportApp.TechSupportDataSetTableAdapters.CustomersTableAdapter();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productsTableAdapter = new TechSupportApp.TechSupportDataSetTableAdapters.ProductsTableAdapter();
+            this.lstIncidents = new System.Windows.Forms.ListView();
+            this.chdIncidentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdProductVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdTech = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdIncidentOpenDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chdClosed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cboAllCustomersIncidentsForm = new System.Windows.Forms.ComboBox();
+            this.btnAddNewIncident = new System.Windows.Forms.Button();
+            this.btnUpdateIncident = new System.Windows.Forms.Button();
+            this.btnDeleteSelectedIncident = new System.Windows.Forms.Button();
+            this.lblIDLabel = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.lblNameLabel = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSaveIncident = new System.Windows.Forms.Button();
-            this.cboIncidentName = new System.Windows.Forms.ComboBox();
-            this.chkAddNewIncident = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblCustomerName
+            // customersBindingSource
             // 
-            this.lblCustomerName.AutoSize = true;
-            this.lblCustomerName.Location = new System.Drawing.Point(83, 30);
-            this.lblCustomerName.Name = "lblCustomerName";
-            this.lblCustomerName.Size = new System.Drawing.Size(85, 13);
-            this.lblCustomerName.TabIndex = 0;
-            this.lblCustomerName.Text = "Customer Name:";
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.techSupportDataSet;
             // 
-            // cboIncCustomerName
+            // techSupportDataSet
             // 
-            this.cboIncCustomerName.FormattingEnabled = true;
-            this.cboIncCustomerName.Location = new System.Drawing.Point(195, 25);
-            this.cboIncCustomerName.Name = "cboIncCustomerName";
-            this.cboIncCustomerName.Size = new System.Drawing.Size(228, 21);
-            this.cboIncCustomerName.TabIndex = 1;
-            this.cboIncCustomerName.Text = "Select Customer";
+            this.techSupportDataSet.DataSetName = "TechSupportDataSet";
+            this.techSupportDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // lblCustomersProducts
+            // customersTableAdapter
             // 
-            this.lblCustomersProducts.AutoSize = true;
-            this.lblCustomersProducts.Location = new System.Drawing.Point(11, 62);
-            this.lblCustomersProducts.Name = "lblCustomersProducts";
-            this.lblCustomersProducts.Size = new System.Drawing.Size(160, 13);
-            this.lblCustomersProducts.TabIndex = 2;
-            this.lblCustomersProducts.Text = "Customer\'s Registered Products:";
+            this.customersTableAdapter.ClearBeforeFill = true;
             // 
-            // cboIncProducts
+            // productsBindingSource
             // 
-            this.cboIncProducts.FormattingEnabled = true;
-            this.cboIncProducts.Location = new System.Drawing.Point(195, 58);
-            this.cboIncProducts.Name = "cboIncProducts";
-            this.cboIncProducts.Size = new System.Drawing.Size(228, 21);
-            this.cboIncProducts.TabIndex = 3;
-            this.cboIncProducts.Text = "Select Product";
+            this.productsBindingSource.DataMember = "Products";
+            this.productsBindingSource.DataSource = this.techSupportDataSet;
             // 
-            // lblTechnician
+            // productsTableAdapter
             // 
-            this.lblTechnician.AutoSize = true;
-            this.lblTechnician.Location = new System.Drawing.Point(62, 93);
-            this.lblTechnician.Name = "lblTechnician";
-            this.lblTechnician.Size = new System.Drawing.Size(109, 13);
-            this.lblTechnician.TabIndex = 4;
-            this.lblTechnician.Text = "Assigned Technician:";
+            this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // cboIncTecnician
+            // lstIncidents
             // 
-            this.cboIncTecnician.FormattingEnabled = true;
-            this.cboIncTecnician.Location = new System.Drawing.Point(195, 91);
-            this.cboIncTecnician.Name = "cboIncTecnician";
-            this.cboIncTecnician.Size = new System.Drawing.Size(228, 21);
-            this.cboIncTecnician.TabIndex = 5;
-            this.cboIncTecnician.Text = "Select Technician";
+            this.lstIncidents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chdIncidentID,
+            this.chdProductName,
+            this.chdProductVersion,
+            this.chdTech,
+            this.chdIncidentOpenDate,
+            this.chdClosed});
+            this.lstIncidents.Location = new System.Drawing.Point(21, 122);
+            this.lstIncidents.Name = "lstIncidents";
+            this.lstIncidents.Size = new System.Drawing.Size(306, 157);
+            this.lstIncidents.TabIndex = 0;
+            this.lstIncidents.UseCompatibleStateImageBehavior = false;
+            this.lstIncidents.SelectedIndexChanged += new System.EventHandler(this.lstIncidents_SelectedIndexChanged);
             // 
-            // lblIssue
+            // chdIncidentID
             // 
-            this.lblIssue.AutoSize = true;
-            this.lblIssue.Location = new System.Drawing.Point(89, 126);
-            this.lblIssue.Name = "lblIssue";
-            this.lblIssue.Size = new System.Drawing.Size(79, 13);
-            this.lblIssue.TabIndex = 6;
-            this.lblIssue.Text = "Incident Name:";
+            this.chdIncidentID.DisplayIndex = 2;
+            this.chdIncidentID.Text = "Incident ID";
             // 
-            // lblIncDescription
+            // chdProductName
             // 
-            this.lblIncDescription.AutoSize = true;
-            this.lblIncDescription.Location = new System.Drawing.Point(75, 164);
-            this.lblIncDescription.Name = "lblIncDescription";
-            this.lblIncDescription.Size = new System.Drawing.Size(93, 13);
-            this.lblIncDescription.TabIndex = 8;
-            this.lblIncDescription.Text = "Describe Incident:";
+            this.chdProductName.DisplayIndex = 0;
+            this.chdProductName.Text = "Product Name";
             // 
-            // txtIncidentDescription
+            // chdProductVersion
             // 
-            this.txtIncidentDescription.Location = new System.Drawing.Point(195, 160);
-            this.txtIncidentDescription.Multiline = true;
-            this.txtIncidentDescription.Name = "txtIncidentDescription";
-            this.txtIncidentDescription.Size = new System.Drawing.Size(457, 111);
-            this.txtIncidentDescription.TabIndex = 9;
+            this.chdProductVersion.DisplayIndex = 1;
+            this.chdProductVersion.Text = "Product Version";
             // 
-            // dtpDateTicketOpened
+            // chdTech
             // 
-            this.dtpDateTicketOpened.Location = new System.Drawing.Point(195, 293);
-            this.dtpDateTicketOpened.Name = "dtpDateTicketOpened";
-            this.dtpDateTicketOpened.Size = new System.Drawing.Size(200, 20);
-            this.dtpDateTicketOpened.TabIndex = 10;
+            this.chdTech.Text = "Technician Name";
             // 
-            // lblDateTicketOpened
+            // chdIncidentOpenDate
             // 
-            this.lblDateTicketOpened.AutoSize = true;
-            this.lblDateTicketOpened.Location = new System.Drawing.Point(61, 299);
-            this.lblDateTicketOpened.Name = "lblDateTicketOpened";
-            this.lblDateTicketOpened.Size = new System.Drawing.Size(107, 13);
-            this.lblDateTicketOpened.TabIndex = 11;
-            this.lblDateTicketOpened.Text = "Date Ticket Opened:";
+            this.chdIncidentOpenDate.Text = "Open Date";
             // 
-            // dtpDateTicketClosed
+            // chdClosed
             // 
-            this.dtpDateTicketClosed.Location = new System.Drawing.Point(195, 322);
-            this.dtpDateTicketClosed.Name = "dtpDateTicketClosed";
-            this.dtpDateTicketClosed.Size = new System.Drawing.Size(200, 20);
-            this.dtpDateTicketClosed.TabIndex = 12;
+            this.chdClosed.Text = "Closed?";
+            // 
+            // cboAllCustomersIncidentsForm
+            // 
+            this.cboAllCustomersIncidentsForm.FormattingEnabled = true;
+            this.cboAllCustomersIncidentsForm.Location = new System.Drawing.Point(21, 54);
+            this.cboAllCustomersIncidentsForm.Name = "cboAllCustomersIncidentsForm";
+            this.cboAllCustomersIncidentsForm.Size = new System.Drawing.Size(213, 21);
+            this.cboAllCustomersIncidentsForm.TabIndex = 1;
+            this.cboAllCustomersIncidentsForm.Text = "Select Customer from List";
+            this.cboAllCustomersIncidentsForm.SelectedIndexChanged += new System.EventHandler(this.cboAllCustomersIncidentsForm_SelectedIndexChanged);
+            // 
+            // btnAddNewIncident
+            // 
+            this.btnAddNewIncident.Location = new System.Drawing.Point(377, 97);
+            this.btnAddNewIncident.Name = "btnAddNewIncident";
+            this.btnAddNewIncident.Size = new System.Drawing.Size(75, 39);
+            this.btnAddNewIncident.TabIndex = 2;
+            this.btnAddNewIncident.Text = "Add New Incident";
+            this.btnAddNewIncident.UseVisualStyleBackColor = true;
+            this.btnAddNewIncident.Click += new System.EventHandler(this.btnAddNewIncident_Click);
+            // 
+            // btnUpdateIncident
+            // 
+            this.btnUpdateIncident.Location = new System.Drawing.Point(377, 175);
+            this.btnUpdateIncident.Name = "btnUpdateIncident";
+            this.btnUpdateIncident.Size = new System.Drawing.Size(75, 39);
+            this.btnUpdateIncident.TabIndex = 3;
+            this.btnUpdateIncident.Text = "Update Selected Incident";
+            this.btnUpdateIncident.UseVisualStyleBackColor = true;
+            this.btnUpdateIncident.Click += new System.EventHandler(this.btnUpdateIncident_Click);
+            // 
+            // btnDeleteSelectedIncident
+            // 
+            this.btnDeleteSelectedIncident.Location = new System.Drawing.Point(377, 237);
+            this.btnDeleteSelectedIncident.Name = "btnDeleteSelectedIncident";
+            this.btnDeleteSelectedIncident.Size = new System.Drawing.Size(75, 39);
+            this.btnDeleteSelectedIncident.TabIndex = 4;
+            this.btnDeleteSelectedIncident.Text = "Delete Selected Incident";
+            this.btnDeleteSelectedIncident.UseVisualStyleBackColor = true;
+            this.btnDeleteSelectedIncident.Click += new System.EventHandler(this.btnDeleteSelectedIncident_Click);
+            // 
+            // lblIDLabel
+            // 
+            this.lblIDLabel.AutoSize = true;
+            this.lblIDLabel.Location = new System.Drawing.Point(38, 51);
+            this.lblIDLabel.Name = "lblIDLabel";
+            this.lblIDLabel.Size = new System.Drawing.Size(0, 13);
+            this.lblIDLabel.TabIndex = 5;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(79, 51);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(0, 13);
+            this.lblID.TabIndex = 6;
+            // 
+            // lblNameLabel
+            // 
+            this.lblNameLabel.AutoSize = true;
+            this.lblNameLabel.Location = new System.Drawing.Point(140, 51);
+            this.lblNameLabel.Name = "lblNameLabel";
+            this.lblNameLabel.Size = new System.Drawing.Size(0, 13);
+            this.lblNameLabel.TabIndex = 7;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(194, 51);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(0, 13);
+            this.lblName.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 326);
+            this.label1.Location = new System.Drawing.Point(18, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Date Ticket Closed";
-            // 
-            // btnSaveIncident
-            // 
-            this.btnSaveIncident.Location = new System.Drawing.Point(295, 360);
-            this.btnSaveIncident.Name = "btnSaveIncident";
-            this.btnSaveIncident.Size = new System.Drawing.Size(100, 53);
-            this.btnSaveIncident.TabIndex = 14;
-            this.btnSaveIncident.Text = "Save Incident";
-            this.btnSaveIncident.UseVisualStyleBackColor = true;
-            // 
-            // cboIncidentName
-            // 
-            this.cboIncidentName.FormattingEnabled = true;
-            this.cboIncidentName.Location = new System.Drawing.Point(357, 124);
-            this.cboIncidentName.Name = "cboIncidentName";
-            this.cboIncidentName.Size = new System.Drawing.Size(295, 21);
-            this.cboIncidentName.TabIndex = 15;
-            this.cboIncidentName.Text = "Select to Update an Incident";
-            // 
-            // chkAddNewIncident
-            // 
-            this.chkAddNewIncident.AutoSize = true;
-            this.chkAddNewIncident.Location = new System.Drawing.Point(195, 127);
-            this.chkAddNewIncident.Name = "chkAddNewIncident";
-            this.chkAddNewIncident.Size = new System.Drawing.Size(111, 17);
-            this.chkAddNewIncident.TabIndex = 16;
-            this.chkAddNewIncident.Text = "Add New Incident";
-            this.chkAddNewIncident.UseVisualStyleBackColor = true;
+            this.label1.Size = new System.Drawing.Size(183, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Customer\'s with Registered Incidents:";
             // 
             // FormIncidents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 432);
-            this.Controls.Add(this.chkAddNewIncident);
-            this.Controls.Add(this.cboIncidentName);
-            this.Controls.Add(this.btnSaveIncident);
+            this.ClientSize = new System.Drawing.Size(500, 316);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dtpDateTicketClosed);
-            this.Controls.Add(this.lblDateTicketOpened);
-            this.Controls.Add(this.dtpDateTicketOpened);
-            this.Controls.Add(this.txtIncidentDescription);
-            this.Controls.Add(this.lblIncDescription);
-            this.Controls.Add(this.lblIssue);
-            this.Controls.Add(this.cboIncTecnician);
-            this.Controls.Add(this.lblTechnician);
-            this.Controls.Add(this.cboIncProducts);
-            this.Controls.Add(this.lblCustomersProducts);
-            this.Controls.Add(this.cboIncCustomerName);
-            this.Controls.Add(this.lblCustomerName);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblNameLabel);
+            this.Controls.Add(this.lblID);
+            this.Controls.Add(this.lblIDLabel);
+            this.Controls.Add(this.btnDeleteSelectedIncident);
+            this.Controls.Add(this.btnUpdateIncident);
+            this.Controls.Add(this.btnAddNewIncident);
+            this.Controls.Add(this.cboAllCustomersIncidentsForm);
+            this.Controls.Add(this.lstIncidents);
             this.Name = "FormIncidents";
             this.Text = "Incidents";
+            this.Load += new System.EventHandler(this.FormIncidents_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblCustomerName;
-        private System.Windows.Forms.ComboBox cboIncCustomerName;
-        private System.Windows.Forms.Label lblCustomersProducts;
-        private System.Windows.Forms.ComboBox cboIncProducts;
-        private System.Windows.Forms.Label lblTechnician;
-        private System.Windows.Forms.ComboBox cboIncTecnician;
-        private System.Windows.Forms.Label lblIssue;
-        private System.Windows.Forms.Label lblIncDescription;
-        private System.Windows.Forms.TextBox txtIncidentDescription;
-        private System.Windows.Forms.DateTimePicker dtpDateTicketOpened;
-        private System.Windows.Forms.Label lblDateTicketOpened;
-        private System.Windows.Forms.DateTimePicker dtpDateTicketClosed;
+        private TechSupportDataSet techSupportDataSet;
+        private System.Windows.Forms.BindingSource customersBindingSource;
+        private TechSupportDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
+        private System.Windows.Forms.BindingSource productsBindingSource;
+        private TechSupportDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
+        private System.Windows.Forms.ListView lstIncidents;
+        private System.Windows.Forms.ColumnHeader chdIncidentID;
+        private System.Windows.Forms.ColumnHeader chdProductName;
+        private System.Windows.Forms.ColumnHeader chdProductVersion;
+        private System.Windows.Forms.ColumnHeader chdTech;
+        private System.Windows.Forms.ColumnHeader chdIncidentOpenDate;
+        private System.Windows.Forms.ColumnHeader chdClosed;
+        private System.Windows.Forms.ComboBox cboAllCustomersIncidentsForm;
+        private System.Windows.Forms.Button btnAddNewIncident;
+        private System.Windows.Forms.Button btnUpdateIncident;
+        private System.Windows.Forms.Button btnDeleteSelectedIncident;
+        private System.Windows.Forms.Label lblIDLabel;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblNameLabel;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSaveIncident;
-        private System.Windows.Forms.ComboBox cboIncidentName;
-        private System.Windows.Forms.CheckBox chkAddNewIncident;
     }
 }

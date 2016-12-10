@@ -21,6 +21,11 @@ namespace TechSupportApp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            
+            if (rdoBtnView.Checked)
+            {
+                return;
+            }
             if (!Validation.IsDecimal(txtVersion.Text))
             {
                 return;
@@ -50,18 +55,13 @@ namespace TechSupportApp
                         }
                     }
                 }
-                else if (rdoBtnView.Checked)
-                {
-                    MessageBox.Show("Please select the 'Create New Product' or 'Update Product' option.");
-                }
                 else if (rdoBtnUpdate.Checked)
                 {
-                    if (cboProdCode.SelectedValue == null)
+                    if (cboProdCode.SelectedItem == null)
                     {
-                        MessageBox.Show("Please select a product code...");
+                        MessageBox.Show("Please select a Product Code...");
                         return;
                     }
-
                     Product prod = new Product();
 
                     prod.ProductCode = cboProdCode.Text;
@@ -113,12 +113,9 @@ namespace TechSupportApp
             {
                 cboName.Visible = false;
                 txtName.Visible = true;
-                txtName.Clear();
                 cboProdCode.Visible = false;
                 txtProdCode.Visible = true;
-                txtProdCode.Clear();
                 txtVersion.ReadOnly = false;
-                txtVersion.Clear();
                 dateTimeProd.Enabled = true;
                 btnDeleteProd.Enabled = false;
             }
@@ -137,6 +134,17 @@ namespace TechSupportApp
 
         private void btnDeleteProd_Click(object sender, EventArgs e)
         {
+            if (cboProdCode.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Product Code...");
+                return;
+            }
+            else if (cboName.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Product Name...");
+                return;
+            }
+
             Product prod = new Product();
 
             prod.ProductCode = cboProdCode.Text;
@@ -189,7 +197,6 @@ namespace TechSupportApp
         private void rdoBtnUpdate_CheckedChanged(object sender, EventArgs e)
         {
             cboProdCode.Visible = true;
-            cboProdCode.DropDownStyle = ComboBoxStyle.DropDownList;
             txtProdCode.Visible = false;
             cboName.Visible = false;
             txtName.Visible = true;
