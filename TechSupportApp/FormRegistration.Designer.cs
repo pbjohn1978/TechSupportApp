@@ -83,22 +83,22 @@
             // 
             // cboCustomers
             // 
+            this.cboCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCustomers.FormattingEnabled = true;
             this.cboCustomers.Location = new System.Drawing.Point(123, 25);
             this.cboCustomers.Name = "cboCustomers";
             this.cboCustomers.Size = new System.Drawing.Size(239, 21);
             this.cboCustomers.TabIndex = 4;
-            this.cboCustomers.Text = "Select Customer...";
             this.cboCustomers.DropDown += new System.EventHandler(this.cboCustomers_DropDown);
             // 
             // cboProducts
             // 
+            this.cboProducts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProducts.FormattingEnabled = true;
             this.cboProducts.Location = new System.Drawing.Point(123, 74);
             this.cboProducts.Name = "cboProducts";
             this.cboProducts.Size = new System.Drawing.Size(239, 21);
             this.cboProducts.TabIndex = 5;
-            this.cboProducts.Text = "Select Product...";
             this.cboProducts.DropDown += new System.EventHandler(this.cboProducts_DropDown);
             // 
             // btnSubmit
