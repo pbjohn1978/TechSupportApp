@@ -21,6 +21,7 @@ namespace TechSupportApp
 
         private void FormIncidents_Load(object sender, EventArgs e)
         {
+            cboAllCustomersIncidentsForm.Items.Clear();
             PopulateCustomers();
         }
         private void PopulateCustomers()
@@ -32,8 +33,7 @@ namespace TechSupportApp
 
         private void cboAllCustomersIncidentsForm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Incidents> incidents = HelperDB.GetIncidents();
-            
+            GetSelectedCustomerID();
         }
         public int GetSelectedCustomerID()
         {
@@ -43,6 +43,7 @@ namespace TechSupportApp
 
         private void btnAddNewIncident_Click(object sender, EventArgs e)
         {
+            
             FormAddNewIncident addIncident = new FormAddNewIncident();
             addIncident.Show();
         }
@@ -55,6 +56,18 @@ namespace TechSupportApp
         private void btnDeleteSelectedIncident_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lstIncidents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //List<Incidents> incidents = HelperDB.GetIncidentsRegisteredToCustomerByProduct(GetSelectedCustomerID());
+            //cboListIncidents.DataSource = incidents;
+            ////cboListIncidents.DataMember = "ProductName";
         }
     }
 }

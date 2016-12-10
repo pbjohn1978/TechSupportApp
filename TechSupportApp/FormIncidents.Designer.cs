@@ -49,6 +49,7 @@
             this.lblID = new System.Windows.Forms.Label();
             this.lblNameLabel = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
@@ -86,11 +87,12 @@
             this.chdTech,
             this.chdIncidentOpenDate,
             this.chdClosed});
-            this.lstIncidents.Location = new System.Drawing.Point(41, 83);
+            this.lstIncidents.Location = new System.Drawing.Point(21, 122);
             this.lstIncidents.Name = "lstIncidents";
-            this.lstIncidents.Size = new System.Drawing.Size(289, 157);
+            this.lstIncidents.Size = new System.Drawing.Size(306, 157);
             this.lstIncidents.TabIndex = 0;
             this.lstIncidents.UseCompatibleStateImageBehavior = false;
+            this.lstIncidents.SelectedIndexChanged += new System.EventHandler(this.lstIncidents_SelectedIndexChanged);
             // 
             // chdIncidentID
             // 
@@ -122,16 +124,16 @@
             // cboAllCustomersIncidentsForm
             // 
             this.cboAllCustomersIncidentsForm.FormattingEnabled = true;
-            this.cboAllCustomersIncidentsForm.Location = new System.Drawing.Point(41, 27);
+            this.cboAllCustomersIncidentsForm.Location = new System.Drawing.Point(21, 54);
             this.cboAllCustomersIncidentsForm.Name = "cboAllCustomersIncidentsForm";
-            this.cboAllCustomersIncidentsForm.Size = new System.Drawing.Size(186, 21);
+            this.cboAllCustomersIncidentsForm.Size = new System.Drawing.Size(213, 21);
             this.cboAllCustomersIncidentsForm.TabIndex = 1;
             this.cboAllCustomersIncidentsForm.Text = "Select Customer from List";
             this.cboAllCustomersIncidentsForm.SelectedIndexChanged += new System.EventHandler(this.cboAllCustomersIncidentsForm_SelectedIndexChanged);
             // 
             // btnAddNewIncident
             // 
-            this.btnAddNewIncident.Location = new System.Drawing.Point(377, 83);
+            this.btnAddNewIncident.Location = new System.Drawing.Point(377, 97);
             this.btnAddNewIncident.Name = "btnAddNewIncident";
             this.btnAddNewIncident.Size = new System.Drawing.Size(75, 39);
             this.btnAddNewIncident.TabIndex = 2;
@@ -141,7 +143,7 @@
             // 
             // btnUpdateIncident
             // 
-            this.btnUpdateIncident.Location = new System.Drawing.Point(377, 142);
+            this.btnUpdateIncident.Location = new System.Drawing.Point(377, 175);
             this.btnUpdateIncident.Name = "btnUpdateIncident";
             this.btnUpdateIncident.Size = new System.Drawing.Size(75, 39);
             this.btnUpdateIncident.TabIndex = 3;
@@ -151,7 +153,7 @@
             // 
             // btnDeleteSelectedIncident
             // 
-            this.btnDeleteSelectedIncident.Location = new System.Drawing.Point(377, 201);
+            this.btnDeleteSelectedIncident.Location = new System.Drawing.Point(377, 237);
             this.btnDeleteSelectedIncident.Name = "btnDeleteSelectedIncident";
             this.btnDeleteSelectedIncident.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteSelectedIncident.TabIndex = 4;
@@ -191,11 +193,21 @@
             this.lblName.Size = new System.Drawing.Size(0, 13);
             this.lblName.TabIndex = 8;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(183, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Customer\'s with Registered Incidents:";
+            // 
             // FormIncidents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 284);
+            this.ClientSize = new System.Drawing.Size(500, 316);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblNameLabel);
             this.Controls.Add(this.lblID);
@@ -206,7 +218,7 @@
             this.Controls.Add(this.cboAllCustomersIncidentsForm);
             this.Controls.Add(this.lstIncidents);
             this.Name = "FormIncidents";
-            this.Text = "FormIncidents";
+            this.Text = "Incidents";
             this.Load += new System.EventHandler(this.FormIncidents_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.techSupportDataSet)).EndInit();
@@ -237,5 +249,6 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblNameLabel;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label label1;
     }
 }

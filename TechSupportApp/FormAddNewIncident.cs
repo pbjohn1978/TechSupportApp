@@ -56,35 +56,50 @@ namespace TechSupportApp
         private void btnAddNewIncidentRecord_Click(object sender, EventArgs e)
         {
             Incidents addNewIncident = new Incidents();
-            bool isValid = true;
-            try
-            {
 
-                addNewIncident.CustomerID = GetSelectedCustomerIndex();
-                addNewIncident.ProductCode = GetSelectedProductCode();
-                addNewIncident.TechID = GetSelectedTechID();
-                addNewIncident.DateOpened = Convert.ToDateTime(mskAddDateOpened.Text).Date;
-                if (addNewIncident.DateClosed != null)
+            if (AllFieldsValid())
+            {
+                try
                 {
-                    addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
-                }
-                addNewIncident.Title = txtAddIncidentTitle.Text;
-                addNewIncident.Description = txtDescribeIncident.Text;
-                //if (isValid)
-                //{
+
+                    addNewIncident.CustomerID = GetSelectedCustomerIndex();
+                    addNewIncident.ProductCode = GetSelectedProductCode();
+                    addNewIncident.TechID = GetSelectedTechID();
+                    addNewIncident.DateOpened = Convert.ToDateTime(mskAddDateOpened.Text).Date;
+                    if (addNewIncident.DateClosed != null)
+                    {
+                        addNewIncident.DateClosed = Convert.ToDateTime(mskAddDateResolved.Text).Date;
+                    }
+                    addNewIncident.Title = txtAddIncidentTitle.Text;
+                    addNewIncident.Description = txtDescribeIncident.Text;
+                    //if (isValid)
+                    //{
                     HelperDB.AddIncident(addNewIncident);
                     this.Close();
                     MessageBox.Show("Incident added to database");
-                    
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Incident was not added.");
-                //}
+
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Incident was not added.");
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
+        }
+
+        private bool AllFieldsValid()
+        {
+            if (txtAddIncidentTitle.Text == null || txtDescribeIncident.Text == null || mskAddDateOpened.Text == null)
             {
-                throw ex;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
